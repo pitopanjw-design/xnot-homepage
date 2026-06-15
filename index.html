@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XNOT - Web3 물수제비 & TON Ecosystem 공식 랜딩페이지</title>
+  <meta name="description" content="텔레그램 미니앱 '물수제비(Stone Skipper)'에서 돌을 던지고, TON 블록체인에서 실제 가치 XNOT 코인으로 보상받으세요.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Outfit"', 'sans-serif'],
+            outfit: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            deepblue: {
+              950: '#030712',
+              900: '#0b1329',
+              800: '#1c2541',
+              700: '#3a506b',
+            },
+            gold: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            },
+            slate: {
+              850: '#1e293b',
+              900: '#0f172a',
+            }
+          },
+          animation: {
+            'glow-slow': 'glowSlow 6s ease-in-out infinite',
+            'float-slow': 'floatSlow 4s ease-in-out infinite',
+            'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+            'bounce-stone': 'bounceStone 3s infinite ease-in-out',
+          },
+          keyframes: {
+            glowSlow: {
+              '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+              '50%': { opacity: '0.8', transform: 'scale(1.1)' },
+            },
+            floatSlow: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            pulseSoft: {
+              '0%, 100%': { opacity: '0.9', transform: 'scale(1)' },
+              '50%': { opacity: '1', transform: 'scale(1.02)' },
+            },
+            bounceStone: {
+              '0%': { transform: 'translate(0, 0) scale(1)' },
+              '20%': { transform: 'translate(50px, -40px) scale(0.95)' },
+              '23%': { transform: 'translate(60px, 0px) scale(1)' },
+              '45%': { transform: 'translate(110px, -25px) scale(0.85)' },
+              '48%': { transform: 'translate(120px, 0px) scale(0.9)' },
+              '70%': { transform: 'translate(170px, -15px) scale(0.75)' },
+              '72%': { transform: 'translate(180px, 0px) scale(0.8)' },
+              '90%': { transform: 'translate(230px, -8px) scale(0.65)' },
+              '92%': { transform: 'translate(240px, 0px) scale(0.7)' },
+              '100%': { transform: 'translate(280px, 15px) scale(0.5)', opacity: '0' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    /* 커스텀 스크롤바 */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #030712;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1c2541;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3a506b;
+    }
+    
+    /* 텍스트 그라데이션 유틸리티 */
+    .text-glow-gold {
+      text-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+    }
+    .text-glow-green {
+      text-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+    }
+    
+    /* 물결 애니메이션 */
+    @keyframes waveRipple {
+      0% {
+        transform: scale(0.5);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(3.5);
+        opacity: 0;
+      }
+    }
+    .ripple-effect {
+      position: absolute;
+      border: 1px solid rgba(245, 158, 11, 0.6);
+      border-radius: 50%;
+      animation: waveRipple 1.4s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+      pointer-events: none;
+      transform-origin: center;
+    }
+    
+    /* 은하수 입자 효과 */
+    .star-bg {
+      background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+      background-size: 550px 550px, 350px 350px, 250px 250px;
+      background-position: 0 0, 40px 60px, 130px 270px;
+    }
+  </style>
+</head>
+<body class="bg-[#040815] text-slate-100 font-sans overflow-x-hidden star-bg selection:bg-gold-500 selection:text-deepblue-950">
+
+  <!-- 배경 장식 글로우 효과 -->
+  <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-blue-900/20 blur-[150px] animate-glow-slow"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] rounded-full bg-gold-600/10 blur-[150px] animate-glow-slow" style="animation-delay: 3s;"></div>
+  </div>
+
+  <!-- 헤더 (Header) -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-[#040815]/70 border-b border-slate-900 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- 로고 -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="relative w-10 h-10 flex items-center justify-between bg-gradient-to-tr from-gold-500 to-amber-300 rounded-xl p-[2px] shadow-lg shadow-gold-500/20 group-hover:shadow-gold-500/40 transition-all duration-300">
+          <div class="w-full h-full bg-[#040815] rounded-[10px] flex items-center justify-center">
+            <!-- X 로고 형상화 -->
+            <svg class="w-6 h-6 text-gold-400 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-2xl font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-100 to-gold-400 bg-clip-text text-transparent font-outfit">XNOT</span>
+          <span class="text-[9px] text-gold-400/80 tracking-widest uppercase font-semibold -mt-1">Ecosystem</span>
+        </div>
+      </a>
+      
+      <!-- 네비게이션 데스크탑 -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+        <a href="#about" class="hover:text-gold-400 transition-colors duration-200">About</a>
+        <a href="#tokenomics" class="hover:text-gold-400 transition-colors duration-200">Tokenomics</a>
+        <a href="#roadmap" class="hover:text-gold-400 transition-colors duration-200">Roadmap</a>
+      </nav>
+
+      <!-- 지갑 연결 버튼 -->
+      <div class="relative">
+        <button id="walletBtn" class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-gold-500 via-amber-400 to-gold-600 text-[#040815] font-bold text-sm hover:from-gold-400 hover:to-gold-500 transition-all duration-300 transform active:scale-95 shadow-lg shadow-gold-500/20 hover:shadow-gold-500/40">
+          <i data-lucide="wallet" class="w-4 h-4"></i>
+          <span>Connect Wallet</span>
+        </button>
+        
+        <!-- 지갑 드롭다운 / 상태 표시용 미세 인터랙션 -->
+        <div id="walletMenu" class="hidden absolute right-0 mt-3 w-56 rounded-2xl bg-slate-900 border border-slate-800 p-2 shadow-2xl z-50">
+          <div class="px-3 py-2 text-xs text-slate-400 border-b border-slate-800 mb-1">연결된 계정</div>
+          <div id="walletAddressDisplay" class="px-3 py-2 text-sm font-mono text-emerald-400 break-all"></div>
+          <button id="disconnectBtn" class="w-full text-left flex items-center gap-2 px-3 py-2 mt-1 rounded-xl text-xs text-rose-400 hover:bg-rose-950/20 hover:text-rose-300 transition-colors">
+            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+            <span>연결 해제 (Disconnect)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    
+    <!-- 히어로 섹션 (Hero Section) -->
+    <section id="hero" class="relative min-h-[calc(100vh-80px)] flex items-center justify-center py-20 px-6 overflow-hidden">
+      <!-- 뒷배경 물결 파장 장식 -->
+      <div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+        <div class="w-[800px] h-[800px] border border-blue-900/30 rounded-full animate-ping" style="animation-duration: 4s;"></div>
+        <div class="absolute w-[600px] h-[600px] border border-gold-500/10 rounded-full animate-ping" style="animation-duration: 6s; animation-delay: 1.5s;"></div>
+      </div>
+      
+      <div class="max-w-5xl mx-auto text-center relative z-10">
+        <!-- 뱃지 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/80 border border-slate-800 mb-8 backdrop-blur-md animate-bounce">
+          <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span class="text-xs font-semibold text-slate-300 uppercase tracking-widest font-outfit">TON Blockchain Active</span>
+        </div>
+        
+        <!-- 메인 헤드라인 -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8 leading-[1.1] font-outfit">
+          당신의 손끝에서 시작되는<br>
+          <span class="bg-gradient-to-r from-gold-400 via-amber-300 to-emerald-400 bg-clip-text text-transparent text-glow-gold">Web3 물수제비</span>
+        </h1>
+        
+        <p class="text-slate-300 font-bold mb-6 text-xl sm:text-2xl max-w-2xl mx-auto leading-relaxed">
+          "돌을 던지고 XNOT을 채굴하세요!"
+        </p>
+        
+        <!-- 서브 카피 -->
+        <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mb-12 leading-relaxed">
+          텔레그램 미니앱에서 손가락 스와이프로 물수제비 돌을 튕기고,<br class="hidden sm:inline">
+          TON 블록체인 생태계 내에서 실제 가치(<span class="text-gold-400 font-semibold">XNOT 코인</span>)로 보상받으세요.
+        </p>
+        
+        <!-- CTA 버튼 그룹 -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+          <!-- Play Now (Neon Green / Emerald) -->
+          <a href="https://t.me/XNOT_Bot" target="_blank" rel="noopener noreferrer" class="group relative w-full sm:w-auto px-8 py-4 rounded-2xl bg-emerald-500 text-deepblue-950 font-extrabold text-base hover:bg-emerald-400 transition-all duration-300 shadow-xl shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:-translate-y-1 flex items-center justify-center gap-3">
+            <i data-lucide="play" class="w-5 h-5 fill-current text-deepblue-950"></i>
+            <span>텔레그램 미니앱 플레이하기</span>
+            <span class="text-xs bg-deepblue-950/20 px-2 py-0.5 rounded-md text-emerald-950">Play Now</span>
+          </a>
+          
+          <!-- Whitepaper (Slate / Border) -->
+          <a href="https://xnot-official-site.com/whitepaper.pdf" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900/60 border border-slate-700/80 text-slate-200 hover:text-white hover:bg-slate-800/80 hover:border-slate-600 transition-all duration-300 backdrop-blur-sm hover:-translate-y-1 flex items-center justify-center gap-2">
+            <i data-lucide="file-text" class="w-5 h-5 text-slate-400"></i>
+            <span>백서 (Whitepaper) 읽기</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 하단 페이드 아웃 강가 수평선 분위기 연출 -->
+      <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#050b1d] to-transparent"></div>
+    </section>
+    
+    <!-- 게임 소개 섹션 (About Game) -->
+    <section id="about" class="py-24 px-6 bg-[#050b1d]/50 border-y border-slate-900 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-xs font-bold uppercase tracking-widest text-gold-400 mb-2 font-outfit">About Stone Skipper</h2>
+          <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">강가에서 우주까지, 물수제비의 진화</p>
+        </div>
+        
+        <!-- 좌우 2단 레이아웃 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- 좌측: 텔레그램 미니앱 목업 & 물수제비 CSS 애니메이션 -->
+          <div class="lg:col-span-5 flex justify-center order-2 lg:order-1">
+            <!-- 휴대폰 목업 구조 -->
+            <div class="relative w-[280px] h-[560px] rounded-[40px] border-[6px] border-slate-800 bg-slate-950 shadow-2xl overflow-hidden flex flex-col">
+              <!-- 스마트폰 카메라 노치 -->
+              <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-5 bg-slate-800 rounded-b-2xl z-20"></div>
+              
+              <!-- 미니앱 내부 화면 -->
+              <div class="relative flex-1 bg-gradient-to-b from-[#0a1128] via-[#0d1f42] to-[#122c5e] flex flex-col justify-between p-4 overflow-hidden select-none">
+                <!-- 미니앱 헤더 -->
+                <div class="flex items-center justify-between z-10 pt-2">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-6 h-6 rounded-full bg-slate-800/80 border border-slate-700/50 flex items-center justify-center">
+                      <span class="text-[8px] font-bold text-gold-400">⚡</span>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-300">Energy 5/5</span>
+                  </div>
+                  <div class="px-2.5 py-0.5 rounded-full bg-black/40 border border-gold-500/30 flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse"></span>
+                    <span class="text-[9px] font-extrabold text-gold-400 font-mono">1,250 SP</span>
+                  </div>
+                </div>
+                
+                <!-- 물수제비 시뮬레이션 캔버스/컨테이너 영역 -->
+                <div id="skippingContainer" class="absolute inset-0 z-0 flex items-end pb-24 overflow-hidden">
+                  <!-- 밤하늘 강가 배경 선 (수면선) -->
+                  <div class="absolute bottom-20 w-full h-[2px] bg-blue-900/60 z-0"></div>
+                  <!-- 은은한 빛 효과 수면 -->
+                  <div class="absolute bottom-0 w-full h-20 bg-gradient-to-t from-blue-950/80 to-transparent opacity-60"></div>
+                  
+                  <!-- 움직이는 돌 엘리먼트 -->
+                  <div id="skippingStone" class="absolute left-4 bottom-20 w-6 h-3 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full border border-slate-300 shadow-md shadow-black/50 z-10 animate-bounce-stone"></div>
+                </div>
+                
+                <!-- 미니앱 하단 조작 UI 가이드 -->
+                <div class="z-10 text-center pb-2">
+                  <div class="mb-2 text-[10px] text-slate-400 flex items-center justify-center gap-1">
+                    <i data-lucide="chevrons-right" class="w-3 h-3 text-gold-400 animate-pulse"></i>
+                    <span>화면을 밀어 물수제비를 던지세요!</span>
+                  </div>
+                  <div class="h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md">
+                    <div class="w-32 h-1 bg-slate-700 rounded-full overflow-hidden relative">
+                      <div class="absolute top-0 left-0 h-full w-2/3 bg-gradient-to-r from-gold-500 to-amber-300 animate-pulse"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 우측: 핵심 특징 3종 -->
+          <div class="lg:col-span-7 space-y-8 order-1 lg:order-2">
+            <!-- 특징 1 -->
+            <div class="flex gap-5 p-6 rounded-2xl bg-slate-900/40 border border-slate-800 hover:border-slate-700 hover:bg-slate-900/70 transition-all duration-300 group">
+              <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center shrink-0 group-hover:bg-gold-500/20 transition-colors">
+                <i data-lucide="zap" class="w-6 h-6 text-gold-400"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-gold-400 transition-colors">"단 1분의 몰입!"</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  화면을 스와이프하여 돌을 던지는 각도와 타이밍을 맞추는 간결하고 중독성 있는 피지컬 게임입니다. 누구나 짧은 시간 내에 쉽게 적응하고 극도의 타격감을 맛볼 수 있습니다.
+                </p>
+              </div>
+            </div>
+            
+            <!-- 특징 2 -->
+            <div class="flex gap-5 p-6 rounded-2xl bg-slate-900/40 border border-slate-800 hover:border-slate-700 hover:bg-slate-900/70 transition-all duration-300 group">
+              <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
+                <i data-lucide="gem" class="w-6 h-6 text-emerald-400"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">"차별화된 리워드"</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  흔한 자갈부터 납작한 슬레이트, 초희귀 황금 운석까지 나만의 고유한 돌(Stone)을 수집하고 강화하십시오. 돌의 등급이 높을수록 물 위를 더 많이 튕기며 엄청난 SP(Skipping Point)를 보상합니다.
+                </p>
+              </div>
+            </div>
+            
+            <!-- 특징 3 -->
+            <div class="flex gap-5 p-6 rounded-2xl bg-slate-900/40 border border-slate-800 hover:border-slate-700 hover:bg-slate-900/70 transition-all duration-300 group">
+              <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0 group-hover:bg-blue-500/20 transition-colors">
+                <i data-lucide="heart-pulse" class="w-6 h-6 text-blue-400"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">"스마트한 하트 충전"</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  에너지가 부족할 때 대기할 필요가 없습니다. 텔레그램 공식 미션 채널의 유튜브 스폰서십 시청, SNS 공유 등의 심플한 액션을 완료하고 즉시 에너지를 풀 충전하여 무한 채굴 사이클을 이어가세요.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    
+    <!-- 토큰노믹스 섹션 (XNOT Token Economy) -->
+    <section id="tokenomics" class="py-24 px-6 relative overflow-hidden">
+      <!-- 배경 원 장식 -->
+      <div class="absolute top-[20%] right-[-10%] w-[300px] h-[300px] bg-blue-900/10 rounded-full blur-[100px] pointer-events-none"></div>
+      
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-xs font-bold uppercase tracking-widest text-gold-400 mb-2 font-outfit">Token Economics</h2>
+          <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">XNOT 코인 생태계와 투명한 토큰노믹스</p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          
+          <!-- 좌측: 컨트랙트 주소 카드 -->
+          <div class="lg:col-span-6 flex flex-col justify-between p-8 rounded-3xl bg-slate-900/50 border border-slate-800 backdrop-blur-md relative overflow-hidden">
+            <!-- 백그라운드 그라데이션 광선 -->
+            <div class="absolute -top-12 -right-12 w-48 h-48 bg-gold-500/5 rounded-full blur-3xl"></div>
+            
+            <div>
+              <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center gap-2">
+                  <div class="w-8 h-8 rounded-lg bg-gold-500/20 flex items-center justify-center text-gold-400 font-bold text-sm">T</div>
+                  <span class="text-sm font-bold text-slate-300 font-outfit uppercase">TON Contract Address</span>
+                </div>
+                <!-- Tonscan Verified 마크 -->
+                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+                  <i data-lucide="badge-check" class="w-3.5 h-3.5 fill-emerald-400/20"></i>
+                  <span>Tonscan Verified</span>
+                </div>
+              </div>
+              
+              <h3 class="text-2xl font-bold mb-4">공식 스마트 컨트랙트</h3>
+              <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                XNOT 코인은 톤(TON) 블록체인에서 발행되었으며, 공식 검증(Verifier)이 완료되어 계약 코드가 투명하게 공개되어 있습니다. 아래 공식 주소를 복사하여 지갑에 수동 등록하거나 스캔에서 조회할 수 있습니다.
+              </p>
+            </div>
+            
+            <!-- 주소 복사 영역 -->
+            <div class="space-y-3">
+              <label class="text-xs font-bold text-slate-500 uppercase">Contract Address</label>
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-[#040815] border border-slate-800 font-mono text-xs text-slate-300 hover:border-slate-700 transition-colors">
+                <span id="contractAddress" class="break-all pr-4">EQDbr1DK-5rWtqHEekhu9tWuPk30z0WfSeG250dPlKxOCPuB</span>
+                <button id="copyBtn" class="p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-gold-400 hover:bg-slate-800 transition-all shrink-0 active:scale-90" title="주소 복사">
+                  <i id="copyIcon" data-lucide="copy" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 우측: 토큰 배분 비율 정보 -->
+          <div class="lg:col-span-6 p-8 rounded-3xl bg-slate-900/50 border border-slate-800 backdrop-blur-md flex flex-col justify-between">
+            <div>
+              <h3 class="text-2xl font-bold mb-6">XNOT 토큰 배분 정보</h3>
+              <p class="text-slate-400 text-sm mb-8 leading-relaxed">
+                공정하고 지속 가능한 웹3 에코시스템 구축을 위해 커뮤니티 기여 유저들을 우선으로 토큰을 배분하도록 설계했습니다. 전체 발행량의 60%가 실질적인 활동 유저들에게 할당됩니다.
+              </p>
+            </div>
+            
+            <div class="space-y-6" id="tokenDistributionSection">
+              <!-- 에어드랍 -->
+              <div>
+                <div class="flex justify-between items-center text-sm font-semibold mb-2">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-gold-400"></span>
+                    <span>에어드랍 & 생태계 (Airdrop & Ecosystem)</span>
+                  </div>
+                  <span class="text-gold-400 font-bold font-mono">60%</span>
+                </div>
+                <div class="w-full h-3 bg-slate-950 rounded-full overflow-hidden">
+                  <div class="dist-bar h-full rounded-full bg-gradient-to-r from-gold-500 to-amber-300 transition-all duration-1000 ease-out" style="width: 0%;" data-width="60%"></div>
+                </div>
+              </div>
+              
+              <!-- 팀 및 개발 -->
+              <div>
+                <div class="flex justify-between items-center text-sm font-semibold mb-2">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                    <span>팀 및 개발 (Team & Development)</span>
+                  </div>
+                  <span class="text-emerald-400 font-bold font-mono">20%</span>
+                </div>
+                <div class="w-full h-3 bg-slate-950 rounded-full overflow-hidden">
+                  <div class="dist-bar h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-1000 ease-out" style="width: 0%;" data-width="20%"></div>
+                </div>
+              </div>
+              
+              <!-- 마케팅 -->
+              <div>
+                <div class="flex justify-between items-center text-sm font-semibold mb-2">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-blue-400"></span>
+                    <span>마케팅 & 파트너십 (Marketing & Partnership)</span>
+                  </div>
+                  <span class="text-blue-400 font-bold font-mono">20%</span>
+                </div>
+                <div class="w-full h-3 bg-slate-950 rounded-full overflow-hidden">
+                  <div class="dist-bar h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-400 transition-all duration-1000 ease-out" style="width: 0%;" data-width="20%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    
+    <!-- 로드맵 섹션 (Roadmap) -->
+    <section id="roadmap" class="py-24 px-6 bg-[#050b1d]/40 border-y border-slate-900 relative">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-xs font-bold uppercase tracking-widest text-gold-400 mb-2 font-outfit">Project Roadmap</h2>
+          <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">XNOT 생태계 로드맵</p>
+        </div>
+        
+        <!-- 타임라인 컨테이너 -->
+        <div class="relative border-l border-slate-800 ml-4 md:ml-32 space-y-12">
+          
+          <!-- Phase 1 -->
+          <div class="relative pl-8 md:pl-12 group">
+            <!-- 타임라인 볼륨 서클 -->
+            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-500 border-4 border-[#040815] group-hover:scale-125 transition-transform"></div>
+            
+            <!-- 데스크탑 연도 태그 -->
+            <div class="absolute left-[-150px] top-0 hidden md:block text-right w-28">
+              <span class="text-sm font-bold text-slate-500 uppercase tracking-widest">Phase 1</span>
+              <div class="text-[11px] font-bold text-emerald-400">Completed</div>
+            </div>
+            
+            <div class="p-6 rounded-2xl bg-slate-900/30 border border-slate-800 group-hover:border-emerald-500/40 transition-colors">
+              <div class="flex items-center gap-2 mb-2 md:hidden">
+                <span class="text-xs font-bold text-slate-500 uppercase">Phase 1</span>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold">Completed</span>
+              </div>
+              <h3 class="text-xl font-bold mb-3 flex items-center gap-2 text-slate-300">
+                <span>베타 빌드 & 스마트 컨트랙트 발행</span>
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0"></i>
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                웹3 기반 물수제비(Stone Skipper) 기획 완료 및 미니앱 클로즈베타 버전 개발 완료. TON 기반 XNOT 토큰 스마트 컨트랙트 생성 및 verifier.ton.org를 통한 공식 검증과 배포 완료.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Phase 2 -->
+          <div class="relative pl-8 md:pl-12 group">
+            <!-- 진행 중 펄스 라이트 서클 -->
+            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-400 border-4 border-[#040815] group-hover:scale-125 transition-transform">
+              <span class="absolute -inset-1 rounded-full bg-gold-400/50 animate-ping"></span>
+            </div>
+            
+            <!-- 데스크탑 연도 태그 -->
+            <div class="absolute left-[-150px] top-0 hidden md:block text-right w-28">
+              <span class="text-sm font-bold text-slate-500 uppercase tracking-widest">Phase 2</span>
+              <div class="text-[11px] font-bold text-gold-400 animate-pulse">In Progress</div>
+            </div>
+            
+            <div class="p-6 rounded-2xl bg-slate-900/60 border border-gold-500/30 group-hover:border-gold-500/60 transition-colors shadow-lg shadow-gold-500/5">
+              <div class="flex items-center gap-2 mb-2 md:hidden">
+                <span class="text-xs font-bold text-slate-500 uppercase">Phase 2</span>
+                <span class="px-2 py-0.5 rounded-full bg-gold-950/60 border border-gold-500/20 text-gold-400 text-[10px] font-bold animate-pulse">In Progress</span>
+              </div>
+              <h3 class="text-xl font-bold mb-3 flex items-center gap-2 text-gold-400">
+                <span>글로벌 정식 런칭 & 유저 팽창</span>
+                <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                물수제비 미니앱 텔레그램 글로벌 오피셜 버전 정식 런칭. 글로벌 텔레그램 커뮤니티 빌드업 및 X(Twitter) 채널 마케팅 캠페인 개시. 바이럴 퀘스트와 다양한 인플루언서 제휴로 대규모 글로벌 사용자 확보 단계 진입.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Phase 3 -->
+          <div class="relative pl-8 md:pl-12 group">
+            <!-- 타임라인 볼륨 서클 -->
+            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-700 border-4 border-[#040815] group-hover:scale-125 transition-transform"></div>
+            
+            <!-- 데스크탑 연도 태그 -->
+            <div class="absolute left-[-150px] top-0 hidden md:block text-right w-28">
+              <span class="text-sm font-bold text-slate-500 uppercase tracking-widest">Phase 3</span>
+              <div class="text-[11px] font-bold text-slate-500">Upcoming</div>
+            </div>
+            
+            <div class="p-6 rounded-2xl bg-slate-900/10 border border-slate-900 opacity-60 group-hover:opacity-95 transition-opacity duration-300">
+              <div class="flex items-center gap-2 mb-2 md:hidden">
+                <span class="text-xs font-bold text-slate-500 uppercase">Phase 3</span>
+                <span class="px-2 py-0.5 rounded-full bg-slate-950/60 border border-slate-800 text-slate-500 text-[10px] font-bold">Upcoming</span>
+              </div>
+              <h3 class="text-xl font-bold mb-3 flex items-center gap-2 text-slate-500 group-hover:text-slate-300 transition-colors">
+                <span>TGE, 상장 & DAO 거버넌스</span>
+                <i data-lucide="lock" class="w-4.5 h-4.5 text-slate-600 shrink-0"></i>
+              </h3>
+              <p class="text-slate-500 group-hover:text-slate-400 text-sm leading-relaxed transition-colors">
+                주요 탈중앙화 거래소(DEX) 및 중앙 집중형 글로벌 거래소(CEX) 대상 XNOT 토큰 생성 이벤트(TGE) 및 공식 상장 추진. 활성 기여자 대상 누적된 SP 기반 에어드랍 대규모 클레임 오픈. XNOT 파워 홀더들을 위한 거버넌스 및 DAO 커뮤니티 런칭.
+              </p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    
+  </main>
+
+  <!-- 푸터 (Footer) -->
+  <footer class="bg-[#02050e] border-t border-slate-900 py-16 px-6 relative z-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start mb-12">
+        <!-- 푸터 브랜딩 -->
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 flex items-center justify-between bg-gradient-to-tr from-gold-500 to-amber-300 rounded-lg p-[1.5px]">
+              <div class="w-full h-full bg-[#02050e] rounded-[7px] flex items-center justify-center">
+                <svg class="w-4 h-4 text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 6 6 18M6 6l12 12"/>
+                </svg>
+              </div>
+            </div>
+            <span class="text-xl font-bold tracking-wider text-slate-200 font-outfit">XNOT Ecosystem</span>
+          </div>
+          <p class="text-slate-500 text-xs leading-relaxed max-w-sm">
+            XNOT은 톤(TON) 블록체인을 기반으로 사용자에게 실제 가치와 진보된 리워드 경험을 선사하는 혁신적인 웹3 미니 게임 에코시스템입니다.
+          </p>
+        </div>
+        
+        <!-- 푸터 링크 -->
+        <div class="md:col-span-3">
+          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Navigations</h4>
+          <ul class="space-y-2.5 text-xs text-slate-500 font-semibold">
+            <li><a href="#about" class="hover:text-gold-400 transition-colors">About Stone Skipper</a></li>
+            <li><a href="#tokenomics" class="hover:text-gold-400 transition-colors">XNOT Tokenomics</a></li>
+            <li><a href="#roadmap" class="hover:text-gold-400 transition-colors">Roadmap</a></li>
+          </ul>
+        </div>
+        
+        <!-- 소셜 링크 -->
+        <div class="md:col-span-4 space-y-4">
+          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Community Links</h4>
+          <div class="flex items-center gap-3.5">
+            <!-- Telegram -->
+            <a href="https://t.me/XNOT_Bot" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-[#0088cc] hover:bg-[#0088cc]/10 hover:border-[#0088cc]/30 transition-all" title="Telegram Channel">
+              <i data-lucide="send" class="w-4.5 h-4.5"></i>
+            </a>
+            <!-- Twitter / X -->
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/30 transition-all" title="Twitter / X">
+              <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <!-- Discord -->
+            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-[#5865F2] hover:bg-[#5865F2]/10 hover:border-[#5865F2]/30 transition-all" title="Discord Server">
+              <i data-lucide="message-square" class="w-4.5 h-4.5"></i>
+            </a>
+            <!-- Tonscan -->
+            <a href="https://tonscan.org" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:bg-emerald-400/10 hover:border-emerald-400/30 transition-all" title="Tonscan Explorer">
+              <i data-lucide="external-link" class="w-4.5 h-4.5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 저작권 및 Disclaimer -->
+      <div class="border-t border-slate-900/60 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <div class="text-[10px] text-slate-600 max-w-2xl leading-relaxed">
+          <span class="block font-bold text-slate-500 mb-1">Disclaimer (투자 유의 사항):</span>
+          XNOT 코인과 관련된 정보 및 백서 등 프로젝트 관련 자료는 투자 권유, 법적 조언 또는 특정 자산 매수 추천이 아닙니다. 암호화폐 및 웹3 자산 투자는 극도의 변동성과 원금 손실 위험이 있으므로 자산 투자 전 반드시 본인의 판단에 따라 신중히 결정하시기 바랍니다.
+        </div>
+        <div class="text-xs text-slate-500 font-medium shrink-0">
+          &copy; 2026 XNOT Ecosystem. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 지갑 연결 모달 (Connect Wallet Modal) -->
+  <div id="walletModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+    <!-- 모달 백스크린 닫기 -->
+    <div class="absolute inset-0" onclick="toggleWalletModal()"></div>
+    
+    <div class="relative w-full max-w-sm rounded-3xl bg-slate-900 border border-slate-800 p-6 shadow-2xl z-10 transform scale-95 transition-transform duration-300">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg font-bold text-slate-100">Connect to TON Wallet</h3>
+        <button onclick="toggleWalletModal()" class="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-slate-100 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      
+      <p class="text-xs text-slate-400 mb-6 leading-relaxed">
+        지원되는 TON 블록체인 지갑 중 원하시는 지갑을 선택해 연결을 요청하세요.
+      </p>
+      
+      <div class="space-y-3">
+        <!-- Tonkeeper -->
+        <button onclick="connectVirtualWallet('Tonkeeper')" class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-gold-500/50 hover:bg-slate-900 transition-all group">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold group-hover:bg-blue-500/20">TK</div>
+            <div class="text-left">
+              <span class="block text-sm font-bold text-slate-200">Tonkeeper</span>
+              <span class="block text-[10px] text-slate-500">가장 추천하는 모바일 & 브라우저 지갑</span>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-gold-400 group-hover:translate-x-1 transition-all"></i>
+        </button>
+        
+        <!-- Telegram Wallet -->
+        <button onclick="connectVirtualWallet('Telegram Wallet')" class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-gold-500/50 hover:bg-slate-900 transition-all group">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400 font-bold group-hover:bg-sky-500/20">TW</div>
+            <div class="text-left">
+              <span class="block text-sm font-bold text-slate-200">Telegram Wallet</span>
+              <span class="block text-[10px] text-slate-500">텔레그램 인앱 내장 커스터디얼 지갑</span>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-gold-400 group-hover:translate-x-1 transition-all"></i>
+        </button>
+        
+        <!-- MyTonWallet -->
+        <button onclick="connectVirtualWallet('MyTonWallet')" class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-gold-500/50 hover:bg-slate-900 transition-all group">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-400 font-bold group-hover:bg-teal-500/20">MT</div>
+            <div class="text-left">
+              <span class="block text-sm font-bold text-slate-200">MyTonWallet</span>
+              <span class="block text-[10px] text-slate-500">안전한 크롬 확장 및 모바일 월렛</span>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-gold-400 group-hover:translate-x-1 transition-all"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 토스트 메시지 시스템 (Toast Notification) -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900 border border-slate-800 text-slate-200 text-xs font-semibold shadow-2xl opacity-0 translate-y-4 pointer-events-none transition-all duration-300">
+    <div id="toastStatusDot" class="w-2.5 h-2.5 rounded-full bg-gold-400 animate-pulse"></div>
+    <span id="toastMsg">메시지 내용</span>
+  </div>
+
+  <!-- 스크립트 (Scripts) -->
+  <script>
+    // Lucide 아이콘 초기화
+    lucide.createIcons();
+    
+    // 글로벌 상태
+    let isConnected = false;
+    let connectedWalletName = "";
+    
+    // 주소 복사 기능
+    const contractText = "EQDbr1DK-5rWtqHEekhu9tWuPk30z0WfSeG250dPlKxOCPuB";
+    const copyBtn = document.getElementById('copyBtn');
+    const copyIcon = document.getElementById('copyIcon');
+    
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(contractText);
+        
+        // 아이콘 변경 피드백
+        copyIcon.setAttribute('data-lucide', 'check');
+        copyBtn.classList.remove('text-slate-400');
+        copyBtn.classList.add('text-emerald-400', 'bg-emerald-950/30');
+        lucide.createIcons();
+        
+        showToast("스마트 컨트랙트 주소가 복사되었습니다!", "emerald");
+        
+        setTimeout(() => {
+          copyIcon.setAttribute('data-lucide', 'copy');
+          copyBtn.classList.remove('text-emerald-400', 'bg-emerald-950/30');
+          copyBtn.classList.add('text-slate-400');
+          lucide.createIcons();
+        }, 2000);
+      } catch (err) {
+        showToast("복사에 실패했습니다. 직접 복사해 주세요.", "rose");
+      }
+    });
+    
+    // 지갑 토글 관련 엘리먼트
+    const walletBtn = document.getElementById('walletBtn');
+    const walletMenu = document.getElementById('walletMenu');
+    const walletModal = document.getElementById('walletModal');
+    const walletAddressDisplay = document.getElementById('walletAddressDisplay');
+    const disconnectBtn = document.getElementById('disconnectBtn');
+    
+    walletBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!isConnected) {
+        toggleWalletModal();
+      } else {
+        walletMenu.classList.toggle('hidden');
+      }
+    });
+    
+    // 바깥 클릭 시 메뉴 숨기기
+    document.addEventListener('click', () => {
+      walletMenu.classList.add('hidden');
+    });
+    
+    function toggleWalletModal() {
+      const modalInner = walletModal.querySelector('.relative');
+      if (walletModal.classList.contains('opacity-0')) {
+        walletModal.classList.remove('opacity-0', 'pointer-events-none');
+        modalInner.classList.remove('scale-95');
+      } else {
+        walletModal.classList.add('opacity-0', 'pointer-events-none');
+        modalInner.classList.add('scale-95');
+      }
+    }
+    
+    // 가상 지갑 연결 로직
+    function connectVirtualWallet(walletName) {
+      toggleWalletModal();
+      
+      // 임시 스피너 변경
+      const btnSpan = walletBtn.querySelector('span');
+      const btnIcon = walletBtn.querySelector('i');
+      btnSpan.innerText = "Connecting...";
+      walletBtn.disabled = true;
+      
+      setTimeout(() => {
+        isConnected = true;
+        connectedWalletName = walletName;
+        walletBtn.disabled = false;
+        
+        // 가상 지갑 주소 생성
+        const mockAddress = "EQA1_XNOT_" + Math.random().toString(36).substring(2, 8).toUpperCase() + "_StoneSkipper_" + Math.random().toString(36).substring(2, 6).toUpperCase();
+        
+        // 버튼 텍스트 단축형 주소로 교체
+        const shortenedAddr = mockAddress.slice(0, 4) + "..." + mockAddress.slice(-4);
+        btnSpan.innerText = shortenedAddr;
+        
+        // 드롭다운 내용 반영
+        walletAddressDisplay.innerText = mockAddress;
+        
+        // 버튼 스타일 연두색으로 변경 (성공 표시)
+        walletBtn.className = "flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-deepblue-950 font-bold text-sm transition-all duration-300 transform active:scale-95 shadow-lg shadow-emerald-500/20";
+        
+        // 아이콘 변경
+        if (btnIcon) btnIcon.setAttribute('data-lucide', 'check-circle-2');
+        lucide.createIcons();
+        
+        showToast(`${walletName} 지갑이 연결되었습니다!`, "emerald");
+      }, 1500);
+    }
+    
+    // 연결 해제
+    disconnectBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isConnected = false;
+      connectedWalletName = "";
+      
+      const btnSpan = walletBtn.querySelector('span');
+      btnSpan.innerText = "Connect Wallet";
+      
+      // 버튼 원래 스타일로 복원
+      walletBtn.className = "flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-gold-500 via-amber-400 to-gold-600 text-[#040815] font-bold text-sm hover:from-gold-400 hover:to-gold-500 transition-all duration-300 transform active:scale-95 shadow-lg shadow-gold-500/20 hover:shadow-gold-500/40";
+      
+      const btnIcon = walletBtn.querySelector('i');
+      if (btnIcon) btnIcon.setAttribute('data-lucide', 'wallet');
+      lucide.createIcons();
+      
+      walletMenu.classList.add('hidden');
+      showToast("지갑 연결이 해제되었습니다.", "slate");
+    });
+    
+    // 토스트 알림 띄우기 함수
+    let toastTimeout;
+    function showToast(message, type = "gold") {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      const toastDot = document.getElementById('toastStatusDot');
+      
+      toastMsg.innerText = message;
+      
+      // 토스트 색상 처리
+      toastDot.className = "w-2.5 h-2.5 rounded-full animate-pulse";
+      if (type === "emerald") {
+        toastDot.classList.add('bg-emerald-400');
+        toast.className = "fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900 border border-emerald-900/50 text-slate-200 text-xs font-semibold shadow-2xl transition-all duration-300";
+      } else if (type === "rose") {
+        toastDot.classList.add('bg-rose-400');
+        toast.className = "fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900 border border-rose-900/50 text-slate-200 text-xs font-semibold shadow-2xl transition-all duration-300";
+      } else {
+        toastDot.classList.add('bg-gold-400');
+        toast.className = "fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900 border border-slate-800 text-slate-200 text-xs font-semibold shadow-2xl transition-all duration-300";
+      }
+      
+      // 나타나기
+      toast.classList.remove('opacity-0', 'translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-4');
+      }, 3000);
+    }
+    
+    // 토큰노믹스 프로그레스 바 애니메이션 (스크롤 감지)
+    const tokenSection = document.getElementById('tokenomics');
+    const distBars = document.querySelectorAll('.dist-bar');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          distBars.forEach(bar => {
+            const targetWidth = bar.getAttribute('data-width');
+            bar.style.width = targetWidth;
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    observer.observe(tokenSection);
+    
+    // 물수제비 물방울 파장 생성 인터랙션 (About Game 목업 내부)
+    const skippingStone = document.getElementById('skippingStone');
+    const skippingContainer = document.getElementById('skippingContainer');
+    
+    // 돌의 특정 튀김 타이밍(0.6초, 1.35초, 2.1초, 2.7초 간격과 매칭)
+    // bounceStone 애니메이션 시간 = 3초
+    // 0% -> 23% (수면 터치) -> 48% (수면 터치) -> 72% (수면 터치) -> 92% (수면 터치) -> 100%
+    // 3초 기준 터치 시간: 0.69초, 1.44초, 2.16초, 2.76초
+    
+    const touchOffsets = [
+      { delay: 690, x: 60, y: 80 },  // translate(60px, 0px) -> bottom-20이 수면이므로 y는 아래에서 20(80px)
+      { delay: 1440, x: 120, y: 80 },
+      { delay: 2160, x: 180, y: 80 },
+      { delay: 2760, x: 240, y: 80 }
+    ];
+    
+    function createRipple(x, y) {
+      const ripple = document.createElement('div');
+      ripple.className = 'ripple-effect';
+      
+      // 목업 수면 절대좌표 기반 렌더링
+      // x: 돌의 left 상대 px + 보정, y: 돌의 bottom px
+      ripple.style.left = `${x}px`;
+      ripple.style.bottom = `${y - 10}px`; // 파장이 옆으로 퍼지는 느낌을 주기 위해 약간 보정
+      ripple.style.width = '30px';
+      ripple.style.height = '12px'; // 수평 타원형 파장으로 평면 수면감 연출
+      
+      skippingContainer.appendChild(ripple);
+      
+      // 애니메이션 후 삭제
+      setTimeout(() => {
+        ripple.remove();
+      }, 1400);
+    }
+    
+    function startSkippingSimulation() {
+      // 3초 루프 사이클 동안 튀기는 위치에 맞게 파장 스케줄링
+      touchOffsets.forEach(offset => {
+        setTimeout(() => {
+          createRipple(offset.x, offset.y);
+        }, offset.delay);
+      });
+    }
+    
+    // 첫 시작
+    startSkippingSimulation();
+    
+    // 3초마다 반복 실행
+    setInterval(() => {
+      startSkippingSimulation();
+    }, 3000);
+  </script>
+</body>
+</html>
