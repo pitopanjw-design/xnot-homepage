@@ -1,920 +1,1215 @@
 <!DOCTYPE html>
-<html lang="ko" class="scroll-smooth">
+<html lang="ko" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XNOT - Web3 물수제비 & TON Ecosystem 공식 랜딩페이지</title>
-  <meta name="description" content="텔레그램 미니앱 '물수제비(Stone Skipper)'에서 돌을 던지고, TON 블록체인에서 실제 가치 XNOT 코인으로 보상받으세요.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XNOT Global Platform | Institutional Web3 & RWA Portal</title>
   
-  <!-- Google Fonts -->
+  <!-- Pretendard & Geist Mono Fonts -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', '"Outfit"', 'sans-serif'],
-            outfit: ['"Outfit"', 'sans-serif'],
-          },
-          colors: {
-            deepblue: {
-              950: '#030712',
-              900: '#0b1329',
-              800: '#1c2541',
-              700: '#3a506b',
-            },
-            gold: {
-              400: '#fbbf24',
-              500: '#f59e0b',
-              600: '#d97706',
-            },
-            slate: {
-              850: '#1e293b',
-              900: '#0f172a',
-            }
-          },
-          animation: {
-            'glow-slow': 'glowSlow 6s ease-in-out infinite',
-            'float-slow': 'floatSlow 4s ease-in-out infinite',
-            'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
-            'bounce-stone': 'bounceStone 3s infinite ease-in-out',
-          },
-          keyframes: {
-            glowSlow: {
-              '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
-              '50%': { opacity: '0.8', transform: 'scale(1.1)' },
-            },
-            floatSlow: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-12px)' },
-            },
-            pulseSoft: {
-              '0%, 100%': { opacity: '0.9', transform: 'scale(1)' },
-              '50%': { opacity: '1', transform: 'scale(1.02)' },
-            },
-            bounceStone: {
-              '0%': { transform: 'translate(0, 0) scale(1)' },
-              '20%': { transform: 'translate(50px, -40px) scale(0.95)' },
-              '23%': { transform: 'translate(60px, 0px) scale(1)' },
-              '45%': { transform: 'translate(110px, -25px) scale(0.85)' },
-              '48%': { transform: 'translate(120px, 0px) scale(0.9)' },
-              '70%': { transform: 'translate(170px, -15px) scale(0.75)' },
-              '72%': { transform: 'translate(180px, 0px) scale(0.8)' },
-              '90%': { transform: 'translate(230px, -8px) scale(0.65)' },
-              '92%': { transform: 'translate(240px, 0px) scale(0.7)' },
-              '100%': { transform: 'translate(280px, 15px) scale(0.5)', opacity: '0' }
-            }
+            sans: ['Pretendard', 'Inter', '-apple-system', 'sans-serif'],
+            mono: ['Geist Mono', 'monospace'],
           }
         }
       }
     }
   </script>
-  
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
+
+  <!-- React 18 & Babel Standalone (Browser-side JSX compilation) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
   <style>
-    /* 커스텀 스크롤바 */
-    ::-webkit-scrollbar {
-      width: 8px;
+    body {
+      background-color: #07080D;
+      color: #f1f5f9;
+      font-family: 'Pretendard', -apple-system, sans-serif;
     }
-    ::-webkit-scrollbar-track {
-      background: #030712;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1c2541;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #3a506b;
-    }
-    
-    /* 텍스트 그라데이션 유틸리티 */
-    .text-glow-gold {
-      text-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
-    }
-    .text-glow-green {
-      text-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-    }
-    
-    /* 물결 애니메이션 */
-    @keyframes waveRipple {
-      0% {
-        transform: scale(0.5);
-        opacity: 0.8;
-      }
-      100% {
-        transform: scale(3.5);
-        opacity: 0;
-      }
-    }
-    .ripple-effect {
-      position: absolute;
-      border: 1px solid rgba(245, 158, 11, 0.6);
-      border-radius: 50%;
-      animation: waveRipple 1.4s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-      pointer-events: none;
-      transform-origin: center;
-    }
-    
-    /* 은하수 입자 효과 */
-    .star-bg {
-      background-image: 
-        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
-      background-size: 550px 550px, 350px 350px, 250px 250px;
-      background-position: 0 0, 40px 60px, 130px 270px;
+    .tabular-nums {
+      font-feature-settings: "tnum" 1;
     }
   </style>
 </head>
-<body class="bg-[#040815] text-slate-100 font-sans overflow-x-hidden star-bg selection:bg-gold-500 selection:text-deepblue-950">
+<body class="bg-[#07080D] text-slate-100 antialiased selection:bg-cyan-500 selection:text-black">
+  <div id="root"></div>
 
-  <!-- 배경 장식 글로우 효과 -->
-  <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-    <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-blue-900/20 blur-[150px] animate-glow-slow"></div>
-    <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] rounded-full bg-gold-600/10 blur-[150px] animate-glow-slow" style="animation-delay: 3s;"></div>
-  </div>
+  <script type="text/babel">
+    const { useState, useEffect, useMemo } = React;
 
-  <!-- 헤더 (Header) -->
-  <header class="sticky top-0 z-50 backdrop-blur-md bg-[#040815]/70 border-b border-slate-900 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <!-- 로고 -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="relative w-10 h-10 flex items-center justify-between bg-gradient-to-tr from-gold-500 to-amber-300 rounded-xl p-[2px] shadow-lg shadow-gold-500/20 group-hover:shadow-gold-500/40 transition-all duration-300">
-          <div class="w-full h-full bg-[#040815] rounded-[10px] flex items-center justify-center">
-            <!-- X 로고 형상화 -->
-            <svg class="w-6 h-6 text-gold-400 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 6 6 18M6 6l12 12"/>
-            </svg>
-          </div>
-        </div>
-        <div class="flex flex-col">
-          <span class="text-2xl font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-100 to-gold-400 bg-clip-text text-transparent font-outfit">XNOT</span>
-          <span class="text-[9px] text-gold-400/80 tracking-widest uppercase font-semibold -mt-1">Ecosystem</span>
-        </div>
-      </a>
-      
-      <!-- 네비게이션 데스크탑 -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
-        <a href="#about" class="hover:text-gold-400 transition-colors duration-200">About</a>
-        <a href="#tokenomics" class="hover:text-gold-400 transition-colors duration-200">Tokenomics</a>
-        <a href="#roadmap" class="hover:text-gold-400 transition-colors duration-200">Roadmap</a>
-      </nav>
+    const IconBase = ({ children, className = "w-4 h-4", ...props }) => (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+        {...props}
+      >
+        {children}
+      </svg>
+    );
 
-      <!-- 지갑 연결 버튼 -->
-      <div class="relative">
-        <button id="walletBtn" class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-gold-500 via-amber-400 to-gold-600 text-[#040815] font-bold text-sm hover:from-gold-400 hover:to-gold-500 transition-all duration-300 transform active:scale-95 shadow-lg shadow-gold-500/20 hover:shadow-gold-500/40">
-          <i data-lucide="wallet" class="w-4 h-4"></i>
-          <span>Connect Wallet</span>
-        </button>
-        
-        <!-- 지갑 드롭다운 / 상태 표시용 미세 인터랙션 -->
-        <div id="walletMenu" class="hidden absolute right-0 mt-3 w-56 rounded-2xl bg-slate-900 border border-slate-800 p-2 shadow-2xl z-50">
-          <div class="px-3 py-2 text-xs text-slate-400 border-b border-slate-800 mb-1">연결된 계정</div>
-          <div id="walletAddressDisplay" class="px-3 py-2 text-sm font-mono text-emerald-400 break-all"></div>
-          <button id="disconnectBtn" class="w-full text-left flex items-center gap-2 px-3 py-2 mt-1 rounded-xl text-xs text-rose-400 hover:bg-rose-950/20 hover:text-rose-300 transition-colors">
-            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
-            <span>연결 해제 (Disconnect)</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
+    const ShieldCheck = (props) => (
+      <IconBase {...props}>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+        <path d="m9 12 2 2 4-4" />
+      </IconBase>
+    );
 
-  <main class="relative z-10">
-    
-    <!-- 히어로 섹션 (Hero Section) -->
-    <section id="hero" class="relative min-h-[calc(100vh-80px)] flex items-center justify-center py-20 px-6 overflow-hidden">
-      <!-- 뒷배경 물결 파장 장식 -->
-      <div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
-        <div class="w-[800px] h-[800px] border border-blue-900/30 rounded-full animate-ping" style="animation-duration: 4s;"></div>
-        <div class="absolute w-[600px] h-[600px] border border-gold-500/10 rounded-full animate-ping" style="animation-duration: 6s; animation-delay: 1.5s;"></div>
-      </div>
-      
-      <div class="max-w-5xl mx-auto text-center relative z-10">
-        <!-- 뱃지 -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/80 border border-slate-800 mb-8 backdrop-blur-md animate-bounce">
-          <span class="flex h-2 w-2 relative">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span class="text-xs font-semibold text-slate-300 uppercase tracking-widest font-outfit">TON Blockchain Active</span>
-        </div>
-        
-        <!-- 메인 헤드라인 -->
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8 leading-[1.1] font-outfit">
-          당신의 손끝에서 시작되는<br>
-          <span class="bg-gradient-to-r from-gold-400 via-amber-300 to-emerald-400 bg-clip-text text-transparent text-glow-gold">Web3 물수제비</span>
-        </h1>
-        
-        <p class="text-slate-300 font-bold mb-6 text-xl sm:text-2xl max-w-2xl mx-auto leading-relaxed">
-          "돌을 던지고 XNOT을 채굴하세요!"
-        </p>
-        
-        <!-- 서브 카피 -->
-        <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mb-12 leading-relaxed">
-          텔레그램 미니앱에서 손가락 스와이프로 물수제비 돌을 튕기고,<br class="hidden sm:inline">
-          TON 블록체인 생태계 내에서 실제 가치(<span class="text-gold-400 font-semibold">XNOT 코인</span>)로 보상받으세요.
-        </p>
-        
-        <!-- CTA 버튼 그룹 -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
-          <!-- Play Now (Neon Green / Emerald) -->
-          <a href="https://t.me/XNOT_Bot" target="_blank" rel="noopener noreferrer" class="group relative w-full sm:w-auto px-8 py-4 rounded-2xl bg-emerald-500 text-deepblue-950 font-extrabold text-base hover:bg-emerald-400 transition-all duration-300 shadow-xl shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:-translate-y-1 flex items-center justify-center gap-3">
-            <i data-lucide="play" class="w-5 h-5 fill-current text-deepblue-950"></i>
-            <span>텔레그램 미니앱 플레이하기</span>
-            <span class="text-xs bg-deepblue-950/20 px-2 py-0.5 rounded-md text-emerald-950">Play Now</span>
-          </a>
-          
-          <!-- Whitepaper (Slate / Border) -->
-          <a href="https://xnot-official-site.com/whitepaper.pdf" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900/60 border border-slate-700/80 text-slate-200 hover:text-white hover:bg-slate-800/80 hover:border-slate-600 transition-all duration-300 backdrop-blur-sm hover:-translate-y-1 flex items-center justify-center gap-2">
-            <i data-lucide="file-text" class="w-5 h-5 text-slate-400"></i>
-            <span>백서 (Whitepaper) 읽기</span>
-          </a>
-        </div>
-      </div>
-      
-      <!-- 하단 페이드 아웃 강가 수평선 분위기 연출 -->
-      <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#050b1d] to-transparent"></div>
-    </section>
-    
-    <!-- 게임 소개 섹션 (About Game) -->
-    <section id="about" class="py-24 px-6 bg-[#050b1d]/50 border-y border-slate-900 relative">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-xs font-bold uppercase tracking-widest text-gold-400 mb-2 font-outfit">About Stone Skipper</h2>
-          <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">강가에서 우주까지, 물수제비의 진화</p>
-        </div>
-        
-        <!-- 좌우 2단 레이아웃 -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          <!-- 좌측: 텔레그램 미니앱 목업 & 물수제비 CSS 애니메이션 -->
-          <div class="lg:col-span-5 flex justify-center order-2 lg:order-1">
-            <!-- 휴대폰 목업 구조 -->
-            <div class="relative w-[280px] h-[560px] rounded-[40px] border-[6px] border-slate-800 bg-slate-950 shadow-2xl overflow-hidden flex flex-col">
-              <!-- 스마트폰 카메라 노치 -->
-              <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-5 bg-slate-800 rounded-b-2xl z-20"></div>
-              
-              <!-- 미니앱 내부 화면 -->
-              <div class="relative flex-1 bg-gradient-to-b from-[#0a1128] via-[#0d1f42] to-[#122c5e] flex flex-col justify-between p-4 overflow-hidden select-none">
-                <!-- 미니앱 헤더 -->
-                <div class="flex items-center justify-between z-10 pt-2">
-                  <div class="flex items-center gap-1.5">
-                    <div class="w-6 h-6 rounded-full bg-slate-800/80 border border-slate-700/50 flex items-center justify-center">
-                      <span class="text-[8px] font-bold text-gold-400">⚡</span>
-                    </div>
-                    <span class="text-[10px] font-bold text-slate-300">Energy 5/5</span>
-                  </div>
-                  <div class="px-2.5 py-0.5 rounded-full bg-black/40 border border-gold-500/30 flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse"></span>
-                    <span class="text-[9px] font-extrabold text-gold-400 font-mono">1,250 SP</span>
-                  </div>
-                </div>
-                
-                <!-- 물수제비 시뮬레이션 캔버스/컨테이너 영역 -->
-                <div id="skippingContainer" class="absolute inset-0 z-0 flex items-end pb-24 overflow-hidden">
-                  <!-- 밤하늘 강가 배경 선 (수면선) -->
-                  <div class="absolute bottom-20 w-full h-[2px] bg-blue-900/60 z-0"></div>
-                  <!-- 은은한 빛 효과 수면 -->
-                  <div class="absolute bottom-0 w-full h-20 bg-gradient-to-t from-blue-950/80 to-transparent opacity-60"></div>
-                  
-                  <!-- 움직이는 돌 엘리먼트 -->
-                  <div id="skippingStone" class="absolute left-4 bottom-20 w-6 h-3 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full border border-slate-300 shadow-md shadow-black/50 z-10 animate-bounce-stone"></div>
-                </div>
-                
-                <!-- 미니앱 하단 조작 UI 가이드 -->
-                <div class="z-10 text-center pb-2">
-                  <div class="mb-2 text-[10px] text-slate-400 flex items-center justify-center gap-1">
-                    <i data-lucide="chevrons-right" class="w-3 h-3 text-gold-400 animate-pulse"></i>
-                    <span>화면을 밀어 물수제비를 던지세요!</span>
-                  </div>
-                  <div class="h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md">
-                    <div class="w-32 h-1 bg-slate-700 rounded-full overflow-hidden relative">
-                      <div class="absolute top-0 left-0 h-full w-2/3 bg-gradient-to-r from-gold-500 to-amber-300 animate-pulse"></div>
-                    </div>
-                  </div>
-                </div>
+    const Cpu = (props) => (
+      <IconBase {...props}>
+        <rect x="4" y="4" width="16" height="16" rx="2" />
+        <rect x="9" y="9" width="6" height="6" />
+        <path d="M15 2v2M9 2v2M20 15h2M20 9h2M9 20v2M15 20v2M2 9h2M2 15h2" />
+      </IconBase>
+    );
+
+    const Layers = (props) => (
+      <IconBase {...props}>
+        <polygon points="12 2 2 7 12 12 22 7 12 2" />
+        <polyline points="2 17 12 22 22 17" />
+        <polyline points="2 12 12 17 22 12" />
+      </IconBase>
+    );
+
+    const TrendingUp = (props) => (
+      <IconBase {...props}>
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+        <polyline points="17 6 23 6 23 12" />
+      </IconBase>
+    );
+
+    const TerminalIcon = (props) => (
+      <IconBase {...props}>
+        <polyline points="4 17 10 11 4 5" />
+        <line x1="12" y1="19" x2="20" y2="19" />
+      </IconBase>
+    );
+
+    const MapPin = (props) => (
+      <IconBase {...props}>
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+        <circle cx="12" cy="10" r="3" />
+      </IconBase>
+    );
+
+    const Award = (props) => (
+      <IconBase {...props}>
+        <circle cx="12" cy="8" r="7" />
+        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+      </IconBase>
+    );
+
+    const Wallet = (props) => (
+      <IconBase {...props}>
+        <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
+        <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
+      </IconBase>
+    );
+
+    const Gift = (props) => (
+      <IconBase {...props}>
+        <polyline points="20 12 20 22 4 22 4 12" />
+        <rect x="2" y="7" width="20" height="5" />
+        <line x1="12" y1="22" x2="12" y2="7" />
+        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+      </IconBase>
+    );
+
+    const Sun = (props) => (
+      <IconBase {...props}>
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+      </IconBase>
+    );
+
+    const Moon = (props) => (
+      <IconBase {...props}>
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+      </IconBase>
+    );
+
+    const CheckCircle2 = (props) => (
+      <IconBase {...props}>
+        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+        <path d="m9 12 2 2 4-4" />
+      </IconBase>
+    );
+
+    const ChevronRight = (props) => (
+      <IconBase {...props}>
+        <path d="m9 18 6-6-6-6" />
+      </IconBase>
+    );
+
+    const Sparkles = (props) => (
+      <IconBase {...props}>
+        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+      </IconBase>
+    );
+
+    const X = (props) => (
+      <IconBase {...props}>
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </IconBase>
+    );
+
+    const ASSETS = {
+      hero: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=85",
+      gameP2e: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=85",
+      nspProduct: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85",
+      hanulDay: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=85",
+      hanulNight: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=85"
+    };
+
+    function App() {
+      const [currentView, setCurrentView] = useState('overview');
+      const [isWalletOpen, setIsWalletOpen] = useState(false);
+      const [wallet, setWallet] = useState(null);
+      const [walletBalance, setWalletBalance] = useState({ usdt: 5000, xnot: 0 });
+      const [ownedNodes, setOwnedNodes] = useState(0);
+      const [toastMessage, setToastMessage] = useState(null);
+
+      const [hanulMode, setHanulMode] = useState('day');
+      const [simNodes, setSimNodes] = useState(1);
+      const [simUsers, setSimUsers] = useState('3m');
+      const [simD2c, setSimD2c] = useState('5k');
+      const [simHanul, setSimHanul] = useState('target72');
+      const [buyQuantity, setBuyQuantity] = useState(1);
+
+      const notify = (msg) => {
+        setToastMessage(msg);
+        setTimeout(() => setToastMessage(null), 5000);
+      };
+
+      const handleConnect = (walletName) => {
+        setWallet({
+          name: walletName,
+          address: '0x7F29...8E9D',
+          fullAddress: '0x7F29b31d8A359d9c22B694F1c905Ae62e08E9D',
+          chain: 'BNB Smart Chain (BEP20)'
+        });
+        setIsWalletOpen(false);
+        notify(`지갑 연결 성공: ${walletName} (0x7F29...8E9D)`);
+      };
+
+      const executeBuyNode = () => {
+        const cost = buyQuantity * 1000;
+        if (!wallet) {
+          setIsWalletOpen(true);
+          return;
+        }
+        if (walletBalance.usdt < cost) {
+          notify("USDT 잔액이 부족합니다. 테스트 잔액을 확인해주세요.");
+          return;
+        }
+        setWalletBalance(prev => ({
+          usdt: prev.usdt - cost,
+          xnot: prev.xnot + (buyQuantity * 50000)
+        }));
+        setOwnedNodes(prev => prev + buyQuantity);
+        notify(`노드 ${buyQuantity}대 구매 완료! +${(buyQuantity * 50000).toLocaleString()} XNOT 에어드랍이 지급되었습니다.`);
+      };
+
+      const financialMetrics = useMemo(() => {
+        let adsKRW = 54000;
+        if (simUsers === '3m') adsKRW = 179000;
+        if (simUsers === '10m') adsKRW = 748000;
+
+        let d2cKRW = 40000;
+        if (simD2c === '5k') d2cKRW = 69000;
+        if (simD2c === '10k') d2cKRW = 139000;
+
+        let hanulKRW = 2800;
+        if (simHanul === 'y2') hanulKRW = 4950;
+        if (simHanul === 'p8') hanulKRW = 6700;
+        if (simHanul === 'target72') hanulKRW = 10000;
+
+        const monthlyPerNode = adsKRW + d2cKRW + hanulKRW;
+        const totalMonthlyKRW = monthlyPerNode * simNodes;
+        const totalYearlyKRW = totalMonthlyKRW * 12;
+        const totalMonthlyUSD = totalMonthlyKRW / 1350;
+        const totalYearlyUSD = totalYearlyKRW / 1350;
+        const principalKRW = simNodes * 1000 * 1350;
+        const annualizedROI = ((totalYearlyKRW / principalKRW) * 100).toFixed(1);
+
+        return {
+          adsKRW,
+          d2cKRW,
+          hanulKRW,
+          monthlyPerNode,
+          totalMonthlyKRW,
+          totalYearlyKRW,
+          totalMonthlyUSD,
+          totalYearlyUSD,
+          annualizedROI,
+          totalTokens: simNodes * 50000
+        };
+      }, [simNodes, simUsers, simD2c, simHanul]);
+
+      useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, [currentView]);
+
+      return (
+        <div className="min-h-screen bg-[#07080D] text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-black">
+          <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_70%_70%_at_50%_-15%,rgba(6,182,212,0.12),rgba(0,0,0,0))] z-0" />
+
+          {/* Telemetry Bar */}
+          <div className="relative z-50 bg-[#090B13] border-b border-white/[0.08] text-[11px] font-mono py-2 px-4 sm:px-6">
+            <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-slate-400">
+              <div className="flex items-center gap-4">
+                <span className="flex items-center gap-1.5 text-cyan-400 font-bold">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  XNOT MAINNET TEL: ONLINE
+                </span>
+                <span className="hidden md:inline text-white/20">|</span>
+                <span className="hidden md:inline">
+                  Genesis Nodes: <strong className="text-slate-200 tabular-nums">1,842 / 3,000 Sold (61.4%)</strong>
+                </span>
+                <span className="hidden lg:inline text-white/20">|</span>
+                <span className="hidden lg:inline">
+                  Audited Contract: <strong className="text-emerald-400">CertiK Verified (BEP-20)</strong>
+                </span>
               </div>
-            </div>
-          </div>
-          
-          <!-- 우측: 핵심 특징 3종 -->
-          <div class="lg:col-span-7 space-y-8 order-1 lg:order-2">
-            <!-- 특징 1 -->
-            <div class="flex gap-5 p-6 rounded-2xl bg-slate-900/40 border border-slate-800 hover:border-slate-700 hover:bg-slate-900/70 transition-all duration-300 group">
-              <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center shrink-0 group-hover:bg-gold-500/20 transition-colors">
-                <i data-lucide="zap" class="w-6 h-6 text-gold-400"></i>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold mb-2 group-hover:text-gold-400 transition-colors">"단 1분의 몰입!"</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">
-                  화면을 스와이프하여 돌을 던지는 각도와 타이밍을 맞추는 간결하고 중독성 있는 피지컬 게임입니다. 누구나 짧은 시간 내에 쉽게 적응하고 극도의 타격감을 맛볼 수 있습니다.
-                </p>
-              </div>
-            </div>
-            
-            <!-- 특징 2 -->
-            <div class="flex gap-5 p-6 rounded-2xl bg-slate-900/40 border border-slate-800 hover:border-slate-700 hover:bg-slate-900/70 transition-all duration-300 group">
-              <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
-                <i data-lucide="gem" class="w-6 h-6 text-emerald-400"></i>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">"차별화된 리워드"</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">
-                  흔한 자갈부터 납작한 슬레이트, 초희귀 황금 운석까지 나만의 고유한 돌(Stone)을 수집하고 강화하십시오. 돌의 등급이 높을수록 물 위를 더 많이 튕기며 엄청난 SP(Skipping Point)를 보상합니다.
-                </p>
-              </div>
-            </div>
-            
-            <!-- 특징 3 -->
-            <div class="flex gap-5 p-6 rounded-2xl bg-slate-900/40 border border-slate-800 hover:border-slate-700 hover:bg-slate-900/70 transition-all duration-300 group">
-              <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0 group-hover:bg-blue-500/20 transition-colors">
-                <i data-lucide="heart-pulse" class="w-6 h-6 text-blue-400"></i>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">"스마트한 하트 충전"</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">
-                  에너지가 부족할 때 대기할 필요가 없습니다. 텔레그램 공식 미션 채널의 유튜브 스폰서십 시청, SNS 공유 등의 심플한 액션을 완료하고 즉시 에너지를 풀 충전하여 무한 채굴 사이클을 이어가세요.
-                </p>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </section>
-    
-    <!-- 토큰노믹스 섹션 (XNOT Token Economy) -->
-    <section id="tokenomics" class="py-24 px-6 relative overflow-hidden">
-      <!-- 배경 원 장식 -->
-      <div class="absolute top-[20%] right-[-10%] w-[300px] h-[300px] bg-blue-900/10 rounded-full blur-[100px] pointer-events-none"></div>
-      
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-xs font-bold uppercase tracking-widest text-gold-400 mb-2 font-outfit">Token Economics</h2>
-          <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">XNOT 코인 생태계와 투명한 토큰노믹스</p>
-        </div>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
-          <!-- 좌측: 컨트랙트 주소 카드 -->
-          <div class="lg:col-span-6 flex flex-col justify-between p-8 rounded-3xl bg-slate-900/50 border border-slate-800 backdrop-blur-md relative overflow-hidden">
-            <!-- 백그라운드 그라데이션 광선 -->
-            <div class="absolute -top-12 -right-12 w-48 h-48 bg-gold-500/5 rounded-full blur-3xl"></div>
-            
-            <div>
-              <div class="flex items-center justify-between mb-8">
-                <div class="flex items-center gap-2">
-                  <div class="w-8 h-8 rounded-lg bg-gold-500/20 flex items-center justify-center text-gold-400 font-bold text-sm">T</div>
-                  <span class="text-sm font-bold text-slate-300 font-outfit uppercase">TON Contract Address</span>
-                </div>
-                <!-- Tonscan Verified 마크 -->
-                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
-                  <i data-lucide="badge-check" class="w-3.5 h-3.5 fill-emerald-400/20"></i>
-                  <span>Tonscan Verified</span>
-                </div>
-              </div>
-              
-              <h3 class="text-2xl font-bold mb-4">공식 스마트 컨트랙트</h3>
-              <p class="text-slate-400 text-sm mb-6 leading-relaxed">
-                XNOT 코인은 톤(TON) 블록체인에서 발행되었으며, 공식 검증(Verifier)이 완료되어 계약 코드가 투명하게 공개되어 있습니다. 아래 공식 주소를 복사하여 지갑에 수동 등록하거나 스캔에서 조회할 수 있습니다.
-              </p>
-            </div>
-            
-            <!-- 주소 복사 영역 -->
-            <div class="space-y-3">
-              <label class="text-xs font-bold text-slate-500 uppercase">Contract Address</label>
-              <div class="flex items-center justify-between p-4 rounded-2xl bg-[#040815] border border-slate-800 font-mono text-xs text-slate-300 hover:border-slate-700 transition-colors">
-                <span id="contractAddress" class="break-all pr-4">EQDbr1DK-5rWtqHEekhu9tWuPk30z0WfSeG250dPlKxOCPuB</span>
-                <button id="copyBtn" class="p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-gold-400 hover:bg-slate-800 transition-all shrink-0 active:scale-90" title="주소 복사">
-                  <i id="copyIcon" data-lucide="copy" class="w-4 h-4"></i>
+              <div className="flex items-center gap-4">
+                <span className="text-amber-400 font-semibold">
+                  ⭐ 50,000 XNOT Instant Airdrop Live
+                </span>
+                <button 
+                  onClick={() => setCurrentView('nodes')}
+                  className="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1 transition-colors cursor-pointer"
+                >
+                  노드 스토어 열기 <ChevronRight className="w-3 h-3" />
                 </button>
               </div>
             </div>
           </div>
-          
-          <!-- 우측: 토큰 배분 비율 정보 -->
-          <div class="lg:col-span-6 p-8 rounded-3xl bg-slate-900/50 border border-slate-800 backdrop-blur-md flex flex-col justify-between">
-            <div>
-              <h3 class="text-2xl font-bold mb-6">XNOT 토큰 배분 정보</h3>
-              <p class="text-slate-400 text-sm mb-8 leading-relaxed">
-                공정하고 지속 가능한 웹3 에코시스템 구축을 위해 커뮤니티 기여 유저들을 우선으로 토큰을 배분하도록 설계했습니다. 전체 발행량의 60%가 실질적인 활동 유저들에게 할당됩니다.
-              </p>
-            </div>
-            
-            <div class="space-y-6" id="tokenDistributionSection">
-              <!-- 에어드랍 -->
-              <div>
-                <div class="flex justify-between items-center text-sm font-semibold mb-2">
-                  <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-gold-400"></span>
-                    <span>에어드랍 & 생태계 (Airdrop & Ecosystem)</span>
+
+          {/* Navigation Header */}
+          <header className="sticky top-0 z-40 bg-[#07080D]/90 backdrop-blur-xl border-b border-white/[0.08]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+              <div 
+                onClick={() => setCurrentView('overview')}
+                className="flex items-center gap-3.5 cursor-pointer group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 via-indigo-600 to-purple-600 p-[1.5px] shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-transform group-hover:scale-105">
+                  <div className="w-full h-full bg-[#090A10] rounded-[10px] flex items-center justify-center font-black text-lg text-white">
+                    X
                   </div>
-                  <span class="text-gold-400 font-bold font-mono">60%</span>
                 </div>
-                <div class="w-full h-3 bg-slate-950 rounded-full overflow-hidden">
-                  <div class="dist-bar h-full rounded-full bg-gradient-to-r from-gold-500 to-amber-300 transition-all duration-1000 ease-out" style="width: 0%;" data-width="60%"></div>
-                </div>
-              </div>
-              
-              <!-- 팀 및 개발 -->
-              <div>
-                <div class="flex justify-between items-center text-sm font-semibold mb-2">
-                  <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
-                    <span>팀 및 개발 (Team & Development)</span>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-black text-xl tracking-tight text-white">XNOT</span>
+                    <span className="text-[9px] uppercase font-mono tracking-widest px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                      PORTAL v2.5
+                    </span>
                   </div>
-                  <span class="text-emerald-400 font-bold font-mono">20%</span>
-                </div>
-                <div class="w-full h-3 bg-slate-950 rounded-full overflow-hidden">
-                  <div class="dist-bar h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-1000 ease-out" style="width: 0%;" data-width="20%"></div>
+                  <span className="text-[10px] font-mono text-slate-400 tracking-wider block uppercase">
+                    Institutional Web3 & RWA
+                  </span>
                 </div>
               </div>
-              
-              <!-- 마케팅 -->
-              <div>
-                <div class="flex justify-between items-center text-sm font-semibold mb-2">
-                  <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-blue-400"></span>
-                    <span>마케팅 & 파트너십 (Marketing & Partnership)</span>
+
+              <nav className="hidden lg:flex items-center gap-1 bg-[#0E111C]/90 p-1.5 rounded-2xl border border-white/[0.08]">
+                {[
+                  { id: 'overview', label: '에코시스템 개요', icon: Layers, badge: null },
+                  { id: 'nodes', label: '노드 스토어', icon: Cpu, badge: 'HOT' },
+                  { id: 'terminal', label: '배당 터미널', icon: TerminalIcon, badge: 'LIVE' },
+                  { id: 'hanul', label: '제주 한울랜드 RWA', icon: MapPin, badge: '3.17만평' },
+                  { id: 'governance', label: '파운더스 & 거버넌스', icon: Award, badge: 'VIP' }
+                ].map((route) => {
+                  const Icon = route.icon;
+                  const isActive = currentView === route.id;
+                  return (
+                    <button
+                      key={route.id}
+                      onClick={() => setCurrentView(route.id)}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                        isActive
+                          ? 'bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow-[0_0_20px_rgba(6,182,212,0.3)]'
+                          : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
+                      }`}
+                    >
+                      <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                      <span>{route.label}</span>
+                      {route.badge && (
+                        <span className={`text-[9px] px-1.5 py-0.2 rounded font-mono font-black ${
+                          isActive ? 'bg-white/20 text-white' : 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
+                        }`}>
+                          {route.badge}
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </nav>
+
+              <div className="flex items-center gap-3">
+                {wallet ? (
+                  <div className="flex items-center gap-3">
+                    <div className="hidden sm:flex flex-col text-right">
+                      <div className="text-xs font-mono font-bold text-white tabular-nums">
+                        {walletBalance.usdt.toLocaleString()} USDT | {walletBalance.xnot.toLocaleString()} XNOT
+                      </div>
+                      <div className="text-[10px] font-mono text-cyan-400 flex items-center justify-end gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        {wallet.address} ({ownedNodes}대 보유)
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setWallet(null)}
+                      className="px-3.5 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-rose-500/20 text-slate-300 hover:text-rose-300 border border-white/10 hover:border-rose-500/30 transition-all cursor-pointer"
+                    >
+                      연결 해제
+                    </button>
                   </div>
-                  <span class="text-blue-400 font-bold font-mono">20%</span>
+                ) : (
+                  <button
+                    onClick={() => setIsWalletOpen(true)}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-black bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 hover:opacity-95 shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all cursor-pointer active:scale-95"
+                  >
+                    <Wallet className="w-4 h-4 text-black" />
+                    <span>지갑 연결</span>
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Mobile Nav */}
+            <div className="lg:hidden flex overflow-x-auto px-4 py-2 border-t border-white/[0.06] bg-[#0A0C14] gap-2">
+              {[
+                { id: 'overview', label: '개요' },
+                { id: 'nodes', label: '노드 스토어' },
+                { id: 'terminal', label: '배당 터미널' },
+                { id: 'hanul', label: '제주 RWA' },
+                { id: 'governance', label: '파운더스' }
+              ].map(r => (
+                <button
+                  key={r.id}
+                  onClick={() => setCurrentView(r.id)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap cursor-pointer ${
+                    currentView === r.id ? 'bg-cyan-500 text-black' : 'text-slate-400 bg-white/5'
+                  }`}
+                >
+                  {r.label}
+                </button>
+              ))}
+            </div>
+          </header>
+
+          {/* Toast */}
+          {toastMessage && (
+            <div className="fixed bottom-6 right-6 z-50 max-w-md bg-[#0F1424] border border-cyan-500/50 p-4 rounded-2xl shadow-2xl flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
+              <div>
+                <div className="text-xs font-bold text-white font-mono uppercase tracking-wider">NETWORK DISPATCH</div>
+                <div className="text-xs text-slate-300 mt-0.5 leading-relaxed">{toastMessage}</div>
+              </div>
+            </div>
+          )}
+
+          {/* Views Rendering */}
+          <main className="relative z-10 pb-28">
+            {/* VIEW 1: OVERVIEW */}
+            {currentView === 'overview' && (
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 space-y-12">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] pb-6">
+                  <div>
+                    <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5" /> Institutional Web3 & RWA Architecture
+                    </span>
+                    <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight mt-1">
+                      XNOT Global Ecosystem Portal
+                    </h1>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => setCurrentView('nodes')}
+                      className="px-5 py-2.5 rounded-xl font-bold text-xs text-black bg-cyan-400 hover:bg-cyan-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all cursor-pointer flex items-center gap-1.5"
+                    >
+                      <Cpu className="w-4 h-4" /> 노드 마켓 플레이스 ($1,000)
+                    </button>
+                    <button
+                      onClick={() => setCurrentView('terminal')}
+                      className="px-5 py-2.5 rounded-xl font-bold text-xs text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer flex items-center gap-1.5"
+                    >
+                      <TerminalIcon className="w-4 h-4 text-cyan-400" /> 재무 터미널
+                    </button>
+                  </div>
                 </div>
-                <div class="w-full h-3 bg-slate-950 rounded-full overflow-hidden">
-                  <div class="dist-bar h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-400 transition-all duration-1000 ease-out" style="width: 0%;" data-width="20%"></div>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                  {/* Hero Reel */}
+                  <div className="md:col-span-8 rounded-3xl bg-[#0E111C] border border-white/[0.08] overflow-hidden relative group min-h-[440px] flex flex-col justify-end p-8 sm:p-10 shadow-2xl">
+                    <img 
+                      src={ASSETS.hero} 
+                      alt="XNOT Core" 
+                      className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#07080D] via-[#07080D]/75 to-transparent z-0" />
+                    
+                    <div className="relative z-10 space-y-4 max-w-2xl">
+                      <div className="flex items-center gap-2">
+                        <span className="px-3 py-1 rounded-full text-[10px] font-mono font-black uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                          FLAGSHIP PROTOCOL
+                        </span>
+                        <span className="px-2.5 py-1 rounded-full text-[10px] font-mono text-slate-300 bg-black/60 backdrop-blur-md">
+                          Web3 Traffic + 3.17만평 실물 영토
+                        </span>
+                      </div>
+                      <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-snug">
+                        가상 자산의 트래픽과 <br className="hidden sm:inline" />
+                        제주 실물 리조트 RWA의 영구적 결합
+                      </h2>
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        10억 텔레그램 게임 광고비 50% 분배, nsp 50% 웰니스 셀러 마진, 제주 한울랜드 2.0 영업이익 5% 배당이 하나의 노드로 수렴됩니다.
+                      </p>
+                      <div className="pt-2 flex flex-wrap items-center gap-4">
+                        <button
+                          onClick={() => setCurrentView('nodes')}
+                          className="px-6 py-3 rounded-xl font-black text-xs uppercase tracking-wider bg-gradient-to-r from-cyan-400 to-indigo-400 text-black shadow-lg cursor-pointer"
+                        >
+                          노드 구매 및 5만 XNOT 수령
+                        </button>
+                        <button
+                          onClick={() => setCurrentView('hanul')}
+                          className="px-5 py-3 rounded-xl font-bold text-xs bg-black/50 hover:bg-black/70 border border-white/20 text-white backdrop-blur-md transition-colors cursor-pointer"
+                        >
+                          제주 한울랜드 3.17만평 IR 보기
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Telemetry Card */}
+                  <div className="md:col-span-4 rounded-3xl bg-[#0E111C] border border-white/[0.08] p-6 sm:p-8 flex flex-col justify-between shadow-2xl">
+                    <div>
+                      <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
+                        <span className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">TELEMETRY</span>
+                        <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">
+                          SYNC 100%
+                        </span>
+                      </div>
+                      <div className="my-6 space-y-5">
+                        <div>
+                          <div className="text-[11px] font-mono text-slate-400 uppercase">Genesis Node Sales</div>
+                          <div className="text-2xl font-black text-white font-mono tabular-nums mt-0.5">
+                            1,842 <span className="text-xs text-slate-500 font-normal">/ 3,000 NODES</span>
+                          </div>
+                          <div className="w-full h-2 rounded-full bg-white/[0.08] mt-2 overflow-hidden">
+                            <div className="h-full bg-gradient-to-r from-cyan-400 to-indigo-500 w-[61.4%]" />
+                          </div>
+                          <div className="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+                            <span>진행율 61.4%</span>
+                            <span className="text-cyan-400">잔여 1,158대</span>
+                          </div>
+                        </div>
+
+                        <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-3">
+                          <div className="flex justify-between text-xs">
+                            <span className="text-slate-400">노드당 즉시 에어드랍</span>
+                            <span className="font-mono text-emerald-400 font-bold tabular-nums">+50,000 XNOT</span>
+                          </div>
+                          <div className="flex justify-between text-xs">
+                            <span className="text-slate-400">예상 최고 연 ROI</span>
+                            <span className="font-mono text-cyan-400 font-bold tabular-nums">220% ~ 245%</span>
+                          </div>
+                          <div className="flex justify-between text-xs">
+                            <span className="text-slate-400">컨트랙트 규격</span>
+                            <span className="font-mono text-slate-200">BEP-20 / TRC-20</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setCurrentView('terminal')}
+                      className="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-slate-300 hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                    >
+                      <TrendingUp className="w-4 h-4 text-cyan-400" />
+                      <span>실시간 배당 시뮬레이션 열기</span>
+                    </button>
+                  </div>
+
+                  {/* 3 Pillars Bento */}
+                  <div 
+                    onClick={() => setCurrentView('terminal')}
+                    className="md:col-span-4 rounded-3xl bg-[#0E111C] border border-white/[0.08] hover:border-cyan-500/40 p-6 flex flex-col justify-between transition-all duration-300 group cursor-pointer"
+                  >
+                    <div>
+                      <div className="h-44 rounded-2xl overflow-hidden relative mb-5 border border-white/[0.06]">
+                        <img src={ASSETS.gameP2e} alt="P2E" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                        <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-950/80 backdrop-blur-md text-cyan-300 text-[10px] font-mono font-bold border border-cyan-500/40">
+                          PILLAR 01 • TRAFFIC & ADS
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
+                        Stone Skipping (물수제비) P2E
+                      </h3>
+                      <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                        텔레그램 10억 유저 타깃 1초 온보딩 게임. 무료 로또 마케팅과 <strong>구글 애드센스 광고 수익 50%</strong> 노드 직분배.
+                      </p>
+                    </div>
+                    <div className="pt-4 mt-4 border-t border-white/[0.06] flex items-center justify-between text-xs">
+                      <span className="text-slate-400 font-mono">300만 유저 기준</span>
+                      <span className="text-cyan-400 font-bold font-mono">월 ~17.9만 원 / 7.5개월 회수</span>
+                    </div>
+                  </div>
+
+                  <div 
+                    onClick={() => setCurrentView('terminal')}
+                    className="md:col-span-4 rounded-3xl bg-[#0E111C] border border-white/[0.08] hover:border-emerald-500/40 p-6 flex flex-col justify-between transition-all duration-300 group cursor-pointer"
+                  >
+                    <div>
+                      <div className="h-44 rounded-2xl overflow-hidden relative mb-5 border border-white/[0.06]">
+                        <img src={ASSETS.nspProduct} alt="nsp Wellness" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                        <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-emerald-950/80 backdrop-blur-md text-emerald-300 text-[10px] font-mono font-bold border border-emerald-500/40">
+                          PILLAR 02 • D2C COMMERCE
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                        nsp 프리미엄 웰니스 D2C
+                      </h3>
+                      <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                        아사이베리 등 30종 천연 원료 건기식. 소비자가 238,000원 기준 <strong>50% 도매 마진(119,000원)</strong> 및 월 1억~5억 배당 풀 적립.
+                      </p>
+                    </div>
+                    <div className="pt-4 mt-4 border-t border-white/[0.06] flex items-center justify-between text-xs">
+                      <span className="text-slate-400 font-mono">5,000박스 기준</span>
+                      <span className="text-emerald-400 font-bold font-mono">월 ~6.9만 원 / 노드</span>
+                    </div>
+                  </div>
+
+                  <div 
+                    onClick={() => setCurrentView('hanul')}
+                    className="md:col-span-4 rounded-3xl bg-[#0E111C] border border-white/[0.08] hover:border-purple-500/40 p-6 flex flex-col justify-between transition-all duration-300 group cursor-pointer"
+                  >
+                    <div>
+                      <div className="h-44 rounded-2xl overflow-hidden relative mb-5 border border-white/[0.06]">
+                        <img src={ASSETS.hanulDay} alt="Jeju Hanul Land" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                        <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-purple-950/80 backdrop-blur-md text-purple-300 text-[10px] font-mono font-bold border border-purple-500/40">
+                          PILLAR 03 • JEJU RESORT RWA
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors">
+                        제주 한울랜드 2.0 (Day & Night)
+                      </h3>
+                      <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                        3.17만 평 사계절 체류형 리조트. 주간 수선화 축제·베이커리·파크골프와 야간 감성 야시장. <strong>영업이익 5% 정기 배당</strong>.
+                      </p>
+                    </div>
+                    <div className="pt-4 mt-4 border-t border-white/[0.06] flex items-center justify-between text-xs">
+                      <span className="text-slate-400 font-mono">목표 72억 달성 시</span>
+                      <span className="text-purple-300 font-bold font-mono">월 1만 원 영구 고정 배당</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* VIEW 2: NODES */}
+            {currentView === 'nodes' && (
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 space-y-10">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] pb-6">
+                  <div>
+                    <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest flex items-center gap-1.5">
+                      <Cpu className="w-3.5 h-3.5" /> Gala-Grade Node Architecture
+                    </span>
+                    <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight mt-1">
+                      XNOT Gram Node Launchpad
+                    </h1>
+                  </div>
+                  <span className="text-xs font-mono text-slate-400 bg-white/5 px-3 py-1.5 rounded-lg border border-white/10">
+                    Fixed Price: <strong className="text-white">$1,000 USDT</strong>
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  <div className="lg:col-span-5 rounded-3xl bg-[#0E111C] border border-cyan-500/30 p-8 shadow-2xl relative overflow-hidden">
+                    <div className="flex justify-between items-center pb-4 border-b border-white/[0.08]">
+                      <span className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">HARDWARE SPECS</span>
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                        GENESIS ENGINE
+                      </span>
+                    </div>
+                    <div className="my-8 flex justify-center">
+                      <div className="relative">
+                        <div className="w-36 h-36 rounded-3xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-purple-600 p-[2px] animate-[spin_30s_linear_infinite]">
+                          <div className="w-full h-full bg-[#080910] rounded-[22px]" />
+                        </div>
+                        <Cpu className="w-16 h-16 text-cyan-400 absolute inset-0 m-auto" />
+                      </div>
+                    </div>
+                    <div className="space-y-3 text-xs font-mono">
+                      <div className="p-3 rounded-xl bg-white/[0.03] flex justify-between">
+                        <span className="text-slate-400">Total Genesis Supply</span>
+                        <span className="text-white font-bold tabular-nums">3,000 NODES</span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-white/[0.03] flex justify-between">
+                        <span className="text-slate-400">Airdrop Bonus per Node</span>
+                        <span className="text-emerald-400 font-bold tabular-nums">+50,000 XNOT</span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-white/[0.03] flex justify-between">
+                        <span className="text-slate-400">AdSense Share Pool</span>
+                        <span className="text-cyan-400 font-bold">50% Net Revenue</span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-white/[0.03] flex justify-between">
+                        <span className="text-slate-400">Jeju Hanul Land 2.0</span>
+                        <span className="text-purple-400 font-bold">5% Operating Profit</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="lg:col-span-7 rounded-3xl bg-[#0E111C] border border-white/[0.08] p-8 sm:p-10 shadow-2xl space-y-6">
+                    <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
+                      <div>
+                        <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest font-bold">SMART CONTRACT ORDER</span>
+                        <h2 className="text-2xl font-black text-white mt-1">XNOT Gram Node Engine</h2>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-3xl font-black text-white tabular-nums tracking-tight">
+                          ${(buyQuantity * 1000).toLocaleString()} <span className="text-sm font-normal text-slate-400">USDT</span>
+                        </div>
+                        <div className="text-[11px] font-mono text-cyan-400">가스비 약 $0.12 (BNB Chain)</div>
+                      </div>
+                    </div>
+
+                    <div className="p-4 rounded-2xl bg-gradient-to-r from-cyan-950/60 to-indigo-950/60 border border-cyan-500/30 flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center shrink-0">
+                          <Gift className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-bold text-white">
+                            +{(buyQuantity * 50000).toLocaleString()} XNOT 코인 즉시 에어드랍
+                          </div>
+                          <div className="text-[11px] text-slate-400">구매 즉시 연동 지갑으로 자동 컨트랙트 분배</div>
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-cyan-500 text-black shrink-0">
+                        AIRDROP
+                      </span>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">
+                        구매 수량 선택 ($1,000 USDT / Node)
+                      </label>
+                      <div className="grid grid-cols-5 gap-2">
+                        {[1, 2, 5, 10, 20].map((qty) => (
+                          <button
+                            key={qty}
+                            onClick={() => setBuyQuantity(qty)}
+                            className={`py-3 rounded-xl font-mono text-sm font-bold transition-all cursor-pointer ${
+                              buyQuantity === qty
+                                ? 'bg-cyan-400 text-black shadow-[0_0_15px_rgba(6,182,212,0.3)]'
+                                : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'
+                            }`}
+                          >
+                            {qty}대
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-2.5 text-xs text-slate-300 pt-2">
+                      <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03]">
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <span>텔레그램 게임 구글 애드센스 실제 광고 수익 50% 분배</span>
+                      </div>
+                      <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03]">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                        <span>nsp 웰니스 소비자가 238,000원 기준 50% 도매 마진권 부여</span>
+                      </div>
+                      <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03]">
+                        <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0" />
+                        <span>제주 한울랜드 2.0 (Day & Night) 영업이익 5% 정기 배당</span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={executeBuyNode}
+                      className="w-full py-4 rounded-2xl font-black text-sm uppercase tracking-wider text-black bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                    >
+                      <Wallet className="w-5 h-5 text-black" />
+                      <span>
+                        {wallet 
+                          ? `노드 ${buyQuantity}대 즉시 구매 ($${(buyQuantity * 1000).toLocaleString()} USDT)`
+                          : `지갑 연결 후 노드 구매 ($${(buyQuantity * 1000).toLocaleString()} USDT)`}
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* VIEW 3: TERMINAL */}
+            {currentView === 'terminal' && (
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 space-y-10">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] pb-6">
+                  <div>
+                    <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest flex items-center gap-1.5">
+                      <TerminalIcon className="w-3.5 h-3.5" /> Institutional Yield Terminal
+                    </span>
+                    <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight mt-1">
+                      XNOT Revenue & Yield Simulator
+                    </h1>
+                  </div>
+                  <span className="px-3 py-1 rounded-lg text-xs font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                    Model: Multi-Stream Dynamic Payout
+                  </span>
+                </div>
+
+                <div className="bg-[#0E111C] border border-white/[0.08] rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <div className="lg:col-span-7 space-y-6">
+                      <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
+                        <div className="flex justify-between items-center mb-3">
+                          <label className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">
+                            보유 노드 수량 (Node Allocation)
+                          </label>
+                          <span className="font-mono text-xl font-black text-white tabular-nums">
+                            {simNodes}대 <span className="text-xs text-slate-400 font-normal">(${(simNodes * 1000).toLocaleString()} USDT)</span>
+                          </span>
+                        </div>
+                        <input 
+                          type="range" 
+                          min="1" 
+                          max="50" 
+                          value={simNodes} 
+                          onChange={(e) => setSimNodes(Number(e.target.value))}
+                          className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+                        />
+                      </div>
+
+                      <div>
+                        <div className="text-xs font-mono text-slate-300 font-bold uppercase tracking-wider mb-2 flex justify-between">
+                          <span>① 텔레그램 게임 유저 (광고비 50% 분배)</span>
+                          <span className="text-cyan-400">{simUsers === '1m' ? '연 ROI 49.17%' : simUsers === '3m' ? '7.5개월 회수' : '연 ROI 670%'}</span>
+                        </div>
+                        <div className="grid grid-cols-3 gap-3">
+                          {[
+                            { id: '1m', label: '100만 유저', val: '월 ~5.4만/노드' },
+                            { id: '3m', label: '300만 유저', val: '월 ~17.9만/노드' },
+                            { id: '10m', label: '1,000만 유저', val: '월 ~74.8만/노드' },
+                          ].map((item) => (
+                            <button
+                              key={item.id}
+                              onClick={() => setSimUsers(item.id)}
+                              className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                                simUsers === item.id
+                                  ? 'bg-cyan-500/10 border-cyan-400 text-white'
+                                  : 'bg-white/[0.02] border-white/[0.06] text-slate-400 hover:border-white/20'
+                              }`}
+                            >
+                              <div className="text-xs font-bold font-mono">{item.label}</div>
+                              <div className="text-[10px] text-slate-500 font-mono mt-0.5">{item.val}</div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="text-xs font-mono text-slate-300 font-bold uppercase tracking-wider mb-2 flex justify-between">
+                          <span>② D2C 건기식 nsp 판매량 (월 배당 풀 적립)</span>
+                          <span className="text-emerald-400">순익 배당 풀</span>
+                        </div>
+                        <div className="grid grid-cols-3 gap-3">
+                          {[
+                            { id: '3k', label: '월 3,000박스', val: '월 ~4.0만/노드' },
+                            { id: '5k', label: '월 5,000박스', val: '월 ~6.9만/노드' },
+                            { id: '10k', label: '월 10,000박스', val: '월 ~13.9만/노드' },
+                          ].map((item) => (
+                            <button
+                              key={item.id}
+                              onClick={() => setSimD2c(item.id)}
+                              className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                                simD2c === item.id
+                                  ? 'bg-emerald-500/10 border-emerald-400 text-white'
+                                  : 'bg-white/[0.02] border-white/[0.06] text-slate-400 hover:border-white/20'
+                              }`}
+                            >
+                              <div className="text-xs font-bold font-mono">{item.label}</div>
+                              <div className="text-[10px] text-slate-500 font-mono mt-0.5">{item.val}</div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="text-xs font-mono text-slate-300 font-bold uppercase tracking-wider mb-2 flex justify-between">
+                          <span>③ 제주 한울랜드 2.0 (Day & Night 영업이익 5%)</span>
+                          <span className="text-purple-400">실물 RWA</span>
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                          {[
+                            { id: 'y1', label: '1년차 (20.2억)', val: '월 ~2,800원' },
+                            { id: 'y2', label: '2년차 (35.7억)', val: '월 ~4,950원' },
+                            { id: 'p8', label: '8대 모델 (48.3억)', val: '월 ~6,700원' },
+                            { id: 'target72', label: '목표 (72억)', val: '월 1만 원 고정' },
+                          ].map((item) => (
+                            <button
+                              key={item.id}
+                              onClick={() => setSimHanul(item.id)}
+                              className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
+                                simHanul === item.id
+                                  ? 'bg-purple-500/10 border-purple-400 text-white font-bold'
+                                  : 'bg-white/[0.02] border-white/[0.06] text-slate-400 hover:border-white/20'
+                              }`}
+                            >
+                              <div className="text-[11px] font-mono font-bold truncate">{item.label}</div>
+                              <div className="text-[10px] text-purple-300 font-mono">{item.val}</div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="lg:col-span-5 rounded-3xl bg-gradient-to-b from-[#131728] to-[#0A0C14] border border-cyan-500/40 p-8 flex flex-col justify-between shadow-2xl">
+                      <div>
+                        <div className="flex justify-between items-center pb-4 border-b border-white/[0.08]">
+                          <span className="text-xs font-mono text-cyan-300 font-bold uppercase tracking-widest">
+                            LIVE COMPUTED YIELD
+                          </span>
+                          <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">
+                            USD/KRW: 1,350
+                          </span>
+                        </div>
+
+                        <div className="my-6">
+                          <span className="text-[11px] font-mono text-slate-400 uppercase">예상 총 월간 배당금</span>
+                          <div className="text-3xl sm:text-4xl font-black text-white font-mono tabular-nums tracking-tight mt-1">
+                            약 {(financialMetrics.totalMonthlyKRW / 10000).toLocaleString(undefined, { maximumFractionDigits: 1 })}만 원
+                          </div>
+                          <div className="text-xs font-mono text-cyan-400 mt-1 tabular-nums">
+                            ≈ ${(financialMetrics.totalMonthlyUSD).toLocaleString(undefined, { maximumFractionDigits: 1 })} USDT / 월
+                          </div>
+                          <div className="text-[11px] text-slate-400 mt-1">
+                            (노드 1대당 월 약 {(financialMetrics.monthlyPerNode / 10000).toFixed(1)}만 원 수취)
+                          </div>
+                        </div>
+
+                        <div className="space-y-4 pt-6 border-t border-white/[0.08] text-xs font-mono">
+                          <div className="flex justify-between items-center">
+                            <span className="text-slate-400">연간 누적 배당 예상</span>
+                            <span className="text-white font-bold tabular-nums">
+                              약 {(financialMetrics.totalYearlyKRW / 10000).toLocaleString(undefined, { maximumFractionDigits: 0 })}만 원
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-slate-400">연간 예상 ROI</span>
+                            <span className="text-emerald-400 font-bold text-base tabular-nums">
+                              연 {financialMetrics.annualizedROI}%
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-slate-400">지급 보너스 코인</span>
+                            <span className="text-indigo-300 font-bold tabular-nums">
+                              +{financialMetrics.totalTokens.toLocaleString()} XNOT
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="pt-6 mt-6 border-t border-white/[0.08]">
+                        <button
+                          onClick={() => setCurrentView('nodes')}
+                          className="w-full py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-gradient-to-r from-cyan-400 to-indigo-500 text-black hover:opacity-90 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                        >
+                          <span>{simNodes}대 구매하기 (${(simNodes * 1000).toLocaleString()} USDT)</span>
+                          <ChevronRight className="w-4 h-4 text-black" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* VIEW 4: HANUL LAND */}
+            {currentView === 'hanul' && (
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 space-y-12">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] pb-6">
+                  <div>
+                    <span className="text-xs font-mono font-bold text-purple-400 uppercase tracking-widest flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5" /> 3.17만 평 사계절 체류형 복합문화 리조트
+                    </span>
+                    <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight mt-1">
+                      제주 한울랜드 2.0 (Day & Night)
+                    </h1>
+                  </div>
+
+                  <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-[#0E111C] border border-white/[0.08]">
+                    <button
+                      onClick={() => setHanulMode('day')}
+                      className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                        hanulMode === 'day'
+                          ? 'bg-amber-500 text-black shadow-[0_0_15px_rgba(245,158,11,0.4)]'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      <Sun className="w-3.5 h-3.5" />
+                      <span>☀️ 주간(Day) 모드</span>
+                    </button>
+                    <button
+                      onClick={() => setHanulMode('night')}
+                      className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                        hanulMode === 'night'
+                          ? 'bg-indigo-600 text-white shadow-[0_0_15px_rgba(79,70,229,0.4)]'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      <Moon className="w-3.5 h-3.5" />
+                      <span>🌙 야간(Night) 모드</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="relative rounded-3xl overflow-hidden border border-white/[0.08] min-h-[440px] flex flex-col justify-end p-8 sm:p-12 shadow-2xl">
+                  <img 
+                    src={hanulMode === 'day' ? ASSETS.hanulDay : ASSETS.hanulNight} 
+                    alt="Jeju Blueprint" 
+                    className="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-1000 group-hover:scale-105"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${hanulMode === 'day' ? 'from-[#07080D] via-[#07080D]/60' : 'from-[#07080D] via-indigo-950/70'} to-transparent z-0`} />
+
+                  <div className="relative z-10 max-w-2xl space-y-4">
+                    <span className={`px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider ${
+                      hanulMode === 'day' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/40'
+                    }`}>
+                      {hanulMode === 'day' ? '☀️ DAYTIME KEYNOTE' : '🌙 NIGHTTIME STAR-NIGHT'}
+                    </span>
+                    <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+                      {hanulMode === 'day' 
+                        ? '사계절 수선화 축제와 파크골프 36홀' 
+                        : '한울 스타나이트: 제주 감성 야시장 & 드론쇼'}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                      {hanulMode === 'day'
+                        ? '겨울~봄 비수기를 타파하는 대규모 수선화 군락지와 일 550명 방문 베이커리 카페, 영업이익률 45~50%의 파크골프 36홀이 주간 매출을 견인합니다.'
+                        : '야간 F&B 부스와 은하수 라이트가든 산책로로 관광객 체류 시간을 4시간 이상 연장하고, 시그니처 드론 라이트쇼 및 나이트 시네마로 심야 소비를 극대화합니다.'}
+                    </p>
+                    <div className="pt-2">
+                      <span className="text-xs font-mono text-purple-300 bg-purple-950/80 px-3 py-1.5 rounded-lg border border-purple-500/30">
+                        실물 영업이익 5% ➡️ XNOT 노드 홀더 영구 분배
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="p-6 rounded-3xl bg-[#0E111C] border border-white/[0.08] space-y-3">
+                    <div className="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">ANCHOR 01</div>
+                    <h4 className="text-base font-bold text-white">수선화 축제 & 베이커리</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      겨울~봄 비수기 성수기화 및 일 550명 방문 목표의 대형 베이커리 카페를 통한 데일리 현금흐름.
+                    </p>
+                  </div>
+                  <div className="p-6 rounded-3xl bg-[#0E111C] border border-white/[0.08] space-y-3">
+                    <div className="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">ANCHOR 02</div>
+                    <h4 className="text-base font-bold text-white">프리미엄 파크골프 36홀</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      영업이익률 45~50%에 달하는 독점적 고마진 캐시카우 시니어 락인 시설.
+                    </p>
+                  </div>
+                  <div className="p-6 rounded-3xl bg-[#0E111C] border border-white/[0.08] space-y-3">
+                    <div className="text-xs font-mono text-indigo-400 font-bold uppercase tracking-wider">ANCHOR 03</div>
+                    <h4 className="text-base font-bold text-white">감성 야시장 & 라이트가든</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      은하수 조명 산책로 및 프리미엄 F&B 마켓으로 관광객 체류 시간 4시간 이상 연장.
+                    </p>
+                  </div>
+                  <div className="p-6 rounded-3xl bg-[#0E111C] border border-white/[0.08] space-y-3">
+                    <div className="text-xs font-mono text-purple-400 font-bold uppercase tracking-wider">ANCHOR 04</div>
+                    <h4 className="text-base font-bold text-white">드론 라이트쇼 & 시네마</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      야외 자동차 극장과 정기 드론 공연으로 제주의 대표 야간 랜드마크 도약.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* VIEW 5: GOVERNANCE */}
+            {currentView === 'governance' && (
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 space-y-12">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] pb-6">
+                  <div>
+                    <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-widest flex items-center gap-1.5">
+                      <Award className="w-3.5 h-3.5" /> Institutional Network & Compensation
+                    </span>
+                    <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight mt-1">
+                      Founders Club & Global Fee Pool
+                    </h1>
+                  </div>
+                  <span className="px-3 py-1 rounded-lg text-xs font-mono bg-amber-500/10 text-amber-400 border border-amber-500/30">
+                    Global 1~5% Pool
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  <div className="lg:col-span-7 rounded-3xl bg-[#0E111C] border border-white/[0.08] p-8 space-y-6">
+                    <h3 className="text-lg font-bold text-white">직급 승급 및 롤업 차액 수당 (최대 15%)</h3>
+                    <div className="space-y-3 font-mono">
+                      {[
+                        { rank: '파운더 (Founder)', cond: '산하 50개 (소실적 10개)', rate: '3%', color: 'border-white/10' },
+                        { rank: '파운더 B (Founder B)', cond: '산하 100개 (소실적 75개)', rate: '7%', color: 'border-blue-500/30' },
+                        { rank: '파운더 S (Founder S)', cond: '산하 300개 (소실적 100개)', rate: '10%', color: 'border-indigo-500/30' },
+                        { rank: '파운더 G (Founder G)', cond: '산하 500개 (소실적 200개)', rate: '15% (최고 요율)', color: 'border-cyan-500/50' },
+                      ].map((r, i) => (
+                        <div key={i} className={`p-4 rounded-2xl bg-white/[0.02] border ${r.color} flex items-center justify-between`}>
+                          <div>
+                            <div className="text-sm font-bold text-white">{r.rank}</div>
+                            <div className="text-xs text-slate-400 mt-0.5">{r.cond}</div>
+                          </div>
+                          <span className="text-sm font-black text-cyan-400 px-3 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
+                            {r.rate}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="pt-4 border-t border-white/[0.08] grid grid-cols-2 gap-4 text-xs">
+                      <div className="p-3 rounded-xl bg-white/[0.03]">
+                        <span className="text-slate-400 block font-mono">1대 직접 추천</span>
+                        <strong className="text-white font-mono text-sm mt-1 block">10% ($100 USDT)</strong>
+                      </div>
+                      <div className="p-3 rounded-xl bg-white/[0.03]">
+                        <span className="text-slate-400 block font-mono">2대 간접 추천</span>
+                        <strong className="text-white font-mono text-sm mt-1 block">5% ($50 USDT)</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="lg:col-span-5 rounded-3xl bg-gradient-to-b from-[#181328] to-[#0A0C14] border border-amber-500/40 p-8 shadow-2xl space-y-6">
+                    <div className="flex justify-between items-center pb-4 border-b border-white/[0.08]">
+                      <span className="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">FOUNDERS PRIVILEGE</span>
+                      <span className="text-[10px] font-mono text-amber-300 bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/40">
+                        TIER 1 GLOBAL
+                      </span>
+                    </div>
+
+                    <div className="h-44 rounded-2xl bg-gradient-to-tr from-slate-950 via-slate-900 to-amber-950/40 border border-amber-500/50 p-6 flex flex-col justify-between shadow-[0_0_30px_rgba(245,158,11,0.2)]">
+                      <div className="flex justify-between items-start">
+                        <div className="font-black tracking-wider text-amber-400 text-lg">XNOT FOUNDERS</div>
+                        <Award className="w-6 h-6 text-amber-400" />
+                      </div>
+                      <div>
+                        <div className="text-[11px] font-mono text-slate-400 tracking-widest uppercase">CENTURION GLOBAL SHARE</div>
+                        <div className="text-sm font-mono font-bold text-white mt-0.5">0x7F29 •••• •••• 8E9D</div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="p-4 rounded-2xl bg-black/60 border border-white/[0.08]">
+                        <div className="flex justify-between items-center text-xs">
+                          <span className="text-white font-bold">파운더 S (300개 달성)</span>
+                          <span className="font-mono text-amber-400 font-bold">1 Share (1점)</span>
+                        </div>
+                        <p className="text-xs text-slate-400 mt-1">
+                          글로벌 1% 매출 2억 기준: <strong>매월 약 408만 원</strong> 추가 평생 배당
+                        </p>
+                      </div>
+                      <div className="p-4 rounded-2xl bg-black/60 border border-amber-500/30">
+                        <div className="flex justify-between items-center text-xs">
+                          <span className="text-white font-bold">파운더 G (500개 최고 직급)</span>
+                          <span className="font-mono text-amber-400 font-bold">2 Shares (2점)</span>
+                        </div>
+                        <p className="text-xs text-slate-400 mt-1">
+                          글로벌 1% 매출 2억 기준: <strong>매월 약 816만 원</strong> 추가 평생 배당
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </main>
+
+          {/* Web3 Wallet Modal */}
+          {isWalletOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+              <div className="relative w-full max-w-md bg-[#0F121C] border border-cyan-500/40 rounded-3xl p-6 sm:p-8 shadow-2xl">
+                <button
+                  onClick={() => setIsWalletOpen(false)}
+                  className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="text-center mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center mx-auto mb-3">
+                    <Wallet className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-black text-white">Web3 지갑 연결</h3>
+                  <p className="text-xs text-slate-400 mt-1">노드 구매 및 50,000 XNOT 수령용 지갑을 선택하세요.</p>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { name: 'MetaMask', desc: '이더리움 및 BNB 체인 (BEP-20)', icon: '🦊' },
+                    { name: 'OKX Wallet', desc: '멀티체인 Web3 터미널', icon: '⚡' },
+                    { name: 'Tonkeeper', desc: '텔레그램 톤 네트워크 최적화', icon: '💎' },
+                    { name: 'Phantom / TronLink', desc: 'Solana & TRC-20 USDT 지원', icon: '🟣' },
+                  ].map((w, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleConnect(w.name)}
+                      className="w-full p-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-400/50 flex items-center justify-between text-left transition-all cursor-pointer group"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{w.icon}</span>
+                        <div>
+                          <div className="text-sm font-bold text-white group-hover:text-cyan-300">{w.name}</div>
+                          <div className="text-[11px] text-slate-400">{w.desc}</div>
+                        </div>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors" />
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
-          </div>
-          
-        </div>
-      </div>
-    </section>
-    
-    <!-- 로드맵 섹션 (Roadmap) -->
-    <section id="roadmap" class="py-24 px-6 bg-[#050b1d]/40 border-y border-slate-900 relative">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-xs font-bold uppercase tracking-widest text-gold-400 mb-2 font-outfit">Project Roadmap</h2>
-          <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">XNOT 생태계 로드맵</p>
-        </div>
-        
-        <!-- 타임라인 컨테이너 -->
-        <div class="relative border-l border-slate-800 ml-4 md:ml-32 space-y-12">
-          
-          <!-- Phase 1 -->
-          <div class="relative pl-8 md:pl-12 group">
-            <!-- 타임라인 볼륨 서클 -->
-            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-500 border-4 border-[#040815] group-hover:scale-125 transition-transform"></div>
-            
-            <!-- 데스크탑 연도 태그 -->
-            <div class="absolute left-[-150px] top-0 hidden md:block text-right w-28">
-              <span class="text-sm font-bold text-slate-500 uppercase tracking-widest">Phase 1</span>
-              <div class="text-[11px] font-bold text-emerald-400">Completed</div>
-            </div>
-            
-            <div class="p-6 rounded-2xl bg-slate-900/30 border border-slate-800 group-hover:border-emerald-500/40 transition-colors">
-              <div class="flex items-center gap-2 mb-2 md:hidden">
-                <span class="text-xs font-bold text-slate-500 uppercase">Phase 1</span>
-                <span class="px-2 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold">Completed</span>
+          )}
+
+          {/* Footer */}
+          <footer className="py-12 bg-[#040508] border-t border-white/[0.08] text-xs text-slate-500">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-indigo-600 flex items-center justify-center font-bold text-white text-sm">
+                  X
+                </div>
+                <div>
+                  <span className="font-bold text-slate-300">XNOT GLOBAL FOUNDATION</span>
+                  <span className="block text-[10px] text-slate-600">The Decentralized Traffic & RWA Protocol</span>
+                </div>
               </div>
-              <h3 class="text-xl font-bold mb-3 flex items-center gap-2 text-slate-300">
-                <span>베타 빌드 & 스마트 컨트랙트 발행</span>
-                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0"></i>
-              </h3>
-              <p class="text-slate-400 text-sm leading-relaxed">
-                웹3 기반 물수제비(Stone Skipper) 기획 완료 및 미니앱 클로즈베타 버전 개발 완료. TON 기반 XNOT 토큰 스마트 컨트랙트 생성 및 verifier.ton.org를 통한 공식 검증과 배포 완료.
+              <p className="text-[11px] text-slate-600">
+                © 2026 XNOT Global Platform. All rights reserved.
               </p>
             </div>
-          </div>
-          
-          <!-- Phase 2 -->
-          <div class="relative pl-8 md:pl-12 group">
-            <!-- 진행 중 펄스 라이트 서클 -->
-            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-400 border-4 border-[#040815] group-hover:scale-125 transition-transform">
-              <span class="absolute -inset-1 rounded-full bg-gold-400/50 animate-ping"></span>
-            </div>
-            
-            <!-- 데스크탑 연도 태그 -->
-            <div class="absolute left-[-150px] top-0 hidden md:block text-right w-28">
-              <span class="text-sm font-bold text-slate-500 uppercase tracking-widest">Phase 2</span>
-              <div class="text-[11px] font-bold text-gold-400 animate-pulse">In Progress</div>
-            </div>
-            
-            <div class="p-6 rounded-2xl bg-slate-900/60 border border-gold-500/30 group-hover:border-gold-500/60 transition-colors shadow-lg shadow-gold-500/5">
-              <div class="flex items-center gap-2 mb-2 md:hidden">
-                <span class="text-xs font-bold text-slate-500 uppercase">Phase 2</span>
-                <span class="px-2 py-0.5 rounded-full bg-gold-950/60 border border-gold-500/20 text-gold-400 text-[10px] font-bold animate-pulse">In Progress</span>
-              </div>
-              <h3 class="text-xl font-bold mb-3 flex items-center gap-2 text-gold-400">
-                <span>글로벌 정식 런칭 & 유저 팽창</span>
-                <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
-              </h3>
-              <p class="text-slate-300 text-sm leading-relaxed">
-                물수제비 미니앱 텔레그램 글로벌 오피셜 버전 정식 런칭. 글로벌 텔레그램 커뮤니티 빌드업 및 X(Twitter) 채널 마케팅 캠페인 개시. 바이럴 퀘스트와 다양한 인플루언서 제휴로 대규모 글로벌 사용자 확보 단계 진입.
-              </p>
-            </div>
-          </div>
-          
-          <!-- Phase 3 -->
-          <div class="relative pl-8 md:pl-12 group">
-            <!-- 타임라인 볼륨 서클 -->
-            <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-700 border-4 border-[#040815] group-hover:scale-125 transition-transform"></div>
-            
-            <!-- 데스크탑 연도 태그 -->
-            <div class="absolute left-[-150px] top-0 hidden md:block text-right w-28">
-              <span class="text-sm font-bold text-slate-500 uppercase tracking-widest">Phase 3</span>
-              <div class="text-[11px] font-bold text-slate-500">Upcoming</div>
-            </div>
-            
-            <div class="p-6 rounded-2xl bg-slate-900/10 border border-slate-900 opacity-60 group-hover:opacity-95 transition-opacity duration-300">
-              <div class="flex items-center gap-2 mb-2 md:hidden">
-                <span class="text-xs font-bold text-slate-500 uppercase">Phase 3</span>
-                <span class="px-2 py-0.5 rounded-full bg-slate-950/60 border border-slate-800 text-slate-500 text-[10px] font-bold">Upcoming</span>
-              </div>
-              <h3 class="text-xl font-bold mb-3 flex items-center gap-2 text-slate-500 group-hover:text-slate-300 transition-colors">
-                <span>TGE, 상장 & DAO 거버넌스</span>
-                <i data-lucide="lock" class="w-4.5 h-4.5 text-slate-600 shrink-0"></i>
-              </h3>
-              <p class="text-slate-500 group-hover:text-slate-400 text-sm leading-relaxed transition-colors">
-                주요 탈중앙화 거래소(DEX) 및 중앙 집중형 글로벌 거래소(CEX) 대상 XNOT 토큰 생성 이벤트(TGE) 및 공식 상장 추진. 활성 기여자 대상 누적된 SP 기반 에어드랍 대규모 클레임 오픈. XNOT 파워 홀더들을 위한 거버넌스 및 DAO 커뮤니티 런칭.
-              </p>
-            </div>
-          </div>
-          
+          </footer>
         </div>
-      </div>
-    </section>
-    
-  </main>
+      );
+    }
 
-  <!-- 푸터 (Footer) -->
-  <footer class="bg-[#02050e] border-t border-slate-900 py-16 px-6 relative z-10">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start mb-12">
-        <!-- 푸터 브랜딩 -->
-        <div class="md:col-span-5 space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 flex items-center justify-between bg-gradient-to-tr from-gold-500 to-amber-300 rounded-lg p-[1.5px]">
-              <div class="w-full h-full bg-[#02050e] rounded-[7px] flex items-center justify-center">
-                <svg class="w-4 h-4 text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M18 6 6 18M6 6l12 12"/>
-                </svg>
-              </div>
-            </div>
-            <span class="text-xl font-bold tracking-wider text-slate-200 font-outfit">XNOT Ecosystem</span>
-          </div>
-          <p class="text-slate-500 text-xs leading-relaxed max-w-sm">
-            XNOT은 톤(TON) 블록체인을 기반으로 사용자에게 실제 가치와 진보된 리워드 경험을 선사하는 혁신적인 웹3 미니 게임 에코시스템입니다.
-          </p>
-        </div>
-        
-        <!-- 푸터 링크 -->
-        <div class="md:col-span-3">
-          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Navigations</h4>
-          <ul class="space-y-2.5 text-xs text-slate-500 font-semibold">
-            <li><a href="#about" class="hover:text-gold-400 transition-colors">About Stone Skipper</a></li>
-            <li><a href="#tokenomics" class="hover:text-gold-400 transition-colors">XNOT Tokenomics</a></li>
-            <li><a href="#roadmap" class="hover:text-gold-400 transition-colors">Roadmap</a></li>
-          </ul>
-        </div>
-        
-        <!-- 소셜 링크 -->
-        <div class="md:col-span-4 space-y-4">
-          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Community Links</h4>
-          <div class="flex items-center gap-3.5">
-            <!-- Telegram -->
-            <a href="https://t.me/XNOT_Bot" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-[#0088cc] hover:bg-[#0088cc]/10 hover:border-[#0088cc]/30 transition-all" title="Telegram Channel">
-              <i data-lucide="send" class="w-4.5 h-4.5"></i>
-            </a>
-            <!-- Twitter / X -->
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/30 transition-all" title="Twitter / X">
-              <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-            <!-- Discord -->
-            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-[#5865F2] hover:bg-[#5865F2]/10 hover:border-[#5865F2]/30 transition-all" title="Discord Server">
-              <i data-lucide="message-square" class="w-4.5 h-4.5"></i>
-            </a>
-            <!-- Tonscan -->
-            <a href="https://tonscan.org" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:bg-emerald-400/10 hover:border-emerald-400/30 transition-all" title="Tonscan Explorer">
-              <i data-lucide="external-link" class="w-4.5 h-4.5"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 저작권 및 Disclaimer -->
-      <div class="border-t border-slate-900/60 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-        <div class="text-[10px] text-slate-600 max-w-2xl leading-relaxed">
-          <span class="block font-bold text-slate-500 mb-1">Disclaimer (투자 유의 사항):</span>
-          XNOT 코인과 관련된 정보 및 백서 등 프로젝트 관련 자료는 투자 권유, 법적 조언 또는 특정 자산 매수 추천이 아닙니다. 암호화폐 및 웹3 자산 투자는 극도의 변동성과 원금 손실 위험이 있으므로 자산 투자 전 반드시 본인의 판단에 따라 신중히 결정하시기 바랍니다.
-        </div>
-        <div class="text-xs text-slate-500 font-medium shrink-0">
-          &copy; 2026 XNOT Ecosystem. All rights reserved.
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- 지갑 연결 모달 (Connect Wallet Modal) -->
-  <div id="walletModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
-    <!-- 모달 백스크린 닫기 -->
-    <div class="absolute inset-0" onclick="toggleWalletModal()"></div>
-    
-    <div class="relative w-full max-w-sm rounded-3xl bg-slate-900 border border-slate-800 p-6 shadow-2xl z-10 transform scale-95 transition-transform duration-300">
-      <div class="flex items-center justify-between mb-6">
-        <h3 class="text-lg font-bold text-slate-100">Connect to TON Wallet</h3>
-        <button onclick="toggleWalletModal()" class="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-slate-100 transition-colors">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-      
-      <p class="text-xs text-slate-400 mb-6 leading-relaxed">
-        지원되는 TON 블록체인 지갑 중 원하시는 지갑을 선택해 연결을 요청하세요.
-      </p>
-      
-      <div class="space-y-3">
-        <!-- Tonkeeper -->
-        <button onclick="connectVirtualWallet('Tonkeeper')" class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-gold-500/50 hover:bg-slate-900 transition-all group">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold group-hover:bg-blue-500/20">TK</div>
-            <div class="text-left">
-              <span class="block text-sm font-bold text-slate-200">Tonkeeper</span>
-              <span class="block text-[10px] text-slate-500">가장 추천하는 모바일 & 브라우저 지갑</span>
-            </div>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-gold-400 group-hover:translate-x-1 transition-all"></i>
-        </button>
-        
-        <!-- Telegram Wallet -->
-        <button onclick="connectVirtualWallet('Telegram Wallet')" class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-gold-500/50 hover:bg-slate-900 transition-all group">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400 font-bold group-hover:bg-sky-500/20">TW</div>
-            <div class="text-left">
-              <span class="block text-sm font-bold text-slate-200">Telegram Wallet</span>
-              <span class="block text-[10px] text-slate-500">텔레그램 인앱 내장 커스터디얼 지갑</span>
-            </div>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-gold-400 group-hover:translate-x-1 transition-all"></i>
-        </button>
-        
-        <!-- MyTonWallet -->
-        <button onclick="connectVirtualWallet('MyTonWallet')" class="w-full flex items-center justify-between p-3.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-gold-500/50 hover:bg-slate-900 transition-all group">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-400 font-bold group-hover:bg-teal-500/20">MT</div>
-            <div class="text-left">
-              <span class="block text-sm font-bold text-slate-200">MyTonWallet</span>
-              <span class="block text-[10px] text-slate-500">안전한 크롬 확장 및 모바일 월렛</span>
-            </div>
-          </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-gold-400 group-hover:translate-x-1 transition-all"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 토스트 메시지 시스템 (Toast Notification) -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900 border border-slate-800 text-slate-200 text-xs font-semibold shadow-2xl opacity-0 translate-y-4 pointer-events-none transition-all duration-300">
-    <div id="toastStatusDot" class="w-2.5 h-2.5 rounded-full bg-gold-400 animate-pulse"></div>
-    <span id="toastMsg">메시지 내용</span>
-  </div>
-
-  <!-- 스크립트 (Scripts) -->
-  <script>
-    // Lucide 아이콘 초기화
-    lucide.createIcons();
-    
-    // 글로벌 상태
-    let isConnected = false;
-    let connectedWalletName = "";
-    
-    // 주소 복사 기능
-    const contractText = "EQDbr1DK-5rWtqHEekhu9tWuPk30z0WfSeG250dPlKxOCPuB";
-    const copyBtn = document.getElementById('copyBtn');
-    const copyIcon = document.getElementById('copyIcon');
-    
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(contractText);
-        
-        // 아이콘 변경 피드백
-        copyIcon.setAttribute('data-lucide', 'check');
-        copyBtn.classList.remove('text-slate-400');
-        copyBtn.classList.add('text-emerald-400', 'bg-emerald-950/30');
-        lucide.createIcons();
-        
-        showToast("스마트 컨트랙트 주소가 복사되었습니다!", "emerald");
-        
-        setTimeout(() => {
-          copyIcon.setAttribute('data-lucide', 'copy');
-          copyBtn.classList.remove('text-emerald-400', 'bg-emerald-950/30');
-          copyBtn.classList.add('text-slate-400');
-          lucide.createIcons();
-        }, 2000);
-      } catch (err) {
-        showToast("복사에 실패했습니다. 직접 복사해 주세요.", "rose");
-      }
-    });
-    
-    // 지갑 토글 관련 엘리먼트
-    const walletBtn = document.getElementById('walletBtn');
-    const walletMenu = document.getElementById('walletMenu');
-    const walletModal = document.getElementById('walletModal');
-    const walletAddressDisplay = document.getElementById('walletAddressDisplay');
-    const disconnectBtn = document.getElementById('disconnectBtn');
-    
-    walletBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (!isConnected) {
-        toggleWalletModal();
-      } else {
-        walletMenu.classList.toggle('hidden');
-      }
-    });
-    
-    // 바깥 클릭 시 메뉴 숨기기
-    document.addEventListener('click', () => {
-      walletMenu.classList.add('hidden');
-    });
-    
-    function toggleWalletModal() {
-      const modalInner = walletModal.querySelector('.relative');
-      if (walletModal.classList.contains('opacity-0')) {
-        walletModal.classList.remove('opacity-0', 'pointer-events-none');
-        modalInner.classList.remove('scale-95');
-      } else {
-        walletModal.classList.add('opacity-0', 'pointer-events-none');
-        modalInner.classList.add('scale-95');
-      }
-    }
-    
-    // 가상 지갑 연결 로직
-    function connectVirtualWallet(walletName) {
-      toggleWalletModal();
-      
-      // 임시 스피너 변경
-      const btnSpan = walletBtn.querySelector('span');
-      const btnIcon = walletBtn.querySelector('i');
-      btnSpan.innerText = "Connecting...";
-      walletBtn.disabled = true;
-      
-      setTimeout(() => {
-        isConnected = true;
-        connectedWalletName = walletName;
-        walletBtn.disabled = false;
-        
-        // 가상 지갑 주소 생성
-        const mockAddress = "EQA1_XNOT_" + Math.random().toString(36).substring(2, 8).toUpperCase() + "_StoneSkipper_" + Math.random().toString(36).substring(2, 6).toUpperCase();
-        
-        // 버튼 텍스트 단축형 주소로 교체
-        const shortenedAddr = mockAddress.slice(0, 4) + "..." + mockAddress.slice(-4);
-        btnSpan.innerText = shortenedAddr;
-        
-        // 드롭다운 내용 반영
-        walletAddressDisplay.innerText = mockAddress;
-        
-        // 버튼 스타일 연두색으로 변경 (성공 표시)
-        walletBtn.className = "flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-deepblue-950 font-bold text-sm transition-all duration-300 transform active:scale-95 shadow-lg shadow-emerald-500/20";
-        
-        // 아이콘 변경
-        if (btnIcon) btnIcon.setAttribute('data-lucide', 'check-circle-2');
-        lucide.createIcons();
-        
-        showToast(`${walletName} 지갑이 연결되었습니다!`, "emerald");
-      }, 1500);
-    }
-    
-    // 연결 해제
-    disconnectBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      isConnected = false;
-      connectedWalletName = "";
-      
-      const btnSpan = walletBtn.querySelector('span');
-      btnSpan.innerText = "Connect Wallet";
-      
-      // 버튼 원래 스타일로 복원
-      walletBtn.className = "flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-gold-500 via-amber-400 to-gold-600 text-[#040815] font-bold text-sm hover:from-gold-400 hover:to-gold-500 transition-all duration-300 transform active:scale-95 shadow-lg shadow-gold-500/20 hover:shadow-gold-500/40";
-      
-      const btnIcon = walletBtn.querySelector('i');
-      if (btnIcon) btnIcon.setAttribute('data-lucide', 'wallet');
-      lucide.createIcons();
-      
-      walletMenu.classList.add('hidden');
-      showToast("지갑 연결이 해제되었습니다.", "slate");
-    });
-    
-    // 토스트 알림 띄우기 함수
-    let toastTimeout;
-    function showToast(message, type = "gold") {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toastMsg');
-      const toastDot = document.getElementById('toastStatusDot');
-      
-      toastMsg.innerText = message;
-      
-      // 토스트 색상 처리
-      toastDot.className = "w-2.5 h-2.5 rounded-full animate-pulse";
-      if (type === "emerald") {
-        toastDot.classList.add('bg-emerald-400');
-        toast.className = "fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900 border border-emerald-900/50 text-slate-200 text-xs font-semibold shadow-2xl transition-all duration-300";
-      } else if (type === "rose") {
-        toastDot.classList.add('bg-rose-400');
-        toast.className = "fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900 border border-rose-900/50 text-slate-200 text-xs font-semibold shadow-2xl transition-all duration-300";
-      } else {
-        toastDot.classList.add('bg-gold-400');
-        toast.className = "fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900 border border-slate-800 text-slate-200 text-xs font-semibold shadow-2xl transition-all duration-300";
-      }
-      
-      // 나타나기
-      toast.classList.remove('opacity-0', 'translate-y-4');
-      toast.classList.add('opacity-100', 'translate-y-0');
-      
-      clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => {
-        toast.classList.remove('opacity-100', 'translate-y-0');
-        toast.classList.add('opacity-0', 'translate-y-4');
-      }, 3000);
-    }
-    
-    // 토큰노믹스 프로그레스 바 애니메이션 (스크롤 감지)
-    const tokenSection = document.getElementById('tokenomics');
-    const distBars = document.querySelectorAll('.dist-bar');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          distBars.forEach(bar => {
-            const targetWidth = bar.getAttribute('data-width');
-            bar.style.width = targetWidth;
-          });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    
-    observer.observe(tokenSection);
-    
-    // 물수제비 물방울 파장 생성 인터랙션 (About Game 목업 내부)
-    const skippingStone = document.getElementById('skippingStone');
-    const skippingContainer = document.getElementById('skippingContainer');
-    
-    // 돌의 특정 튀김 타이밍(0.6초, 1.35초, 2.1초, 2.7초 간격과 매칭)
-    // bounceStone 애니메이션 시간 = 3초
-    // 0% -> 23% (수면 터치) -> 48% (수면 터치) -> 72% (수면 터치) -> 92% (수면 터치) -> 100%
-    // 3초 기준 터치 시간: 0.69초, 1.44초, 2.16초, 2.76초
-    
-    const touchOffsets = [
-      { delay: 690, x: 60, y: 80 },  // translate(60px, 0px) -> bottom-20이 수면이므로 y는 아래에서 20(80px)
-      { delay: 1440, x: 120, y: 80 },
-      { delay: 2160, x: 180, y: 80 },
-      { delay: 2760, x: 240, y: 80 }
-    ];
-    
-    function createRipple(x, y) {
-      const ripple = document.createElement('div');
-      ripple.className = 'ripple-effect';
-      
-      // 목업 수면 절대좌표 기반 렌더링
-      // x: 돌의 left 상대 px + 보정, y: 돌의 bottom px
-      ripple.style.left = `${x}px`;
-      ripple.style.bottom = `${y - 10}px`; // 파장이 옆으로 퍼지는 느낌을 주기 위해 약간 보정
-      ripple.style.width = '30px';
-      ripple.style.height = '12px'; // 수평 타원형 파장으로 평면 수면감 연출
-      
-      skippingContainer.appendChild(ripple);
-      
-      // 애니메이션 후 삭제
-      setTimeout(() => {
-        ripple.remove();
-      }, 1400);
-    }
-    
-    function startSkippingSimulation() {
-      // 3초 루프 사이클 동안 튀기는 위치에 맞게 파장 스케줄링
-      touchOffsets.forEach(offset => {
-        setTimeout(() => {
-          createRipple(offset.x, offset.y);
-        }, offset.delay);
-      });
-    }
-    
-    // 첫 시작
-    startSkippingSimulation();
-    
-    // 3초마다 반복 실행
-    setInterval(() => {
-      startSkippingSimulation();
-    }, 3000);
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
   </script>
 </body>
 </html>
