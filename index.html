@@ -254,6 +254,7 @@
       gameP2eAlt: "images/KakaoTalk_20260921_133021638.jpg",
       pillar1Action: "images/stoneskip_action.webp",
       d2cMallPillar02: "images/d2c_mall_pillar02.webp",
+      d2cMallHero: "images/D2C_mall_hero.webp",
       nspProduct: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85",
       hanulHero: "images/hanul_land_herosection.webp",
       hanulPillar03: "images/hanul_land_pillar03.webp",
@@ -280,7 +281,7 @@
         badge: "소비자가 238,000원 기준 50% 마진",
         title: "nsp 프리미엄 웰니스 D2C &\n월 1억~5억 배당 풀 리워드 시스템",
         desc: "아사이베리·과라나 등 30종 천연 원료 프리미엄 남성 활력 건기식. 노드 홀더에게 50% 도매 마진(박스당 119,000원) 독점 셀러 자격을 영구 부여하고 1대 12,000원·2대 8,000원의 조직 육성 수당을 실시간 지급합니다.",
-        img: ASSETS.nspProduct,
+        img: ASSETS.d2cMallHero,
         primaryCta: { text: "노드 구매 및 셀러 자격 취득", view: "nodes" },
         secondaryCta: { text: "D2C 배당 풀 계산기", view: "terminal" },
         gradient: "from-emerald-400 via-teal-300 to-cyan-500",
@@ -636,7 +637,15 @@
                               alt={slide.title} 
                               className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
                               onError={(e) => {
-                                if (slide.id === 2) {
+                                if (slide.id === 1) {
+                                  if (e.target.src.indexOf('D2C_mall_hero.webp') !== -1) {
+                                    e.target.src = 'images/d2c_mall_hero.webp';
+                                  } else if (e.target.src.indexOf('d2c_mall_hero.webp') !== -1) {
+                                    e.target.src = 'D2C_mall_hero.webp';
+                                  } else {
+                                    e.target.src = ASSETS.nspProduct;
+                                  }
+                                } else if (slide.id === 2) {
                                   if (e.target.src.indexOf('hanul_land_herosection.webp') !== -1) {
                                     e.target.src = 'hanul_land_herosection.webp';
                                   } else {
