@@ -630,7 +630,7 @@
                             <div className="absolute inset-0 bg-gradient-to-r from-[#07080D] via-[#07080D]/95 sm:via-[#07080D]/85 to-transparent pointer-events-none" />
                           </div>
                         ) : (
-                          /* Slide 2 & 3: Standard Cinematic Full Background */
+                          /* Slide 2 & 3: Standard Cinematic Full Background (Brightened Overlay) */
                           <>
                             <img 
                               src={slide.img} 
@@ -654,8 +654,9 @@
                                 }
                               }}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#07080D] via-[#07080D]/80 sm:via-[#07080D]/75 to-black/30" />
-                            <div className="absolute inset-0 bg-radial-gradient(ellipse at center, transparent 30%, #07080D 95%)" />
+                            {/* Much lighter gradient: brings out the vibrant colors of the image while keeping text clear */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#07080D]/80 via-[#07080D]/30 to-black/10 pointer-events-none" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#07080D]/75 via-[#07080D]/30 to-transparent pointer-events-none" />
                           </>
                         )}
                       </div>
