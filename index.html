@@ -252,6 +252,7 @@
       hero: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=85",
       gameP2e: "images/stoneskipper.jpg",
       gameP2eAlt: "images/KakaoTalk_20260921_133021638.jpg",
+      pillar1Action: "images/stoneskip_action.webp",
       nspProduct: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85",
       hanulDay: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=85",
       hanulNight: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=85"
@@ -786,16 +787,16 @@
                     <div>
                       <div className="h-40 sm:h-44 rounded-2xl overflow-hidden relative mb-4 sm:mb-5 border border-white/[0.06] bg-slate-950">
                         <img 
-                          src={ASSETS.gameP2e} 
-                          alt="Stone Skipper P2E" 
-                          className="w-full h-full object-cover object-[center_30%] group-hover:scale-105 transition-transform duration-700" 
+                          src={ASSETS.pillar1Action} 
+                          alt="Stone Skipper P2E Action" 
+                          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
                           onError={(e) => {
-                            if (e.target.src.indexOf('stoneskipper.jpg') !== -1) {
-                              e.target.src = 'images/KakaoTalk_20260921_133021638.jpg';
-                            } else if (e.target.src.indexOf('KakaoTalk_20260921_133021638.jpg') !== -1 && e.target.src.indexOf('images/') !== -1) {
-                              e.target.src = 'KakaoTalk_20260921_133021638.jpg';
-                            } else if (e.target.src.indexOf('stoneskipper') === -1) {
-                              e.target.src = 'stoneskipper.jpg';
+                            if (e.target.src.indexOf('stoneskip_action.webp') !== -1) {
+                              e.target.src = 'images/stoneskip_action.png';
+                            } else if (e.target.src.indexOf('stoneskip_action.png') !== -1) {
+                              e.target.src = 'stoneskip_action.webp';
+                            } else if (e.target.src.indexOf('stoneskip_action') !== -1) {
+                              e.target.src = ASSETS.gameP2e;
                             } else {
                               e.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=85';
                             }
