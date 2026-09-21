@@ -173,6 +173,12 @@
       </IconBase>
     );
 
+    const ChevronLeft = (props) => (
+      <IconBase {...props}>
+        <path d="m15 18-6-6 6-6" />
+      </IconBase>
+    );
+
     const Sparkles = (props) => (
       <IconBase {...props}>
         <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
@@ -192,7 +198,6 @@
 
       const handleError = () => {
         if (imgSrc === "images/XNOTLOGO.png") {
-          // Fallback to lowercase just in case of server OS case sensitivity
           setImgSrc("images/xnotlogo.png");
         } else if (imgSrc === "images/xnotlogo.png") {
           setImgSrc("XNOTLOGO.png");
@@ -212,7 +217,6 @@
         );
       }
 
-      // High-fidelity fallback SVG replicating the blue badge & stylized X
       return (
         <svg viewBox="0 0 100 100" className={`${className} drop-shadow-[0_0_15px_rgba(0,102,255,0.45)] shrink-0`} fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -246,14 +250,55 @@
 
     const ASSETS = {
       hero: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=85",
-      gameP2e: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=85",
+      gameP2e: "images/KakaoTalk_20260921_133021638.jpg",
+      gameP2eFallback: "KakaoTalk_20260921_133021638.jpg",
       nspProduct: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85",
       hanulDay: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=85",
       hanulNight: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=85"
     };
 
+    const HERO_SLIDES = [
+      {
+        id: 0,
+        tag: "PILLAR 01 • TRAFFIC & AIRDROP",
+        badge: "10억 텔레그램 P2E 트래픽",
+        title: "Stone Skipper P2E 게임 &\n50,000 XNOT 코인 즉시 에어드랍",
+        desc: "텔레그램 1초 간편 온보딩과 무료 로또 바이럴 마케팅으로 폭발적 유저 유입. 구글 애드센스 실제 광고 수익 50%를 노드 홀더에게 매월 분배하며, 구매 즉시 5만 XNOT 코인을 지갑으로 에어드랍합니다.",
+        img: ASSETS.gameP2e,
+        primaryCta: { text: "노드 구매 및 5만 XNOT 수령", view: "nodes" },
+        secondaryCta: { text: "광고 수익 시뮬레이터", view: "terminal" },
+        gradient: "from-cyan-400 via-teal-300 to-blue-500",
+        badgeStyle: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40"
+      },
+      {
+        id: 1,
+        tag: "PILLAR 02 • D2C REWARD SYSTEM",
+        badge: "소비자가 238,000원 기준 50% 마진",
+        title: "nsp 프리미엄 웰니스 D2C &\n월 1억~5억 배당 풀 리워드 시스템",
+        desc: "아사이베리·과라나 등 30종 천연 원료 프리미엄 남성 활력 건기식. 노드 홀더에게 50% 도매 마진(박스당 119,000원) 독점 셀러 자격을 영구 부여하고 1대 12,000원·2대 8,000원의 조직 육성 수당을 실시간 지급합니다.",
+        img: ASSETS.nspProduct,
+        primaryCta: { text: "노드 구매 및 셀러 자격 취득", view: "nodes" },
+        secondaryCta: { text: "D2C 배당 풀 계산기", view: "terminal" },
+        gradient: "from-emerald-400 via-teal-300 to-cyan-500",
+        badgeStyle: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
+      },
+      {
+        id: 2,
+        tag: "PILLAR 03 • JEJU 3.17만 평 RWA",
+        badge: "365일 낮 & 밤 사계절 체류형",
+        title: "제주 한울랜드 낮 & 밤\n사계절 복합 자연 농원 리조트",
+        desc: "주간 수선화 축제·대형 베이커리 카페(일 550명)·파크골프 36홀과 야간 한울 스타나이트 감성 야시장·드론 라이트쇼. 3.17만 평 실물 자산에서 창출되는 영업이익 5%를 노드 홀더에게 매월 영구 배당합니다.",
+        img: ASSETS.hanulDay,
+        primaryCta: { text: "제주 한울랜드 3.17만평 IR 보기", view: "hanul" },
+        secondaryCta: { text: "실물 배당 시뮬레이션", view: "terminal" },
+        gradient: "from-purple-400 via-pink-400 to-indigo-400",
+        badgeStyle: "bg-purple-500/20 text-purple-300 border-purple-500/40"
+      }
+    ];
+
     function App() {
       const [currentView, setCurrentView] = useState('overview');
+      const [heroSlide, setHeroSlide] = useState(0);
       const [isWalletOpen, setIsWalletOpen] = useState(false);
       const [wallet, setWallet] = useState(null);
       const [walletBalance, setWalletBalance] = useState({ usdt: 5000, xnot: 0 });
@@ -266,6 +311,15 @@
       const [simD2c, setSimD2c] = useState('5k');
       const [simHanul, setSimHanul] = useState('target72');
       const [buyQuantity, setBuyQuantity] = useState(1);
+
+      // Hero carousel auto-play interval
+      useEffect(() => {
+        if (currentView !== 'overview') return;
+        const timer = setInterval(() => {
+          setHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+        }, 5500);
+        return () => clearInterval(timer);
+      }, [currentView, heroSlide]);
 
       const notify = (msg) => {
         setToastMessage(msg);
@@ -298,7 +352,7 @@
           xnot: prev.xnot + (buyQuantity * 50000)
         }));
         setOwnedNodes(prev => prev + buyQuantity);
-        notify(`노드 ${buyQuantity}대 구매 완료! +${(buyQuantity * 50000).toLocaleString()} XNOT 에어드랍이 지급되었습니다.`);
+        notify(`XNOT Gram Node ${buyQuantity}대 구매 완료! +${(buyQuantity * 50000).toLocaleString()} XNOT 에어드랍이 지급되었습니다.`);
       };
 
       const financialMetrics = useMemo(() => {
@@ -355,7 +409,7 @@
                 </span>
                 <span className="text-white/20">|</span>
                 <span className="whitespace-nowrap">
-                  Genesis Nodes: <strong className="text-slate-200 tabular-nums">1,842 / 3,000 (61.4%)</strong>
+                  XNOT Gram Nodes: <strong className="text-slate-200 tabular-nums">1,842 / 3,000 (61.4%)</strong>
                 </span>
                 <span className="hidden md:inline text-white/20">|</span>
                 <span className="hidden md:inline whitespace-nowrap">
@@ -378,22 +432,22 @@
 
           {/* Navigation Header */}
           <header className="sticky top-0 z-40 bg-[#07080D]/90 backdrop-blur-xl border-b border-white/[0.08]">
-            <div className="max-w-7xl mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
+            <div className="max-w-7xl mx-auto px-3 sm:px-6 h-18 sm:h-22 flex items-center justify-between gap-3">
               <div 
                 onClick={() => setCurrentView('overview')}
-                className="flex items-center gap-2.5 sm:gap-3.5 cursor-pointer group shrink-0"
+                className="flex items-center gap-3 sm:gap-4 cursor-pointer group shrink-0"
               >
-                <XnotLogo className="w-9 h-9 sm:w-11 sm:h-11" />
+                <XnotLogo className="w-10 h-10 sm:w-13 sm:h-13" />
                 <div>
-                  <div className="flex items-center gap-1.5 sm:gap-2">
-                    <span className="font-black text-sm sm:text-base lg:text-lg tracking-tight text-white uppercase whitespace-nowrap">
+                  <div className="flex items-center gap-2">
+                    <span className="font-black text-base sm:text-lg lg:text-xl tracking-tight text-white uppercase whitespace-nowrap drop-shadow-[0_0_12px_rgba(30,107,255,0.3)]">
                       XNOT WEB3 GLOBAL PROJECT
                     </span>
-                    <span className="text-[8px] sm:text-[9px] uppercase font-mono tracking-wider px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 shrink-0">
+                    <span className="text-[9px] sm:text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 shrink-0">
                       v2.5
                     </span>
                   </div>
-                  <span className="text-[9px] sm:text-[10px] font-mono text-slate-400 tracking-wider block uppercase truncate max-w-[180px] sm:max-w-none">
+                  <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 tracking-wider block uppercase truncate max-w-[200px] sm:max-w-none">
                     Institutional Web3 & RWA Protocol
                   </span>
                 </div>
@@ -507,7 +561,7 @@
                     <span className="text-[11px] sm:text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest flex items-center gap-1.5">
                       <Sparkles className="w-3.5 h-3.5 shrink-0" /> Institutional Web3 & RWA Architecture
                     </span>
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight mt-1.5 leading-snug">
+                    <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mt-2 leading-tight">
                       XNOT WEB3 GLOBAL PROJECT
                     </h1>
                   </div>
@@ -528,50 +582,130 @@
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6">
-                  {/* Hero Reel */}
-                  <div className="md:col-span-8 rounded-3xl bg-[#0E111C] border border-white/[0.08] overflow-hidden relative group min-h-[380px] sm:min-h-[440px] flex flex-col justify-end p-5 sm:p-8 lg:p-10 shadow-2xl">
-                    <img 
-                      src={ASSETS.hero} 
-                      alt="XNOT Core" 
-                      className="absolute inset-0 w-full h-full object-cover object-center z-0 group-hover:scale-105 transition-transform duration-1000"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#07080D] via-[#07080D]/80 sm:via-[#07080D]/75 to-transparent z-0" />
+                  {/* Hero Reel (Dynamic 3-Slide Fade Carousel - Height reduced to ~2/3) */}
+                  <div className="md:col-span-8 rounded-3xl bg-[#0E111C] border border-white/[0.08] overflow-hidden relative group min-h-[300px] sm:min-h-[330px] lg:min-h-[350px] flex flex-col justify-end p-4 sm:p-6 lg:p-7 shadow-2xl">
                     
-                    <div className="relative z-10 space-y-3 sm:space-y-4 max-w-2xl">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-mono font-black uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
-                          FLAGSHIP PROTOCOL
-                        </span>
-                        <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-mono text-slate-300 bg-black/60 backdrop-blur-md">
-                          Web3 Traffic + 3.17만평 실물 영토
-                        </span>
+                    {/* Background Slide Images with Crossfade */}
+                    {HERO_SLIDES.map((slide, idx) => (
+                      <div
+                        key={slide.id}
+                        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                          heroSlide === idx ? 'opacity-100 z-0' : 'opacity-0 pointer-events-none -z-10'
+                        }`}
+                      >
+                        <img 
+                          src={slide.img} 
+                          alt={slide.title} 
+                          className={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 ${
+                            slide.id === 0 ? 'object-[center_35%]' : 'object-center'
+                          }`}
+                          onError={(e) => {
+                            if (slide.id === 0) {
+                              if (e.target.src.indexOf('images/stoneskipper.jpg') === -1 && e.target.src.indexOf('KakaoTalk') !== -1) {
+                                e.target.src = 'images/stoneskipper.jpg';
+                              } else if (e.target.src.indexOf('KakaoTalk_20260921_133021638.jpg') === -1) {
+                                e.target.src = 'KakaoTalk_20260921_133021638.jpg';
+                              } else {
+                                e.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=85';
+                              }
+                            }
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#07080D] via-[#07080D]/80 sm:via-[#07080D]/75 to-black/30" />
+                        <div className="absolute inset-0 bg-radial-gradient(ellipse at center, transparent 30%, #07080D 95%)" />
                       </div>
-                      <h2 className="text-xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-snug">
-                        가상 자산의 트래픽과 <br className="hidden sm:inline" />
-                        제주 실물 리조트 RWA의 결합
-                      </h2>
-                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                        10억 텔레그램 게임 광고비 50% 분배, nsp 50% 웰니스 셀러 마진, 제주 한울랜드 2.0 영업이익 5% 배당이 하나의 노드로 수렴됩니다.
-                      </p>
-                      <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4">
+                    ))}
+
+                    {/* Navigation Arrows & Counter Pill (Top-Right) */}
+                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 flex items-center gap-1.5 sm:gap-2">
+                      <div className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[9px] sm:text-[10px] font-mono text-slate-300 font-bold tabular-nums">
+                        0{heroSlide + 1} / 0{HERO_SLIDES.length}
+                      </div>
+                      <div className="flex items-center gap-1">
                         <button
-                          onClick={() => setCurrentView('nodes')}
-                          className="w-full sm:w-auto px-5 py-3 rounded-xl font-black text-xs uppercase tracking-wider bg-gradient-to-r from-cyan-400 to-indigo-400 text-black shadow-lg cursor-pointer text-center"
+                          onClick={() => setHeroSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
+                          aria-label="이전 슬라이드"
+                          className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-black/50 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-400/50 flex items-center justify-center text-slate-300 hover:text-white transition-all cursor-pointer backdrop-blur-md"
                         >
-                          노드 구매 및 5만 XNOT 수령
+                          <ChevronLeft className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                         </button>
                         <button
-                          onClick={() => setCurrentView('hanul')}
-                          className="w-full sm:w-auto px-4 py-3 rounded-xl font-bold text-xs bg-black/50 hover:bg-black/70 border border-white/20 text-white backdrop-blur-md transition-colors cursor-pointer text-center"
+                          onClick={() => setHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length)}
+                          aria-label="다음 슬라이드"
+                          className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-black/50 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-400/50 flex items-center justify-center text-slate-300 hover:text-white transition-all cursor-pointer backdrop-blur-md"
                         >
-                          제주 한울랜드 3.17만평 IR 보기
+                          <ChevronRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                         </button>
                       </div>
                     </div>
+
+                    {/* Active Slide Content with Smooth Transition */}
+                    {HERO_SLIDES.map((slide, idx) => {
+                      const isActive = heroSlide === idx;
+                      return (
+                        <div
+                          key={slide.id}
+                          className={`relative z-10 space-y-2 sm:space-y-2.5 max-w-2xl transition-all duration-700 ease-out ${
+                            isActive
+                              ? 'opacity-100 translate-y-0'
+                              : 'opacity-0 translate-y-3 pointer-events-none absolute inset-x-4 sm:inset-x-6 lg:inset-x-7 bottom-4 sm:bottom-6 lg:bottom-7'
+                          }`}
+                        >
+                          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                            <span className={`px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-full text-[8px] sm:text-[9px] font-mono font-black uppercase tracking-wider border ${slide.badgeStyle}`}>
+                              {slide.tag}
+                            </span>
+                            <span className="px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded-full text-[8px] sm:text-[9px] font-mono text-slate-300 bg-black/60 backdrop-blur-md border border-white/10">
+                              {slide.badge}
+                            </span>
+                          </div>
+
+                          <h2 className="text-lg sm:text-2xl lg:text-[26px] font-black text-white tracking-tight leading-snug whitespace-pre-line">
+                            {slide.title}
+                          </h2>
+
+                          <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed line-clamp-2 sm:line-clamp-3">
+                            {slide.desc}
+                          </p>
+
+                          <div className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
+                            <button
+                              onClick={() => setCurrentView(slide.primaryCta.view)}
+                              className={`w-full sm:w-auto px-4 py-2 sm:py-2.5 rounded-xl font-black text-[11px] sm:text-xs uppercase tracking-wider bg-gradient-to-r ${slide.gradient} text-black shadow-lg cursor-pointer text-center hover:opacity-95 transition-opacity active:scale-95`}
+                            >
+                              {slide.primaryCta.text}
+                            </button>
+                            <button
+                              onClick={() => setCurrentView(slide.secondaryCta.view)}
+                              className="w-full sm:w-auto px-3.5 py-2 sm:py-2.5 rounded-xl font-bold text-[11px] sm:text-xs bg-black/50 hover:bg-black/70 border border-white/20 text-white backdrop-blur-md transition-colors cursor-pointer text-center"
+                            >
+                              {slide.secondaryCta.text}
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+
+                    {/* Bottom Slide Dot Indicators */}
+                    <div className="relative z-20 flex items-center gap-1.5 pt-2 sm:pt-3">
+                      {HERO_SLIDES.map((slide, idx) => (
+                        <button
+                          key={slide.id}
+                          onClick={() => setHeroSlide(idx)}
+                          aria-label={`슬라이드 ${idx + 1}`}
+                          className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                            heroSlide === idx
+                              ? 'w-6 sm:w-7 bg-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.6)]'
+                              : 'w-2 bg-white/30 hover:bg-white/50'
+                          }`}
+                        />
+                      ))}
+                    </div>
+
                   </div>
 
                   {/* Telemetry Card */}
-                  <div className="md:col-span-4 rounded-3xl bg-[#0E111C] border border-white/[0.08] p-5 sm:p-6 lg:p-8 flex flex-col justify-between shadow-2xl gap-5">
+                  <div className="md:col-span-4 rounded-3xl bg-[#0E111C] border border-white/[0.08] p-5 sm:p-6 lg:p-7 flex flex-col justify-between shadow-2xl gap-4">
                     <div>
                       <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-white/[0.08]">
                         <span className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">TELEMETRY</span>
@@ -581,7 +715,7 @@
                       </div>
                       <div className="my-4 sm:my-6 space-y-4 sm:space-y-5">
                         <div>
-                          <div className="text-[11px] font-mono text-slate-400 uppercase">Genesis Node Sales</div>
+                          <div className="text-[11px] font-mono text-slate-400 uppercase">XNOT Gram Nodes Sales</div>
                           <div className="text-2xl font-black text-white font-mono tabular-nums mt-0.5">
                             1,842 <span className="text-xs text-slate-500 font-normal">/ 3,000 NODES</span>
                           </div>
@@ -625,8 +759,22 @@
                     className="md:col-span-4 rounded-3xl bg-[#0E111C] border border-white/[0.08] hover:border-cyan-500/40 p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 group cursor-pointer"
                   >
                     <div>
-                      <div className="h-40 sm:h-44 rounded-2xl overflow-hidden relative mb-4 sm:mb-5 border border-white/[0.06]">
-                        <img src={ASSETS.gameP2e} alt="P2E" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="h-40 sm:h-44 rounded-2xl overflow-hidden relative mb-4 sm:mb-5 border border-white/[0.06] bg-slate-950">
+                        <img 
+                          src={ASSETS.gameP2e} 
+                          alt="Stone Skipper P2E" 
+                          className="w-full h-full object-cover object-[center_30%] group-hover:scale-105 transition-transform duration-700" 
+                          onError={(e) => {
+                            if (e.target.src.indexOf('images/stoneskipper.jpg') === -1 && e.target.src.indexOf('KakaoTalk') !== -1) {
+                              e.target.src = 'images/stoneskipper.jpg';
+                            } else if (e.target.src.indexOf('KakaoTalk_20260921_133021638.jpg') === -1) {
+                              e.target.src = 'KakaoTalk_20260921_133021638.jpg';
+                            } else {
+                              e.target.src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=85';
+                            }
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0E111C] via-transparent to-black/20 pointer-events-none" />
                         <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-cyan-950/80 backdrop-blur-md text-cyan-300 text-[10px] font-mono font-bold border border-cyan-500/40">
                           PILLAR 01 • TRAFFIC & ADS
                         </span>
@@ -730,7 +878,7 @@
                     </div>
                     <div className="space-y-2.5 sm:space-y-3 text-xs font-mono">
                       <div className="p-3 rounded-xl bg-white/[0.03] flex justify-between">
-                        <span className="text-slate-400">Total Genesis Supply</span>
+                        <span className="text-slate-400">Total XNOT Gram Nodes</span>
                         <span className="text-white font-bold tabular-nums">3,000 NODES</span>
                       </div>
                       <div className="p-3 rounded-xl bg-white/[0.03] flex justify-between">
@@ -822,7 +970,7 @@
                       <Wallet className="w-4 h-4 sm:w-5 sm:h-5 text-black shrink-0" />
                       <span className="truncate">
                         {wallet 
-                          ? `노드 ${buyQuantity}대 즉시 구매 ($${(buyQuantity * 1000).toLocaleString()} USDT)`
+                          ? `XNOT Gram Node ${buyQuantity}대 즉시 구매 ($${(buyQuantity * 1000).toLocaleString()} USDT)`
                           : `지갑 연결 후 노드 구매 ($${(buyQuantity * 1000).toLocaleString()} USDT)`}
                       </span>
                     </button>
@@ -851,10 +999,9 @@
                 <div className="bg-[#0E111C] border border-white/[0.08] rounded-3xl p-5 sm:p-8 lg:p-10 shadow-2xl space-y-8">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
                     
-                    {/* Unified Interactive Control & Live Yield Terminal (Right/Primary on Desktop, Top on Mobile) */}
+                    {/* Unified Interactive Control & Live Yield Terminal */}
                     <div className="lg:col-span-5 rounded-3xl bg-gradient-to-b from-[#131728] via-[#0E1220] to-[#0A0C14] border-2 border-cyan-500/40 p-5 sm:p-7 shadow-[0_0_40px_rgba(6,182,212,0.15)] flex flex-col justify-between space-y-6">
                       
-                      {/* Integrated Slider Header & Quick Controls */}
                       <div className="space-y-4">
                         <div className="flex justify-between items-center pb-3.5 border-b border-white/[0.08]">
                           <div className="flex items-center gap-2">
@@ -868,11 +1015,11 @@
                           </span>
                         </div>
 
-                        {/* Interactive Node Quantity Controller directly attached */}
+                        {/* Interactive Node Quantity Controller */}
                         <div className="p-4 sm:p-4.5 rounded-2xl bg-[#090C16] border border-cyan-500/30 shadow-inner space-y-3">
                           <div className="flex flex-wrap justify-between items-center gap-2">
                             <label className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
-                              <Cpu className="w-3.5 h-3.5" /> 보유 노드 수량 (Node Allocation)
+                              <Cpu className="w-3.5 h-3.5" /> XNOT Gram Nodes 수량
                             </label>
                             <span className="font-mono text-lg sm:text-xl font-black text-white tabular-nums">
                               {simNodes}대 <span className="text-xs text-slate-400 font-normal">(${(simNodes * 1000).toLocaleString()} USDT)</span>
@@ -919,7 +1066,7 @@
                           </div>
                         </div>
 
-                        {/* Live Computed Metric (Directly below the slider) */}
+                        {/* Live Computed Metric */}
                         <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-cyan-950/40 via-slate-900/60 to-indigo-950/40 border border-cyan-400/30 space-y-2">
                           <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 uppercase">
                             <span>예상 총 월간 배당금 (전체)</span>
@@ -957,7 +1104,6 @@
                         </div>
                       </div>
 
-                      {/* Direct Node Purchase Button */}
                       <button
                         onClick={() => setCurrentView('nodes')}
                         className="w-full py-3.5 sm:py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-500 text-black hover:opacity-90 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(6,182,212,0.3)] active:scale-[0.98]"
@@ -967,7 +1113,7 @@
                       </button>
                     </div>
 
-                    {/* Pipeline Parameters & Stream Breakdown (Left Column) */}
+                    {/* Pipeline Parameters & Stream Breakdown */}
                     <div className="lg:col-span-7 space-y-5 sm:space-y-6">
                       <div className="border-b border-white/[0.08] pb-3">
                         <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
@@ -1066,7 +1212,6 @@
                         </div>
                       </div>
 
-                      {/* Real-time Breakdown Visualizer */}
                       <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] space-y-3">
                         <div className="text-xs font-mono text-slate-400 uppercase flex justify-between">
                           <span>노드 1대당 파이프라인별 기여액</span>
@@ -1160,7 +1305,7 @@
                     </p>
                     <div className="pt-1">
                       <span className="inline-block text-xs font-mono text-purple-300 bg-purple-950/80 px-3 py-1.5 rounded-lg border border-purple-500/30">
-                        실물 영업이익 5% ➡️ XNOT 노드 홀더 영구 분배
+                        실물 영업이익 5% ➡️ XNOT Gram Nodes 홀더 영구 분배
                       </span>
                     </div>
                   </div>
@@ -1276,7 +1421,7 @@
                           <span className="font-mono text-amber-400 font-bold">1 Share (1점)</span>
                         </div>
                         <p className="text-xs text-slate-400 mt-1">
-                          글로벌 1% 매출 2억 기준: <strong>매월 약 408만 원</strong> 추가 평생 배당
+                          글로벌 1% 매출 2억 기준: <strong>매월 월 약 408만 원</strong> 추가 평생 배당
                         </p>
                       </div>
                       <div className="p-3.5 sm:p-4 rounded-2xl bg-black/60 border border-amber-500/30">
@@ -1310,7 +1455,7 @@
                     <Wallet className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <h3 className="text-lg sm:text-xl font-black text-white">Web3 지갑 연결</h3>
-                  <p className="text-xs text-slate-400 mt-1">노드 구매 및 50,000 XNOT 수령용 지갑을 선택하세요.</p>
+                  <p className="text-xs text-slate-400 mt-1">XNOT Gram Nodes 구매 및 50,000 XNOT 수령용 지갑을 선택하세요.</p>
                 </div>
                 <div className="space-y-2.5 sm:space-y-3">
                   {[
