@@ -254,6 +254,7 @@
       gameP2eAlt: "images/KakaoTalk_20260921_133021638.jpg",
       pillar1Action: "images/stoneskip_action.webp",
       nspProduct: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85",
+      hanulHero: "images/hanul_land_herosection.webp",
       hanulDay: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=85",
       hanulNight: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=85"
     };
@@ -289,7 +290,7 @@
         badge: "365일 낮 & 밤 사계절 체류형",
         title: "제주 한울랜드 낮 & 밤\n사계절 복합 자연 농원 리조트",
         desc: "주간 수선화 축제·대형 베이커리 카페(일 550명)·파크골프 36홀과 야간 한울 스타나이트 감성 야시장·드론 라이트쇼. 3.17만 평 실물 자산에서 창출되는 영업이익 5%를 노드 홀더에게 매월 영구 배당합니다.",
-        img: ASSETS.hanulDay,
+        img: ASSETS.hanulHero,
         primaryCta: { text: "제주 한울랜드 3.17만평 IR 보기", view: "hanul" },
         secondaryCta: { text: "실물 배당 시뮬레이션", view: "terminal" },
         gradient: "from-purple-400 via-pink-400 to-indigo-400",
@@ -632,6 +633,15 @@
                               src={slide.img} 
                               alt={slide.title} 
                               className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+                              onError={(e) => {
+                                if (slide.id === 2) {
+                                  if (e.target.src.indexOf('hanul_land_herosection.webp') !== -1) {
+                                    e.target.src = 'hanul_land_herosection.webp';
+                                  } else {
+                                    e.target.src = ASSETS.hanulDay;
+                                  }
+                                }
+                              }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#07080D] via-[#07080D]/80 sm:via-[#07080D]/75 to-black/30" />
                             <div className="absolute inset-0 bg-radial-gradient(ellipse at center, transparent 30%, #07080D 95%)" />
