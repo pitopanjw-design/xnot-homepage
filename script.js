@@ -1818,9 +1818,46 @@ function createTrailParticle(x, y) { const cnt = selectedStone?.rarity === 'Myth
 function spawnRipple(x, y) { const r = document.createElement('div'); r.className = 'ripple'; r.style.left = `${x}px`; r.style.top = `${y}px`; document.getElementById('game-container').appendChild(r); setTimeout(() => r.remove(), 850); }
 function spawnRatingText(x, y, rating) { const d = document.createElement('div'); d.className = `effect-text ${rating.toLowerCase()}`; d.style.left = `${x}px`; d.style.top = `${y - 45}px`; const map = { PERFECT: 'PERFECT!', GOOD: 'GOOD!', BAD: 'BAD', MISS: 'MISS' }; d.innerText = map[rating] || rating; document.getElementById('game-container').appendChild(d); setTimeout(() => d.remove(), 920); }
 function spawnBounceMarker(x, y, count) {
-    const d = document.createElement('div'); d.style.cssText = `position:absolute;left:${x}px;top:${y}px;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#d9ff00;border:1.5px solid #d9ff00;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:900;z-index:18;pointer-events:none;text-shadow:-1px -1px 0 #000;animation:point-fade 1.5s ease-out forwards;`; d.innerText = `${count}◆`; document.getElementById('game-container').appendChild(d);
-    const s = document.createElement('style'); s.textContent = '@keyframes point-fade{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}80%{opacity:0.7}100%{opacity:0;transform:translate(-50%,-60%) scale(0.8)}}'; document.head.appendChild(s);
-    setTimeout(() => { d.remove(); s.remove(); }, 1500);
+    const d = document.createElement('div');
+    // 돌 밑 수면(y) 대신 돌 위쪽(y - 80px) 빈 공간에 팝업
+    d.style.cssText = `
+        position: absolute;
+        left: ${x}px;
+        top: ${y - 80}px;
+        transform: translate(-50%, -50%);
+        background: rgba(5, 5, 20, 0.85);
+        color: #d9ff00;
+        border: 1.5px solid #d9ff00;
+        border-radius: 20px;
+        padding: 4px 12px;
+        font-size: 13px;
+        font-weight: 900;
+        font-family: Impact, "Arial Black", sans-serif;
+        z-index: 60;
+        pointer-events: none;
+        text-shadow: -1px -1px 0 #000, 1px 1px 0 #000;
+        box-shadow: 0 0 12px rgba(217, 255, 0, 0.4);
+        animation: point-float-up 1.2s cubic-bezier(0.15, 0.85, 0.15, 1) forwards;
+    `;
+    d.innerText = `+${count} 튀김!`;
+    document.getElementById('game-container').appendChild(d);
+
+    const s = document.createElement('style');
+    // 위로 살짝 떠오르며 부드럽게 페이드아웃
+    s.textContent = `
+        @keyframes point-float-up {
+            0% { opacity: 0; transform: translate(-50%, -20%) scale(0.7); }
+            20% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+            40% { transform: translate(-50%, -60%) scale(1.0); }
+            80% { opacity: 0.9; }
+            100% { opacity: 0; transform: translate(-50%, -100%) scale(0.85); }
+        }
+    `;
+    document.head.appendChild(s);
+    setTimeout(() => {
+        d.remove();
+        s.remove();
+    }, 1200);
 }
 
 // ===========================================================
