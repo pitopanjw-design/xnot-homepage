@@ -1655,50 +1655,49 @@ function drawFxCanvas() {
         if (p.alpha <= 0) particles.splice(i, 1); 
     }
 
-    // 3. [1안] 수면 수축 타겟 링 (Rhythm Target Ring)
+    // 3. [개선] 수면 파동(Ripple)과 일치하는 와이드 네온 타겟 링
     if (currentStatus === 'FLYING' && !isDead && isWindowActive) {
         const X = STONE_FIXED_X;
-        const Y = STONE_FIXED_Y; // 돌이 떨어질 수면 기준점
+        const Y = STONE_FIXED_Y + 10; // 돌 그래픽 바로 밑 수면 기준선
 
         fxCtx.save();
 
-        // A. 수면 위 고정 타겟 기준 링 (네온 골드)
-        const targetRadius = 32;
+        // A. 수면 위 고정 타겟 링 (돌 밑에 가려지지 않는 넉넉한 황금 타겟 타원)
+        // 세로 비율을 0.52로 넓혀 가로 일자선으로 보이는 왜곡 차단
+        const baseRadiusX = 64;
+        const baseRadiusY = 32;
+
         fxCtx.beginPath();
-        fxCtx.ellipse(X, Y, targetRadius, targetRadius * 0.42, 0, 0, Math.PI * 2);
-        fxCtx.strokeStyle = 'rgba(255, 215, 0, 0.9)';
-        fxCtx.lineWidth = 3;
-        fxCtx.shadowBlur = 10;
+        fxCtx.ellipse(X, Y, baseRadiusX, baseRadiusY, 0, 0, Math.PI * 2);
+        fxCtx.strokeStyle = 'rgba(255, 215, 0, 0.95)'; // 선명한 골드
+        fxCtx.lineWidth = 3.5;
+        fxCtx.shadowBlur = 12;
         fxCtx.shadowColor = '#ffd700';
         fxCtx.stroke();
 
-        // 타겟 중심 미니 포인트
-        fxCtx.beginPath();
-        fxCtx.ellipse(X, Y, 5, 2.5, 0, 0, Math.PI * 2);
-        fxCtx.fillStyle = '#ffd700';
-        fxCtx.fill();
-
-        // B. 바깥에서 타겟으로 수축하는 타이밍 링 (네온 사이언)
-        // markerProgress (0.0 -> 1.0) 진행에 따라 80px에서 32px로 정확히 수축
-        const currentRadius = 80 - (markerProgress * (80 - targetRadius));
-        const ringAlpha = Math.min(1.0, 0.3 + markerProgress * 0.7);
+        // B. 바깥 수면 파동 영역에서 골든 타겟 링으로 좁혀져 들어오는 수축 링
+        // markerProgress (0.0 -> 1.0) 진행에 따라 넓은 파동(140px)에서 타겟(64px)으로 정확히 축소 포개짐
+        const progress = Math.min(1.0, Math.max(0.0, markerProgress));
+        const currentRx = 140 - (progress * (140 - baseRadiusX));
+        const currentRy = currentRx * 0.50; // 파동과 완벽히 동일한 원형 굴곡감 유지
+        const ringAlpha = Math.min(1.0, 0.4 + progress * 0.6);
 
         fxCtx.beginPath();
-        fxCtx.ellipse(X, Y, currentRadius, currentRadius * 0.42, 0, 0, Math.PI * 2);
-        fxCtx.strokeStyle = `rgba(0, 240, 255, ${ringAlpha})`;
-        fxCtx.lineWidth = 2.5;
-        fxCtx.shadowBlur = 8;
+        fxCtx.ellipse(X, Y, currentRx, currentRy, 0, 0, Math.PI * 2);
+        fxCtx.strokeStyle = `rgba(0, 240, 255, ${ringAlpha})`; // 네온 사이언 링
+        fxCtx.lineWidth = 3.0;
+        fxCtx.shadowBlur = 10;
         fxCtx.shadowColor = '#00f0ff';
         fxCtx.stroke();
 
-        // C. 타이밍 임박 시 직관적인 TAP 가이드
-        if (markerProgress >= 0.65) {
-            fxCtx.font = '900 20px "Impact", "Arial Black", sans-serif';
+        // C. 타이밍 임박 안내
+        if (progress >= 0.65) {
+            fxCtx.font = '900 22px "Impact", "Arial Black", sans-serif';
             fxCtx.textAlign = 'center';
             fxCtx.fillStyle = '#d9ff00';
-            fxCtx.shadowBlur = 8;
+            fxCtx.shadowBlur = 10;
             fxCtx.shadowColor = '#000';
-            fxCtx.fillText('TAP!', X, Y - 38);
+            fxCtx.fillText('TAP!', X, Y - 50);
         }
 
         fxCtx.restore();
