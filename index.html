@@ -11,7 +11,7 @@
   <!-- Pretendard & Geist Mono Fonts -->
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
@@ -261,6 +261,7 @@
       hero: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=85",
       gameP2e: "images/stoneskipper.jpg",
       gameP2eAlt: "images/KakaoTalk_20260921_133021638.jpg",
+      gameVideo: "images/stoneskipperplay.mp4",
       pillar1Action: "images/stoneskip_action.webp",
       d2cMallPillar02: "images/d2c_mall_pillar02.webp",
       d2cMallHero: "images/D2C_mall_hero.webp",
@@ -946,7 +947,7 @@
                   </div>
                 </div>
 
-                {/* Hero Showcase with Actual Game Mockup */}
+                {/* Hero Showcase with Actual Game Video / Mockup */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center bg-[#0E111C] border border-white/[0.08] rounded-3xl p-6 sm:p-10 shadow-2xl">
                   <div className="lg:col-span-7 space-y-4">
                     <div className="flex items-center gap-2">
@@ -973,13 +974,24 @@
                   </div>
 
                   <div className="lg:col-span-5 flex justify-center py-4">
-                    <div className="h-[360px] sm:h-[400px] aspect-[9/19] rounded-2xl overflow-hidden border-2 border-cyan-500/40 shadow-[0_0_40px_rgba(6,182,212,0.3)] bg-black">
-                      <img 
-                        src={ASSETS.gameP2e} 
-                        alt="Stone Skipper Live UI" 
-                        className="w-full h-full object-contain"
-                        onError={(e) => { e.target.src = ASSETS.pillar1Action; }}
-                      />
+                    <div className="h-[360px] sm:h-[400px] aspect-[9/19] rounded-2xl overflow-hidden border-2 border-cyan-500/40 shadow-[0_0_40px_rgba(6,182,212,0.3)] bg-black relative flex items-center justify-center">
+                      <video 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline 
+                        poster={ASSETS.gameP2e}
+                        className="w-full h-full object-contain bg-black"
+                      >
+                        <source src={ASSETS.gameVideo} type="video/mp4" />
+                        <source src="stoneskipperplay.mp4" type="video/mp4" />
+                        <img 
+                          src={ASSETS.gameP2e} 
+                          alt="Stone Skipper Live UI" 
+                          className="w-full h-full object-contain"
+                          onError={(e) => { e.target.src = ASSETS.pillar1Action; }}
+                        />
+                      </video>
                     </div>
                   </div>
                 </div>
