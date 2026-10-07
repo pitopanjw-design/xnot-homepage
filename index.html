@@ -495,13 +495,13 @@
                 {/* ------------------------------------------------------------- */}
                 {/* 00. LANDING PAGE RESTORED TITLE HEADER                        */}
                 {/* ------------------------------------------------------------- */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-0">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4 sm:pt-6 pb-0">
                   <div className="flex flex-col gap-1 pb-1">
-                    <div className="flex items-center gap-2 text-cyan-400 font-mono-tech text-xs sm:text-sm font-bold tracking-widest uppercase">
-                      <span className="text-base text-cyan-300">✦</span>
+                    <div className="flex items-center gap-1.5 sm:gap-2 text-cyan-400 font-mono-tech text-[11px] sm:text-xs md:text-sm font-bold tracking-widest uppercase">
+                      <span className="text-sm sm:text-base text-cyan-300">✦</span>
                       <span>INSTITUTIONAL WEB3 & RWA ARCHITECTURE</span>
                     </div>
-                    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase">
+                    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase break-words leading-tight">
                       XNOT WEB3 GLOBAL PROJECT
                     </h1>
                   </div>
@@ -513,14 +513,14 @@
                 <section 
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
-                  className="relative pt-2 pb-8 sm:pb-12 border-b editorial-grid-line overflow-hidden bg-gradient-to-b from-[#06070B] via-[#090C16] to-[#06070B]"
+                  className="relative pt-2 pb-6 sm:pb-12 border-b editorial-grid-line overflow-hidden bg-gradient-to-b from-[#06070B] via-[#090C16] to-[#06070B]"
                 >
                   <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_70%_40%,rgba(0,74,215,0.18),transparent_70%)]" />
 
-                  <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                  <div className="max-w-7xl mx-auto px-3 sm:px-6">
                     
-                    {/* Unified Banner Container */}
-                    <div className="relative rounded-[32px] border editorial-grid-line bg-gradient-to-br from-[#0B0E1B] via-[#090C17] to-[#060810] shadow-[0_20px_60px_rgba(0,0,0,0.85)] overflow-hidden min-h-[520px] sm:min-h-[480px]">
+                    {/* Unified Banner Container - Responsive Min Height across Breakpoints */}
+                    <div className="relative rounded-2xl sm:rounded-[32px] border editorial-grid-line bg-gradient-to-br from-[#0B0E1B] via-[#090C17] to-[#060810] shadow-[0_20px_60px_rgba(0,0,0,0.85)] overflow-hidden min-h-[580px] xs:min-h-[540px] sm:min-h-[500px] md:min-h-[460px] lg:min-h-[480px]">
                       
                       {/* Stacked Cross-Fading Slides */}
                       {heroSlides.map((slide, idx) => {
@@ -528,43 +528,43 @@
                         return (
                           <div
                             key={slide.id}
-                            className={`absolute inset-0 p-6 sm:p-10 lg:p-12 flex items-center transition-all duration-1000 ease-in-out ${
+                            className={`absolute inset-0 p-4 sm:p-8 lg:p-12 pb-16 sm:pb-12 flex items-center transition-all duration-1000 ease-in-out ${
                               isActive
                                 ? 'opacity-100 z-10 pointer-events-auto translate-y-0 scale-100'
                                 : 'opacity-0 z-0 pointer-events-none translate-y-2 scale-[0.99]'
                             }`}
                           >
-                            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full">
+                            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-center w-full">
                               
                               {/* Left: Text & Action Suite inside Banner */}
-                              <div className="md:col-span-7 space-y-5">
-                                <div className="flex flex-wrap items-center gap-2">
-                                  <span className="px-3 py-1 rounded-full text-[10px] font-mono-tech font-bold uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                              <div className="md:col-span-7 space-y-3 sm:space-y-4 lg:space-y-5">
+                                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                                  <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-mono-tech font-bold uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
                                     {slide.badge}
                                   </span>
-                                  <span className="px-2.5 py-1 rounded-full text-[10px] font-mono-tech text-slate-300 bg-white/5 border border-white/10">
+                                  <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-mono-tech text-slate-300 bg-white/5 border border-white/10">
                                     {slide.subBadge}
                                   </span>
                                 </div>
 
-                                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-snug whitespace-pre-line">
+                                <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight leading-snug whitespace-pre-line">
                                   {slide.title}
-                                </h1>
+                                </h2>
 
-                                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
+                                <p className="text-[11px] sm:text-xs md:text-sm text-slate-300 leading-relaxed max-w-xl line-clamp-4 sm:line-clamp-none">
                                   {slide.desc}
                                 </p>
 
-                                <div className="pt-2 flex flex-wrap items-center gap-3">
+                                <div className="pt-1 sm:pt-2 flex flex-wrap items-center gap-2 sm:gap-3">
                                   <button
                                     onClick={slide.primaryAction}
-                                    className="px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider bg-cyan-400 hover:bg-cyan-300 text-black shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all cursor-pointer"
+                                    className="px-4 py-2.5 sm:px-6 sm:py-3.5 rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-wider bg-cyan-400 hover:bg-cyan-300 text-black shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all cursor-pointer active:scale-95"
                                   >
                                     {slide.primaryBtn}
                                   </button>
                                   <button
                                     onClick={slide.secondaryAction}
-                                    className="px-6 py-3.5 rounded-xl font-bold text-xs bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-colors cursor-pointer"
+                                    className="px-3.5 py-2.5 sm:px-6 sm:py-3.5 rounded-xl font-bold text-[11px] sm:text-xs bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-colors cursor-pointer active:scale-95"
                                   >
                                     {slide.secondaryBtn}
                                   </button>
@@ -573,10 +573,10 @@
 
                               {/* Right: Media Showcase inside Banner */}
                               <div className="md:col-span-5 flex justify-center md:justify-end w-full">
-                                <div className="relative w-full max-w-[500px]">
+                                <div className="relative w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[440px] lg:max-w-[500px]">
                                   {slide.mediaType === "phone" ? (
-                                    <div className="relative mx-auto w-[230px] sm:w-[250px] h-[380px] sm:h-[430px] rounded-[36px] bg-[#0A0D18] p-2.5 border-4 border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden">
-                                      <div className="w-full h-full rounded-[26px] overflow-hidden relative bg-black">
+                                    <div className="relative mx-auto w-[180px] xs:w-[200px] sm:w-[230px] md:w-[240px] lg:w-[250px] h-[260px] xs:h-[300px] sm:h-[350px] md:h-[390px] lg:h-[430px] rounded-[28px] sm:rounded-[36px] bg-[#0A0D18] p-2 sm:p-2.5 border-2 sm:border-4 border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden">
+                                      <div className="w-full h-full rounded-[20px] sm:rounded-[26px] overflow-hidden relative bg-black">
                                         <img 
                                           src={slide.imgSrc} 
                                           alt="Game Screen" 
@@ -590,7 +590,7 @@
                                       </div>
                                     </div>
                                   ) : (
-                                    <div className="rounded-2xl overflow-hidden border editorial-grid-line shadow-2xl relative group h-[380px] sm:h-[430px] w-full flex items-center justify-center bg-black/40">
+                                    <div className="rounded-xl sm:rounded-2xl overflow-hidden border editorial-grid-line shadow-2xl relative group h-[220px] xs:h-[260px] sm:h-[320px] md:h-[360px] lg:h-[420px] w-full flex items-center justify-center bg-black/40">
                                       <img 
                                         src={slide.imgSrc} 
                                         alt="Showcase Banner" 
@@ -611,36 +611,36 @@
                       })}
 
                       {/* Unified Navigation & Indicator Controls on Banner Bottom */}
-                      <div className="absolute bottom-4 left-6 sm:left-12 right-6 sm:right-12 z-20 flex items-center justify-between pt-4 border-t editorial-grid-line pointer-events-auto">
-                        <div className="flex items-center gap-3">
+                      <div className="absolute bottom-3 sm:bottom-4 left-4 sm:left-12 right-4 sm:right-12 z-20 flex items-center justify-between pt-2 sm:pt-4 border-t editorial-grid-line pointer-events-auto">
+                        <div className="flex items-center gap-2 sm:gap-3">
                           <div className="flex gap-1.5">
                             {heroSlides.map((s, idx) => (
                               <button
                                 key={s.id}
                                 onClick={() => setHeroIndex(idx)}
                                 className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                                  heroIndex === idx ? 'w-8 bg-cyan-400' : 'w-2 bg-white/20 hover:bg-white/40'
+                                  heroIndex === idx ? 'w-6 sm:w-8 bg-cyan-400' : 'w-2 bg-white/20 hover:bg-white/40'
                                 }`}
                                 title={`슬라이드 ${idx + 1}`}
                               />
                             ))}
                           </div>
-                          <span className="text-[11px] font-mono-tech text-slate-500">
+                          <span className="text-[10px] sm:text-[11px] font-mono-tech text-slate-500">
                             0{heroIndex + 1} / 0{heroSlides.length}
                           </span>
                         </div>
 
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-1 sm:gap-1.5">
                           <button
                             onClick={() => setHeroIndex(prev => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
-                            className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-white border border-white/10 transition-colors cursor-pointer"
+                            className="p-1 sm:p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-white border border-white/10 transition-colors cursor-pointer"
                             title="이전 슬라이드"
                           >
                             <ChevronLeft className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => setHeroIndex(prev => (prev + 1) % heroSlides.length)}
-                            className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-white border border-white/10 transition-colors cursor-pointer"
+                            className="p-1 sm:p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-white border border-white/10 transition-colors cursor-pointer"
                             title="다음 슬라이드"
                           >
                             <ChevronRight className="w-3.5 h-3.5" />
@@ -655,52 +655,52 @@
                 {/* ------------------------------------------------------------- */}
                 {/* 02. CREATZ STACKING CARDS: 스크롤 시 카드가 위로 포개어지는 4단 스택 */}
                 {/* ------------------------------------------------------------- */}
-                <section className="relative py-24 border-b editorial-grid-line">
+                <section className="relative py-12 sm:py-24 border-b editorial-grid-line">
                   
                   {/* Section Title */}
-                  <div className="max-w-7xl mx-auto px-6 mb-16 text-center space-y-3">
-                    <span className="text-xs font-mono-tech text-amber-400 font-bold uppercase tracking-widest">
+                  <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8 sm:mb-16 text-center space-y-2 sm:space-y-3">
+                    <span className="text-[11px] sm:text-xs font-mono-tech text-amber-400 font-bold uppercase tracking-widest">
                       BUSINESS ECOSYSTEM ARCHITECTURE
                     </span>
-                    <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+                    <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
                       XNOT 핵심 사업 파이프라인
                     </h2>
-                    <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
-                      마우스 스크롤을 내리면 4대 핵심 사업 영역이 차례대로 올라와 포개어집니다.
+                    <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto px-2">
+                      화면을 스크롤하면 4대 핵심 사업 영역이 차례대로 올라와 포개어집니다.
                     </p>
                   </div>
 
-                  <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
+                  <div className="max-w-6xl mx-auto px-3 sm:px-6 space-y-8 sm:space-y-12">
                     
                     {/* CARD 01: 텔레그램 물수제비 P2E */}
-                    <div className="sticky top-28 rounded-[32px] overflow-hidden border editorial-grid-line bg-[#0A0D18] shadow-[0_-20px_60px_rgba(0,0,0,0.95)] min-h-[460px] sm:min-h-[520px] flex items-center">
+                    <div className="sticky top-20 sm:top-28 rounded-2xl sm:rounded-[32px] overflow-hidden border editorial-grid-line bg-[#0A0D18] shadow-[0_-20px_60px_rgba(0,0,0,0.95)] min-h-[420px] sm:min-h-[520px] flex items-center">
                       <div className="absolute inset-0 z-0">
                         <img 
                           src={ASSETS.stoneSkipperAction} 
                           alt="Pillar 01 P2E" 
-                          className="w-full h-full object-cover object-right"
+                          className="w-full h-full object-cover object-center sm:object-right opacity-40 sm:opacity-100"
                           onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1400&q=85";
                           }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#06070B] via-[#06070B] via-[25%] to-transparent to-[34%] pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-[#06070B] via-[#06070B]/95 sm:via-[#06070B] via-[40%] sm:via-[25%] to-transparent to-[75%] sm:to-[34%] pointer-events-none" />
                       </div>
 
-                      <div className="relative z-10 p-8 sm:p-14 max-w-md sm:max-w-lg space-y-5">
-                        <span className="text-xs font-mono-tech font-bold text-amber-400 tracking-wider">
+                      <div className="relative z-10 p-6 sm:p-14 max-w-md sm:max-w-lg space-y-3 sm:space-y-5">
+                        <span className="text-[11px] sm:text-xs font-mono-tech font-bold text-amber-400 tracking-wider">
                           01. TRAFFIC ENGINE
                         </span>
-                        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+                        <h3 className="text-xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
                           Stone Skipper<br />물수제비 P2E
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                           10억 텔레그램 유저를 위한 1초 온보딩 게임. <strong>럭키 드로우 (Lucky Draw)</strong> 시스템으로 유입을 견인하며 구글 애드센스 실제 광고 수익의 50%를 노드 홀더에게 분배합니다.
                         </p>
-                        <div className="pt-2">
+                        <div className="pt-1 sm:pt-2">
                           <button
                             onClick={() => setCurrentView('pillar1')}
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all cursor-pointer group active:scale-95"
                           >
                             <span>상세 바로가기</span>
                             <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -708,41 +708,41 @@
                         </div>
                       </div>
 
-                      <div className="absolute top-6 right-6 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-mono-tech text-slate-300">
-                        <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-                        <span>01 / 물수제비 P2E</span>
+                      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] sm:text-[11px] font-mono-tech text-slate-300">
+                        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-cyan-400"></span>
+                        <span>01 / P2E 게임</span>
                       </div>
                     </div>
 
                     {/* CARD 02: D2C 리워드 쇼핑몰 */}
-                    <div className="sticky top-32 rounded-[32px] overflow-hidden border editorial-grid-line bg-[#0A0D18] shadow-[0_-20px_60px_rgba(0,0,0,0.95)] min-h-[460px] sm:min-h-[520px] flex items-center">
+                    <div className="sticky top-24 sm:top-32 rounded-2xl sm:rounded-[32px] overflow-hidden border editorial-grid-line bg-[#0A0D18] shadow-[0_-20px_60px_rgba(0,0,0,0.95)] min-h-[420px] sm:min-h-[520px] flex items-center">
                       <div className="absolute inset-0 z-0">
                         <img 
                           src={ASSETS.d2cMall} 
                           alt="Pillar 02 D2C" 
-                          className="w-full h-full object-cover object-right"
+                          className="w-full h-full object-cover object-center sm:object-right opacity-40 sm:opacity-100"
                           onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1400&q=85";
                           }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#06070B] via-[#06070B] via-[25%] to-transparent to-[34%] pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-[#06070B] via-[#06070B]/95 sm:via-[#06070B] via-[40%] sm:via-[25%] to-transparent to-[75%] sm:to-[34%] pointer-events-none" />
                       </div>
 
-                      <div className="relative z-10 p-8 sm:p-14 max-w-md sm:max-w-lg space-y-5">
-                        <span className="text-xs font-mono-tech font-bold text-amber-400 tracking-wider">
+                      <div className="relative z-10 p-6 sm:p-14 max-w-md sm:max-w-lg space-y-3 sm:space-y-5">
+                        <span className="text-[11px] sm:text-xs font-mono-tech font-bold text-amber-400 tracking-wider">
                           02. REWARD COMMERCE
                         </span>
-                        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+                        <h3 className="text-xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
                           D2C 리워드 쇼핑몰<br />nsp 웰니스
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                           소비자가 238,000원 기준 <strong>50% 독점 도매 마진권(119,000원)</strong> 부여. 1단계 레퍼럴 24,000원 + 2단계 팀 기여 16,000원의 기여도 리워드와 월 1억~5억 배당 풀을 노드에 적립합니다.
                         </p>
-                        <div className="pt-2">
+                        <div className="pt-1 sm:pt-2">
                           <button
                             onClick={() => setCurrentView('pillar2')}
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all cursor-pointer group active:scale-95"
                           >
                             <span>상세 바로가기</span>
                             <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -750,41 +750,41 @@
                         </div>
                       </div>
 
-                      <div className="absolute top-6 right-6 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-mono-tech text-slate-300">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                        <span>02 / D2C 리워드몰</span>
+                      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] sm:text-[11px] font-mono-tech text-slate-300">
+                        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400"></span>
+                        <span>02 / D2C몰</span>
                       </div>
                     </div>
 
                     {/* CARD 03: 제주 한울랜드 2.0 (20% 배당) */}
-                    <div className="sticky top-36 rounded-[32px] overflow-hidden border editorial-grid-line bg-[#0A0D18] shadow-[0_-20px_60px_rgba(0,0,0,0.95)] min-h-[460px] sm:min-h-[520px] flex items-center">
+                    <div className="sticky top-28 sm:top-36 rounded-2xl sm:rounded-[32px] overflow-hidden border editorial-grid-line bg-[#0A0D18] shadow-[0_-20px_60px_rgba(0,0,0,0.95)] min-h-[420px] sm:min-h-[520px] flex items-center">
                       <div className="absolute inset-0 z-0">
                         <img 
                           src={ASSETS.hanulLand} 
                           alt="Pillar 03 Hanul Land" 
-                          className="w-full h-full object-cover object-right"
+                          className="w-full h-full object-cover object-center sm:object-right opacity-40 sm:opacity-100"
                           onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=85";
                           }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#06070B] via-[#06070B] via-[25%] to-transparent to-[34%] pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-[#06070B] via-[#06070B]/95 sm:via-[#06070B] via-[40%] sm:via-[25%] to-transparent to-[75%] sm:to-[34%] pointer-events-none" />
                       </div>
 
-                      <div className="relative z-10 p-8 sm:p-14 max-w-md sm:max-w-lg space-y-5">
-                        <span className="text-xs font-mono-tech font-bold text-amber-400 tracking-wider">
+                      <div className="relative z-10 p-6 sm:p-14 max-w-md sm:max-w-lg space-y-3 sm:space-y-5">
+                        <span className="text-[11px] sm:text-xs font-mono-tech font-bold text-amber-400 tracking-wider">
                           03. REAL-WORLD ASSET
                         </span>
-                        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+                        <h3 className="text-xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
                           제주 한울랜드 2.0<br />(Day & Night)
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                           3.17만 평 사계절 복합 리조트. 주간 수선화 축제·베이커리 카페와 야간 스타나이트 야시장 & 드론쇼. 검증된 <strong>실물 영업이익의 20%</strong>를 3,000개 마스터 노드에 영구 배당합니다.
                         </p>
-                        <div className="pt-2">
+                        <div className="pt-1 sm:pt-2">
                           <button
                             onClick={() => setCurrentView('hanul')}
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all cursor-pointer group active:scale-95"
                           >
                             <span>상세 바로가기</span>
                             <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -792,41 +792,41 @@
                         </div>
                       </div>
 
-                      <div className="absolute top-6 right-6 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-mono-tech text-slate-300">
-                        <span className="w-2 h-2 rounded-full bg-purple-400"></span>
+                      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] sm:text-[11px] font-mono-tech text-slate-300">
+                        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-purple-400"></span>
                         <span>03 / 제주 RWA</span>
                       </div>
                     </div>
 
                     {/* CARD 04: XNOT Gram Nodes 하드웨어 */}
-                    <div className="sticky top-40 rounded-[32px] overflow-hidden border editorial-grid-line bg-[#0A0D18] shadow-[0_-20px_60px_rgba(0,0,0,0.95)] min-h-[460px] sm:min-h-[520px] flex items-center">
+                    <div className="sticky top-32 sm:top-40 rounded-2xl sm:rounded-[32px] overflow-hidden border editorial-grid-line bg-[#0A0D18] shadow-[0_-20px_60px_rgba(0,0,0,0.95)] min-h-[420px] sm:min-h-[520px] flex items-center">
                       <div className="absolute inset-0 z-0">
                         <img 
                           src={ASSETS.nodeServer} 
                           alt="Pillar 04 Gram Nodes" 
-                          className="w-full h-full object-contain object-right p-8"
+                          className="w-full h-full object-contain object-center sm:object-right p-4 sm:p-8 opacity-40 sm:opacity-100"
                           onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=85";
                           }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#06070B] via-[#06070B] via-[25%] to-transparent to-[34%] pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-[#06070B] via-[#06070B]/95 sm:via-[#06070B] via-[40%] sm:via-[25%] to-transparent to-[75%] sm:to-[34%] pointer-events-none" />
                       </div>
 
-                      <div className="relative z-10 p-8 sm:p-14 max-w-md sm:max-w-lg space-y-5">
-                        <span className="text-xs font-mono-tech font-bold text-amber-400 tracking-wider">
+                      <div className="relative z-10 p-6 sm:p-14 max-w-md sm:max-w-lg space-y-3 sm:space-y-5">
+                        <span className="text-[11px] sm:text-xs font-mono-tech font-bold text-amber-400 tracking-wider">
                           04. HARDWARE VAULT
                         </span>
-                        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+                        <h3 className="text-xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
                           XNOT Gram Nodes<br />인프라 엔진
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                           총 3,000대 한정판 마스터 노드. 구매 즉시 <strong>50,000 XNOT 코인 수령</strong> 및 광고 50% 분배 + D2C 도매권 + 제주 RWA 영업이익 20% 배당 수취 권리를 가집니다.
                         </p>
-                        <div className="pt-2">
+                        <div className="pt-1 sm:pt-2">
                           <button
                             onClick={() => setCurrentView('nodes')}
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold text-white bg-[#004AD7] hover:bg-[#003cb0] shadow-[0_0_20px_rgba(0,74,215,0.4)] transition-all cursor-pointer group"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs font-bold text-white bg-[#004AD7] hover:bg-[#003cb0] shadow-[0_0_20px_rgba(0,74,215,0.4)] transition-all cursor-pointer group active:scale-95"
                           >
                             <span>노드 스토어 열기 ($1,000)</span>
                             <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -834,8 +834,8 @@
                         </div>
                       </div>
 
-                      <div className="absolute top-6 right-6 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-mono-tech text-slate-300">
-                        <span className="w-2 h-2 rounded-full bg-[#004AD7]"></span>
+                      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] sm:text-[11px] font-mono-tech text-slate-300">
+                        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#004AD7]"></span>
                         <span>04 / Gram Nodes</span>
                       </div>
                     </div>
@@ -1195,7 +1195,7 @@
             {/* VIEW: PILLAR 01 DEDICATED PAGE                                            */}
             {/* ========================================================================= */}
             {currentView === 'pillar1' && (
-              <div className="max-w-6xl mx-auto px-6 pt-10 space-y-12">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8 sm:space-y-12">
                 <button
                   onClick={() => setCurrentView('overview')}
                   className="inline-flex items-center gap-2 text-xs font-mono-tech text-cyan-400 hover:text-cyan-300 cursor-pointer"
@@ -1203,55 +1203,68 @@
                   <ChevronLeft className="w-4 h-4" /> 에코시스템 개요로 돌아가기
                 </button>
 
-                <div className="space-y-4">
-                  <span className="text-xs font-mono-tech text-amber-400 font-bold uppercase tracking-wider">PILLAR 01 DEEP DIVE</span>
-                  <h1 className="text-3xl sm:text-5xl font-black text-white">Stone Skipper P2E & 광고 트래픽</h1>
-                  <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
+                <div className="space-y-3 sm:space-y-4">
+                  <span className="text-[11px] sm:text-xs font-mono-tech text-amber-400 font-bold uppercase tracking-wider">PILLAR 01 DEEP DIVE</span>
+                  <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white leading-tight">Stone Skipper P2E & 광고 트래픽</h1>
+                  <p className="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
                     10억 텔레그램 메신저 유저를 앱 다운로드 없이 1초 만에 유입시키는 바이럴 게임 엔진. 럭키 드로우 시스템으로 무료 참여를 유도하고 구글 애드센스 실제 광고 수익의 50%를 노드 홀더에게 매월 투명하게 분배합니다.
                   </p>
                 </div>
 
+                {/* Smartphone-Sized Video Mockup Frame (Desktop & Mobile Unified) */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                  <div className="lg:col-span-6 rounded-3xl overflow-hidden border editorial-grid-line bg-black p-4 shadow-2xl">
-                    <video 
-                      src={ASSETS.p2eVideo} 
-                      poster={ASSETS.gameP2e}
-                      autoPlay 
-                      loop 
-                      muted 
-                      playsInline 
-                      className="w-full rounded-2xl"
-                    />
+                  
+                  {/* Fixed Smartphone Frame for Video */}
+                  <div className="lg:col-span-5 flex justify-center w-full">
+                    <div className="relative w-[240px] xs:w-[260px] sm:w-[280px] md:w-[300px] rounded-[36px] bg-[#0A0D18] p-3 border-4 border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.95)] overflow-hidden">
+                      <div className="w-full rounded-[24px] overflow-hidden relative bg-black aspect-[9/16]">
+                        <video 
+                          src={ASSETS.p2eVideo} 
+                          poster={ASSETS.gameP2e}
+                          autoPlay 
+                          loop 
+                          muted 
+                          playsInline 
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                      </div>
+                      <div className="mt-2 text-center text-[10px] font-mono-tech text-slate-500">
+                        텔레그램 미니앱 구동 화면
+                      </div>
+                    </div>
                   </div>
-                  <div className="lg:col-span-6 space-y-4 text-xs font-mono-tech">
-                    <div className="p-4 rounded-2xl bg-white/[0.03] border editorial-grid-line">
+
+                  <div className="lg:col-span-7 space-y-4 text-xs font-mono-tech">
+                    <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border editorial-grid-line">
                       <span className="text-slate-400 block mb-1">100만 유저 도달 시</span>
-                      <strong className="text-white text-base">노드당 월 약 5.4만 원 (연 ROI 49.17%)</strong>
+                      <strong className="text-white text-sm sm:text-base">노드당 월 약 5.4만 원 (연 ROI 49.17%)</strong>
                     </div>
-                    <div className="p-4 rounded-2xl bg-[#004AD7]/20 border border-[#004AD7]/50">
-                      <span className="text-cyan-300 block mb-1">300만 유저 달성 시 (마일스톤)</span>
-                      <strong className="text-white text-base">노드당 월 약 17.9만 원 (7.5개월 원금 전액 회수)</strong>
+                    <div className="p-4 sm:p-5 rounded-2xl bg-[#004AD7]/20 border border-[#004AD7]/50">
+                      <span className="text-cyan-300 block mb-1">300만 유저 달성 시 (핵심 마일스톤)</span>
+                      <strong className="text-white text-sm sm:text-base">노드당 월 약 17.9만 원 (7.5개월 원금 전액 회수)</strong>
                     </div>
-                    <div className="p-4 rounded-2xl bg-white/[0.03] border editorial-grid-line">
+                    <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border editorial-grid-line">
                       <span className="text-slate-400 block mb-1">1,000만 유저 달성 시</span>
-                      <strong className="text-emerald-400 text-base">노드당 월 약 74.8만 원 (연 ROI 670%)</strong>
+                      <strong className="text-emerald-400 text-sm sm:text-base">노드당 월 약 74.8만 원 (연 ROI 670%)</strong>
                     </div>
                     <button
                       onClick={() => setCurrentView('nodes')}
-                      className="w-full py-4 rounded-xl bg-[#004AD7] hover:bg-[#003cb0] text-white font-bold text-xs uppercase tracking-wider cursor-pointer"
+                      className="w-full py-4 rounded-xl bg-[#004AD7] hover:bg-[#003cb0] text-white font-bold text-xs uppercase tracking-wider cursor-pointer shadow-lg active:scale-95 transition-all"
                     >
                       노드 구매하고 광고 수익 50% 분배받기 ($1,000)
                     </button>
                   </div>
+
                 </div>
               </div>
             )}
 
             {/* ========================================================================= */}
-            {/* VIEW: PILLAR 02 DEDICATED PAGE                                            */}
+            {/* VIEW: PILLAR 02 DEDICATED PAGE (D2C REWARD MALL)                          */}
             {/* ========================================================================= */}
             {currentView === 'pillar2' && (
-              <div className="max-w-6xl mx-auto px-6 pt-10 space-y-12">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8 sm:space-y-12">
                 <button
                   onClick={() => setCurrentView('overview')}
                   className="inline-flex items-center gap-2 text-xs font-mono-tech text-cyan-400 hover:text-cyan-300 cursor-pointer"
@@ -1259,132 +1272,243 @@
                   <ChevronLeft className="w-4 h-4" /> 에코시스템 개요로 돌아가기
                 </button>
 
-                <div className="space-y-4">
-                  <span className="text-xs font-mono-tech text-amber-400 font-bold uppercase tracking-wider">PILLAR 02 DEEP DIVE</span>
-                  <h1 className="text-3xl sm:text-5xl font-black text-white">D2C 리워드 쇼핑몰 (nsp 프리미엄 웰니스)</h1>
-                  <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
-                    아사이베리·과라나·야관문 등 30종 천연 원료 프리미엄 건기식. 소비자가 238,000원 기준 50% 독점 도매 마진권(119,000원)을 부여하며, 기여도 리워드 시스템과 월 1억~5억 배당 풀을 노드에 적립합니다.
+                <div className="space-y-3 sm:space-y-4">
+                  <span className="text-[11px] sm:text-xs font-mono-tech text-emerald-400 font-bold uppercase tracking-wider">PILLAR 02 DEEP DIVE</span>
+                  <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white leading-tight">D2C 리워드 쇼핑몰 & 50% 도매 마진권</h1>
+                  <p className="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
+                    아사이베리, 과라나, 야관문 등 30종 천연 명품 건강기능식품. 소비자가 238,000원 기준 노드 홀더에게 <strong>50% 독점 도매 마진권(119,000원)</strong>을 영구 부여하며, 2단계 직접 기여도 리워드와 월 1억~5억 배당 풀을 노드에 정기 배당합니다.
                   </p>
                 </div>
 
+                {/* Hero Showcase Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                  <div className="lg:col-span-6 rounded-3xl overflow-hidden border editorial-grid-line shadow-2xl">
+                  <div className="lg:col-span-6 rounded-3xl overflow-hidden border editorial-grid-line bg-black/40 shadow-2xl">
                     <img 
                       src={ASSETS.d2cHero} 
-                      alt="nsp Product" 
-                      className="w-full h-full object-cover"
+                      alt="D2C Mall Hero" 
+                      className="w-full h-[320px] sm:h-[420px] object-cover"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85";
+                      }}
                     />
                   </div>
+
                   <div className="lg:col-span-6 space-y-4 text-xs font-mono-tech">
-                    <div className="p-4 rounded-2xl bg-white/[0.03] border editorial-grid-line">
-                      <span className="text-slate-400 block mb-1">소비자가 238,000원 기준 독점 마진</span>
-                      <strong className="text-white text-base">50% 도매 마진 (119,000원 즉시 수익)</strong>
+                    <div className="p-5 rounded-2xl bg-white/[0.03] border editorial-grid-line space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-amber-400 font-bold">01 / 독점 도매 마진권</span>
+                        <span className="text-emerald-400 font-bold text-sm">50% MARGIN</span>
+                      </div>
+                      <p className="text-slate-300 leading-relaxed">
+                        소비자가 238,000원 제품을 119,000원에 매입 가능한 권리 부여. 1박스 판매 시 119,000원의 즉각적인 현금 유통 마진 실현.
+                      </p>
                     </div>
-                    <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30">
-                      <span className="text-emerald-300 block mb-1">기여도 리워드 체계</span>
-                      <strong className="text-white text-base">1단계 레퍼럴 24,000원 + 2단계 팀 기여 16,000원</strong>
+
+                    <div className="p-5 rounded-2xl bg-white/[0.03] border editorial-grid-line space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-cyan-400 font-bold">02 / 다이렉트 기여도 리워드</span>
+                        <span className="text-white font-bold text-sm">24,000 + 16,000원</span>
+                      </div>
+                      <p className="text-slate-300 leading-relaxed">
+                        내가 추천한 1단계 소비 구매 시 <strong>24,000원</strong>, 팀 기여 2단계 구매 시 <strong>16,000원</strong>이 실시간 적립되어 즉시 출금 가능.
+                      </p>
                     </div>
-                    <div className="p-4 rounded-2xl bg-white/[0.03] border editorial-grid-line">
-                      <span className="text-slate-400 block mb-1">월 판매량별 배당 풀 적립</span>
-                      <strong className="text-indigo-400 text-base">월 3,000~10,000박스 판매 시 월 1억~5억 원 풀 적립</strong>
+
+                    <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-emerald-300 font-bold">03 / 노드 배당 풀 적립</span>
+                        <span className="text-white font-bold text-sm">월 1억 ~ 5억 원</span>
+                      </div>
+                      <p className="text-slate-200 leading-relaxed">
+                        쇼핑몰 전체 판매량에 따라 월 1억~5억 원의 순이익이 배당 풀에 누적되어 3,000개 마스터 노드에 매월 균등 배당.
+                      </p>
                     </div>
-                    <button
-                      onClick={() => setCurrentView('nodes')}
-                      className="w-full py-4 rounded-xl bg-[#004AD7] hover:bg-[#003cb0] text-white font-bold text-xs uppercase tracking-wider cursor-pointer"
-                    >
-                      노드 구매하고 50% 도매 마진권 취득하기 ($1,000)
-                    </button>
+
+                    <div className="pt-2">
+                      <button
+                        onClick={() => setCurrentView('nodes')}
+                        className="w-full py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-xs uppercase tracking-wider cursor-pointer shadow-lg active:scale-95 transition-all"
+                      >
+                        노드 구매하고 50% 도매 마진권 획득 ($1,000)
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Milestone Performance Table */}
+                <div className="rounded-2xl border editorial-grid-line bg-[#0A0D18] p-6 space-y-4">
+                  <h3 className="text-base font-bold text-white font-mono-tech">D2C 쇼핑몰 월 판매량별 노드 배당 지표</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono-tech text-xs">
+                    <div className="p-4 rounded-xl bg-white/[0.02] border editorial-grid-line">
+                      <div className="text-slate-400">월 3,000박스 판매 시</div>
+                      <div className="text-lg font-bold text-white mt-1">월 3만 ~ 5만 원 / 노드</div>
+                      <div className="text-[11px] text-slate-500 mt-1">배당 풀 월 1억 ~ 1.5억 원 적립</div>
+                    </div>
+                    <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/30">
+                      <div className="text-emerald-400">월 5,000박스 판매 시</div>
+                      <div className="text-lg font-bold text-emerald-300 mt-1">월 5.5만 ~ 8.3만 원 / 노드</div>
+                      <div className="text-[11px] text-slate-400 mt-1">배당 풀 월 1.67억 ~ 2.5억 원 적립</div>
+                    </div>
+                    <div className="p-4 rounded-xl bg-white/[0.02] border editorial-grid-line">
+                      <div className="text-slate-400">월 10,000박스 판매 시</div>
+                      <div className="text-lg font-bold text-white mt-1">월 11.1만 ~ 16.7만 원 / 노드</div>
+                      <div className="text-[11px] text-slate-500 mt-1">배당 풀 월 3.33억 ~ 5억 원 적립</div>
+                    </div>
                   </div>
                 </div>
               </div>
             )}
 
             {/* ========================================================================= */}
-            {/* VIEW: PILLAR 03 (JEJU HANUL LAND 2.0) DEDICATED PAGE                     */}
+            {/* VIEW: PILLAR 03 DEDICATED PAGE (JEJU HANUL LAND 2.0 RWA)                   */}
             {/* ========================================================================= */}
             {currentView === 'hanul' && (
-              <div className="max-w-6xl mx-auto px-6 pt-10 space-y-12">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <button
-                    onClick={() => setCurrentView('overview')}
-                    className="inline-flex items-center gap-2 text-xs font-mono-tech text-cyan-400 hover:text-cyan-300 cursor-pointer"
-                  >
-                    <ChevronLeft className="w-4 h-4" /> 에코시스템 개요로 돌아가기
-                  </button>
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8 sm:space-y-12">
+                <button
+                  onClick={() => setCurrentView('overview')}
+                  className="inline-flex items-center gap-2 text-xs font-mono-tech text-cyan-400 hover:text-cyan-300 cursor-pointer"
+                >
+                  <ChevronLeft className="w-4 h-4" /> 에코시스템 개요로 돌아가기
+                </button>
 
-                  <div className="flex items-center gap-2 p-1.5 rounded-full bg-white/[0.05] border editorial-grid-line">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b editorial-grid-line pb-6">
+                  <div>
+                    <span className="text-[11px] sm:text-xs font-mono-tech text-purple-400 font-bold uppercase tracking-wider">PILLAR 03 DEEP DIVE</span>
+                    <h1 className="text-2xl sm:text-4xl font-black text-white leading-tight mt-1">
+                      제주 한울랜드 2.0 (Day & Night)
+                    </h1>
+                    <p className="text-slate-300 text-xs sm:text-sm mt-1">
+                      3.17만 평 사계절 체류형 복합문화 리조트 실물 영업이익 20% 영구 배당
+                    </p>
+                  </div>
+
+                  {/* Day / Night Switcher */}
+                  <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-[#0E111C] border editorial-grid-line shrink-0">
                     <button
                       onClick={() => setHanulMode('day')}
-                      className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                        hanulMode === 'day' ? 'bg-amber-500 text-black shadow-md' : 'text-slate-400 hover:text-white'
+                      className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                        hanulMode === 'day'
+                          ? 'bg-amber-500 text-black shadow-md'
+                          : 'text-slate-400 hover:text-white'
                       }`}
                     >
-                      <Sun className="w-3.5 h-3.5" /> ☀️ 주간 (Day) 모드
+                      <Sun className="w-3.5 h-3.5" />
+                      <span>☀️ 주간(Day) 모드</span>
                     </button>
                     <button
                       onClick={() => setHanulMode('night')}
-                      className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                        hanulMode === 'night' ? 'bg-[#004AD7] text-white shadow-md' : 'text-slate-400 hover:text-white'
+                      className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                        hanulMode === 'night'
+                          ? 'bg-indigo-600 text-white shadow-md'
+                          : 'text-slate-400 hover:text-white'
                       }`}
                     >
-                      <Moon className="w-3.5 h-3.5" /> 🌙 야간 (Night) 모드
+                      <Moon className="w-3.5 h-3.5" />
+                      <span>🌙 야간(Night) 모드</span>
                     </button>
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <span className="text-xs font-mono-tech text-amber-400 font-bold uppercase tracking-wider">PILLAR 03 DEEP DIVE</span>
-                  <h1 className="text-3xl sm:text-5xl font-black text-white">제주 한울랜드 2.0 (Day & Night)</h1>
-                  <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
-                    3.17만 평 사계절 체류형 복합 리조트. 주간 수선화 축제·베이커리 카페와 야간 스타나이트 야시장 & 드론쇼. 검증된 <strong>실물 영업이익의 20%</strong>를 3,000개 마스터 노드에 매월 투명하게 영구 배당합니다.
-                  </p>
-                </div>
+                {/* Day / Night Showcase Banner */}
+                <div className="relative rounded-3xl overflow-hidden border editorial-grid-line min-h-[380px] sm:min-h-[460px] flex flex-col justify-end p-6 sm:p-12 shadow-2xl">
+                  <div className="absolute inset-0 z-0">
+                    <img 
+                      src={hanulMode === 'day' ? ASSETS.hanulDay : ASSETS.hanulNight} 
+                      alt="Jeju Hanul Land View" 
+                      className="w-full h-full object-cover transition-transform duration-1000"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${hanulMode === 'day' ? 'from-[#06070B] via-[#06070B]/70' : 'from-[#06070B] via-indigo-950/80'} to-transparent`} />
+                  </div>
 
-                <div className="rounded-3xl overflow-hidden border editorial-grid-line relative min-h-[460px] flex flex-col justify-end p-8 sm:p-12 shadow-2xl">
-                  <img 
-                    src={hanulMode === 'day' ? ASSETS.hanulDay : ASSETS.hanulNight} 
-                    alt="Hanul Land" 
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />
-
-                  <div className="relative z-10 space-y-3 max-w-2xl">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-mono-tech font-bold uppercase tracking-wider bg-purple-500/30 text-purple-200 border border-purple-400/40">
-                      실물 영업이익 20% 영구 분배 Vault
+                  <div className="relative z-10 max-w-2xl space-y-4">
+                    <span className={`px-3 py-1 rounded-full text-xs font-mono-tech font-bold uppercase tracking-wider ${
+                      hanulMode === 'day' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/40'
+                    }`}>
+                      {hanulMode === 'day' ? '☀️ DAYTIME KEYNOTE' : '🌙 NIGHTTIME STAR-NIGHT'}
                     </span>
-                    <h2 className="text-2xl sm:text-4xl font-black text-white">
-                      {hanulMode === 'day' ? '사계절 수선화 축제와 파크골프 36홀' : '한울 스타나이트 : 제주 감성 야시장 & 드론쇼'}
+
+                    <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+                      {hanulMode === 'day' 
+                        ? '사계절 수선화 축제 & 앵커 베이커리 카페' 
+                        : '한울 스타나이트: 감성 야시장 & 드론쇼'}
                     </h2>
+
                     <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
                       {hanulMode === 'day'
-                        ? '겨울~봄 9개월 비수기를 완벽히 타파하는 수선화 군락지와 일 550명 방문 목표의 대형 베이커리 카페, 영업이익률 45~50%의 시니어 파크골프 36홀이 주간 매출을 견인합니다.'
-                        : '야간 F&B 부스와 은하수 라이트가든 산책로를 통해 관광객 체류 시간을 4시간 이상 연장하고, 시그니처 드론쇼와 나이트 시네마로 심야 소비를 극대화합니다.'}
+                        ? '겨울~봄 9개월 비수기를 완벽히 없애는 대규모 수선화 군락지와 일 550명 워킹 캐피탈 앵커 베이커리 카페, 영업이익률 45~50%의 시니어 파크골프 36홀이 주간 안정적 매출을 견인합니다.'
+                        : '야간 F&B 부스와 은하수 라이트가든 산책로를 통해 관광객 체류 시간을 4시간 이상 연장하고, 정기 드론 라이트쇼 및 야외 자동차 극장으로 심야 소비를 극대화합니다.'}
+                    </p>
+
+                    <div className="pt-2 flex flex-wrap items-center gap-3">
+                      <span className="text-xs font-mono-tech text-purple-300 bg-purple-950/80 px-3 py-1.5 rounded-lg border border-purple-500/30">
+                        실물 영업이익 20% ➡️ 3,000개 노드 홀더 영구 배당
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 4 Core Pillars */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                  <div className="p-6 rounded-2xl bg-[#0A0D18] border editorial-grid-line space-y-2">
+                    <div className="text-xs font-mono-tech text-amber-400 font-bold uppercase tracking-wider">ANCHOR 01</div>
+                    <h4 className="text-base font-bold text-white">수선화 축제 & 베이커리</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      겨울~봄 비수기를 성수기화하고 일 550명 방문 목표의 대형 베이커리 카페로 데일리 현금흐름 창출.
+                    </p>
+                  </div>
+
+                  <div className="p-6 rounded-2xl bg-[#0A0D18] border editorial-grid-line space-y-2">
+                    <div className="text-xs font-mono-tech text-emerald-400 font-bold uppercase tracking-wider">ANCHOR 02</div>
+                    <h4 className="text-base font-bold text-white">프리미엄 파크골프 36홀</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      초고령화 시대 시니어 골퍼 타깃. 영업이익률 45~50%에 달하는 독점적 고마진 캐시카우.
+                    </p>
+                  </div>
+
+                  <div className="p-6 rounded-2xl bg-[#0A0D18] border editorial-grid-line space-y-2">
+                    <div className="text-xs font-mono-tech text-indigo-400 font-bold uppercase tracking-wider">ANCHOR 03</div>
+                    <h4 className="text-base font-bold text-white">감성 야시장 & 라이트가든</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      은하수 라이트가든 조명 산책로 및 프리미엄 F&B 야간 마켓으로 야간 체류 시간 대폭 연장.
+                    </p>
+                  </div>
+
+                  <div className="p-6 rounded-2xl bg-[#0A0D18] border editorial-grid-line space-y-2">
+                    <div className="text-xs font-mono-tech text-purple-400 font-bold uppercase tracking-wider">ANCHOR 04</div>
+                    <h4 className="text-base font-bold text-white">시그니처 드론쇼 & 극장</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      야외 자동차 극장과 정기 드론 라이트쇼 공연으로 제주의 대표적 야간 랜드마크 확립.
                     </p>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono-tech">
-                  <div className="p-5 rounded-2xl bg-white/[0.03] border editorial-grid-line">
-                    <span className="text-slate-400 block mb-1">1년 차 (연 20.2억)</span>
-                    <strong className="text-white text-base">노드당 월 약 11,200원</strong>
+                {/* IR Financial Milestone */}
+                <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-purple-950/60 via-slate-900 to-indigo-950/60 border border-purple-500/30 flex flex-col md:flex-row items-center justify-between gap-6">
+                  <div>
+                    <div className="text-xs font-mono-tech text-purple-400 uppercase tracking-widest font-bold">FINANCIAL IR MILESTONE</div>
+                    <h3 className="text-xl sm:text-2xl font-black text-white mt-1">
+                      영업이익 20% 투명 배당 (목표 연 72억 수렴 시 월 4만 원 고정)
+                    </h3>
+                    <p className="text-xs text-slate-300 mt-1 max-w-xl">
+                      1년 차 연 20.2억(월 ~11,200원) ➔ 2년 차 연 35.7억(월 ~19,800원) ➔ 8대 모델 48.3억(월 ~26,800원) ➔ 목표 연 72억(월 40,000원 고정)
+                    </p>
                   </div>
-                  <div className="p-5 rounded-2xl bg-white/[0.03] border editorial-grid-line">
-                    <span className="text-slate-400 block mb-1">2년 차 (연 35.7억)</span>
-                    <strong className="text-white text-base">노드당 월 약 19,800원</strong>
-                  </div>
-                  <div className="p-5 rounded-2xl bg-[#004AD7]/20 border border-[#004AD7]/50">
-                    <span className="text-cyan-300 block mb-1">목표 72억 달성 시</span>
-                    <strong className="text-white text-base">노드당 월 40,000원 영구 고정</strong>
-                  </div>
+                  <button
+                    onClick={() => setCurrentView('terminal')}
+                    className="px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider bg-purple-500 hover:bg-purple-400 text-white shrink-0 shadow-lg cursor-pointer"
+                  >
+                    배당 계산기로 검증하기
+                  </button>
                 </div>
               </div>
             )}
 
             {/* ========================================================================= */}
-            {/* VIEW: NODE STORE ($1,000 USDT)                                            */}
+            {/* VIEW: NODES LAUNCHPAD STORE (04. GRAM NODES)                              */}
             {/* ========================================================================= */}
             {currentView === 'nodes' && (
-              <div className="max-w-6xl mx-auto px-6 pt-10 space-y-12">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8 sm:space-y-12">
                 <button
                   onClick={() => setCurrentView('overview')}
                   className="inline-flex items-center gap-2 text-xs font-mono-tech text-cyan-400 hover:text-cyan-300 cursor-pointer"
@@ -1392,62 +1516,105 @@
                   <ChevronLeft className="w-4 h-4" /> 에코시스템 개요로 돌아가기
                 </button>
 
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b editorial-grid-line pb-6">
+                  <div>
+                    <span className="text-[11px] sm:text-xs font-mono-tech text-cyan-400 font-bold uppercase tracking-wider">HARDWARE VAULT & STORE</span>
+                    <h1 className="text-2xl sm:text-4xl font-black text-white leading-tight mt-1">
+                      XNOT Gram Nodes 스토어
+                    </h1>
+                  </div>
+                  <span className="text-xs font-mono-tech text-slate-300 bg-white/5 px-4 py-2 rounded-xl border editorial-grid-line">
+                    Fixed Price: <strong className="text-cyan-400">$1,000 USDT</strong>
+                  </span>
+                </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                   
-                  <div className="lg:col-span-5 bg-[#0A0D18] border editorial-grid-line rounded-3xl p-8 space-y-6">
-                    <span className="text-xs font-mono-tech text-cyan-400 uppercase tracking-widest font-bold">NODE HARDWARE</span>
-                    <div className="h-48 flex items-center justify-center">
-                      <Cpu className="w-24 h-24 text-cyan-400 animate-pulse" />
+                  {/* Left Specs Display */}
+                  <div className="lg:col-span-5 rounded-3xl bg-[#0A0D18] border editorial-grid-line p-6 sm:p-8 space-y-6 shadow-2xl">
+                    <div className="flex justify-between items-center pb-4 border-b editorial-grid-line">
+                      <span className="text-xs font-mono-tech text-cyan-400 font-bold uppercase">HARDWARE ENGINE</span>
+                      <span className="text-[10px] font-mono-tech px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                        3,000 LIMITED
+                      </span>
                     </div>
+
+                    <div className="py-4 flex justify-center">
+                      <img 
+                        src={ASSETS.nodeServer} 
+                        alt="Node Server" 
+                        className="w-48 h-48 object-contain drop-shadow-[0_0_30px_rgba(0,74,215,0.4)]"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80";
+                        }}
+                      />
+                    </div>
+
                     <div className="space-y-3 font-mono-tech text-xs">
                       <div className="p-3 rounded-xl bg-white/[0.03] flex justify-between">
-                        <span className="text-slate-400">Total Genesis Supply</span>
-                        <strong className="text-white">3,000 NODES</strong>
+                        <span className="text-slate-400">즉시 에어드랍</span>
+                        <strong className="text-amber-400">+50,000 XNOT</strong>
                       </div>
                       <div className="p-3 rounded-xl bg-white/[0.03] flex justify-between">
-                        <span className="text-slate-400">Airdrop Bonus</span>
-                        <strong className="text-emerald-400">+50,000 XNOT</strong>
+                        <span className="text-slate-400">광고 수익 분배</span>
+                        <strong className="text-cyan-400">50% Net Profit</strong>
                       </div>
                       <div className="p-3 rounded-xl bg-white/[0.03] flex justify-between">
-                        <span className="text-slate-400">Jeju Hanul Land 2.0</span>
-                        <strong className="text-purple-400">20% Operating Profit</strong>
+                        <span className="text-slate-400">D2C 쇼핑몰 권리</span>
+                        <strong className="text-emerald-400">50% 도매 마진권</strong>
+                      </div>
+                      <div className="p-3 rounded-xl bg-white/[0.03] flex justify-between">
+                        <span className="text-slate-400">제주 한울랜드 RWA</span>
+                        <strong className="text-purple-400">영업이익 20% 영구 배당</strong>
                       </div>
                     </div>
                   </div>
 
-                  <div className="lg:col-span-7 bg-[#0A0D18] border editorial-grid-line rounded-3xl p-8 space-y-6">
-                    <div className="flex justify-between items-start pb-6 border-b editorial-grid-line">
+                  {/* Right Purchase Terminal */}
+                  <div className="lg:col-span-7 rounded-3xl bg-[#0A0D18] border border-cyan-500/30 p-6 sm:p-10 space-y-6 shadow-2xl">
+                    <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b editorial-grid-line">
                       <div>
-                        <span className="text-xs font-mono-tech text-cyan-400 uppercase font-bold">SMART CONTRACT ORDER</span>
-                        <h2 className="text-2xl font-black text-white mt-1">XNOT Gram Node Engine</h2>
+                        <span className="text-xs font-mono-tech text-cyan-400 uppercase tracking-wider font-bold">ORDER CONSOLE</span>
+                        <h2 className="text-2xl font-black text-white mt-0.5">Gram Node 구매</h2>
                       </div>
                       <div className="text-right">
-                        <div className="text-3xl font-black text-white font-mono-tech">
+                        <div className="text-3xl font-black text-white font-mono-tech tabular-nums">
                           ${(buyQuantity * 1000).toLocaleString()} <span className="text-sm font-normal text-slate-400">USDT</span>
                         </div>
+                        <div className="text-[11px] font-mono-tech text-cyan-400">가스비 약 $0.15 (BNB Chain)</div>
                       </div>
                     </div>
 
-                    <div className="p-4 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 flex items-center justify-between gap-4">
+                    {/* Instant Bonus Alert */}
+                    <div className="p-4 rounded-2xl bg-cyan-950/40 border border-cyan-500/40 flex items-center justify-between gap-4">
                       <div className="flex items-center gap-3">
-                        <Gift className="w-6 h-6 text-cyan-400" />
+                        <Gift className="w-6 h-6 text-amber-400 shrink-0" />
                         <div>
-                          <div className="text-xs font-bold text-white">+{(buyQuantity * 50000).toLocaleString()} XNOT 즉시 에어드랍</div>
-                          <div className="text-[11px] text-slate-400">구매 확정 즉시 연동 지갑으로 자동 컨트랙트 분배</div>
+                          <div className="text-xs font-bold text-white">
+                            +{(buyQuantity * 50000).toLocaleString()} XNOT 코인 즉시 에어드랍
+                          </div>
+                          <div className="text-[11px] text-slate-300">구매 확정 즉시 연동 지갑으로 자동 컨트랙트 전송</div>
                         </div>
                       </div>
+                      <span className="text-[10px] font-mono-tech font-bold px-2.5 py-1 rounded bg-amber-400 text-black shrink-0">
+                        즉시 지급
+                      </span>
                     </div>
 
+                    {/* Quantity Selector */}
                     <div>
-                      <label className="block text-xs font-mono-tech text-slate-400 uppercase mb-2">구매 수량 선택</label>
-                      <div className="grid grid-cols-5 gap-2">
+                      <label className="block text-xs font-mono-tech text-slate-400 uppercase mb-2">
+                        구매 수량 선택 (노드당 $1,000 USDT)
+                      </label>
+                      <div className="grid grid-cols-5 gap-2 font-mono-tech">
                         {[1, 2, 5, 10, 20].map((qty) => (
                           <button
                             key={qty}
                             onClick={() => setBuyQuantity(qty)}
-                            className={`py-3 rounded-xl font-mono-tech text-xs font-bold transition-all cursor-pointer ${
+                            className={`py-3 rounded-xl text-sm font-bold transition-all cursor-pointer ${
                               buyQuantity === qty
-                                ? 'bg-cyan-400 text-black shadow-md'
+                                ? 'bg-[#004AD7] text-white shadow-lg'
                                 : 'bg-white/5 hover:bg-white/10 text-slate-300 border editorial-grid-line'
                             }`}
                           >
@@ -1457,17 +1624,27 @@
                       </div>
                     </div>
 
-                    <button
-                      onClick={executeBuyNode}
-                      className="w-full py-4 rounded-xl font-bold text-xs uppercase tracking-wider text-white bg-[#004AD7] hover:bg-[#003cb0] shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      <Wallet className="w-4 h-4" />
-                      <span>
-                        {wallet 
-                          ? `노드 ${buyQuantity}대 즉시 구매 ($${(buyQuantity * 1000).toLocaleString()} USDT)`
-                          : `지갑 연결 후 구매 ($${(buyQuantity * 1000).toLocaleString()} USDT)`}
-                      </span>
-                    </button>
+                    {/* Execution Button */}
+                    <div className="pt-2">
+                      <button
+                        onClick={executeBuyNode}
+                        className="w-full py-5 rounded-2xl font-black text-sm uppercase tracking-wider text-black bg-cyan-400 hover:bg-cyan-300 shadow-[0_0_30px_rgba(6,182,212,0.4)] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                      >
+                        <Wallet className="w-5 h-5 text-black" />
+                        <span>
+                          {wallet 
+                            ? `노드 ${buyQuantity}대 즉시 구매 ($${(buyQuantity * 1000).toLocaleString()} USDT)`
+                            : `지갑 연결 후 노드 구매 ($${(buyQuantity * 1000).toLocaleString()} USDT)`}
+                        </span>
+                      </button>
+
+                      <div className="mt-3 flex items-center justify-between text-[11px] text-slate-500 font-mono-tech px-1">
+                        <span className="flex items-center gap-1">
+                          <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> 스마트 컨트랙트 보안 감사 완료
+                        </span>
+                        <span>BEP-20 / TRC-20 지원</span>
+                      </div>
+                    </div>
                   </div>
 
                 </div>
@@ -1478,36 +1655,295 @@
             {/* VIEW: FINANCIAL SIMULATOR DEDICATED PAGE                                 */}
             {/* ========================================================================= */}
             {currentView === 'terminal' && (
-              <div className="max-w-6xl mx-auto px-6 pt-10 space-y-12">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8 sm:space-y-12">
                 <button
                   onClick={() => setCurrentView('overview')}
                   className="inline-flex items-center gap-2 text-xs font-mono-tech text-cyan-400 hover:text-cyan-300 cursor-pointer"
                 >
                   <ChevronLeft className="w-4 h-4" /> 에코시스템 개요로 돌아가기
                 </button>
-                <div className="space-y-4">
-                  <span className="text-xs font-mono-tech text-cyan-400 font-bold uppercase tracking-wider">FINANCIAL ENGINE</span>
-                  <h1 className="text-3xl sm:text-5xl font-black text-white">XNOT 배당 시뮬레이터</h1>
-                  <p className="text-slate-400 text-xs sm:text-sm">메인 화면 하단에 위치한 공식 벤치마크 및 시뮬레이션 데이터를 제공합니다.</p>
+
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b editorial-grid-line pb-6">
+                  <div>
+                    <span className="text-[11px] sm:text-xs font-mono-tech text-cyan-400 font-bold uppercase tracking-wider">FINANCIAL ENGINE</span>
+                    <h1 className="text-2xl sm:text-4xl font-black text-white leading-tight mt-1">
+                      XNOT 배당 시뮬레이터 & 벤치마크
+                    </h1>
+                  </div>
+                  <span className="text-xs font-mono-tech text-slate-300 bg-white/5 px-3 py-1.5 rounded-xl border editorial-grid-line">
+                    기준 환율: 1 USD = 1,350 KRW
+                  </span>
+                </div>
+
+                {/* Interactive Simulator Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  
+                  {/* Controls */}
+                  <div className="lg:col-span-7 bg-[#0A0D18] p-6 sm:p-8 rounded-3xl border editorial-grid-line space-y-6">
+                    <div>
+                      <div className="flex justify-between items-center mb-2 font-mono-tech text-xs">
+                        <span className="font-bold text-slate-300">보유 노드 수량</span>
+                        <span className="font-bold text-cyan-400 text-lg">{simNodes}대 (${(simNodes * 1000).toLocaleString()} USDT)</span>
+                      </div>
+                      <input 
+                        type="range" 
+                        min="1" 
+                        max="50" 
+                        value={simNodes} 
+                        onChange={(e) => setSimNodes(Number(e.target.value))}
+                        className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+                      />
+                    </div>
+
+                    {/* Telegram Game Traffic Selection */}
+                    <div>
+                      <div className="text-xs font-mono-tech font-bold text-slate-300 mb-2">① 텔레그램 게임 유저 (광고 50% 분배)</div>
+                      <div className="grid grid-cols-3 gap-2">
+                        {[
+                          { id: '1m', label: '100만 유저', val: '월 ~5.4만/노드' },
+                          { id: '3m', label: '300만 유저', val: '월 ~17.9만/노드' },
+                          { id: '10m', label: '1,000만 유저', val: '월 ~74.8만/노드' },
+                        ].map((item) => (
+                          <button
+                            key={item.id}
+                            onClick={() => setSimUsers(item.id)}
+                            className={`p-3 rounded-xl border text-left font-mono-tech transition-all cursor-pointer ${
+                              simUsers === item.id
+                                ? 'bg-[#004AD7] border-[#004AD7] text-white shadow-md'
+                                : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'
+                            }`}
+                          >
+                            <div className="text-xs font-bold">{item.label}</div>
+                            <div className={`text-[10px] mt-0.5 ${simUsers === item.id ? 'text-white/80' : 'text-slate-500'}`}>{item.val}</div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* D2C Volume Selection */}
+                    <div>
+                      <div className="text-xs font-mono-tech font-bold text-slate-300 mb-2">② D2C 건기식 nsp 판매량 (배당 풀 적립)</div>
+                      <div className="grid grid-cols-3 gap-2">
+                        {[
+                          { id: '3k', label: '월 3,000박스', val: '월 ~4.0만/노드' },
+                          { id: '5k', label: '월 5,000박스', val: '월 ~6.9만/노드' },
+                          { id: '10k', label: '월 10,000박스', val: '월 ~13.9만/노드' },
+                        ].map((item) => (
+                          <button
+                            key={item.id}
+                            onClick={() => setSimD2c(item.id)}
+                            className={`p-3 rounded-xl border text-left font-mono-tech transition-all cursor-pointer ${
+                              simD2c === item.id
+                                ? 'bg-emerald-600 border-emerald-600 text-white shadow-md'
+                                : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'
+                            }`}
+                          >
+                            <div className="text-xs font-bold">{item.label}</div>
+                            <div className={`text-[10px] mt-0.5 ${simD2c === item.id ? 'text-white/80' : 'text-slate-500'}`}>{item.val}</div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Hanul Land 20% Dividend Selection */}
+                    <div>
+                      <div className="text-xs font-mono-tech font-bold text-slate-300 mb-2">③ 제주 한울랜드 2.0 (실물 영업이익 20% 배당)</div>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        {[
+                          { id: 'y1', label: '1년차 (20.2억)', val: '월 ~11,200원' },
+                          { id: 'y2', label: '2년차 (35.7억)', val: '월 ~19,800원' },
+                          { id: 'p8', label: '8대 모델 (48.3억)', val: '월 ~26,800원' },
+                          { id: 'target72', label: '목표 (72억)', val: '월 4만 원 고정' },
+                        ].map((item) => (
+                          <button
+                            key={item.id}
+                            onClick={() => setSimHanul(item.id)}
+                            className={`p-2.5 rounded-xl border text-center font-mono-tech transition-all cursor-pointer ${
+                              simHanul === item.id
+                                ? 'bg-purple-600 border-purple-600 text-white font-bold shadow-md'
+                                : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'
+                            }`}
+                          >
+                            <div className="text-[11px] font-bold truncate">{item.label}</div>
+                            <div className={`text-[10px] mt-0.5 ${simHanul === item.id ? 'text-white/80' : 'text-slate-500'}`}>{item.val}</div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Computed Metrics */}
+                  <div className="lg:col-span-5 bg-gradient-to-b from-[#0F1424] to-[#0A0D18] text-white p-6 sm:p-8 rounded-3xl border border-cyan-500/30 shadow-2xl space-y-6">
+                    <div className="flex justify-between items-center pb-4 border-b editorial-grid-line">
+                      <span className="text-xs font-mono-tech text-cyan-400 font-bold uppercase tracking-wider">
+                        PROJECTED REVENUE LEDGER
+                      </span>
+                      <span className="text-[10px] font-mono-tech text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/30">
+                        LIVE CALCULATED
+                      </span>
+                    </div>
+
+                    <div>
+                      <span className="text-[11px] font-mono-tech text-slate-400 uppercase">예상 총 월간 배당금</span>
+                      <div className="text-3xl sm:text-4xl font-black font-mono-tech tabular-nums mt-1 text-white">
+                        약 {(financialMetrics.totalMonthlyKRW / 10000).toLocaleString(undefined, { maximumFractionDigits: 1 })}만 원
+                      </div>
+                      <div className="text-xs font-mono-tech text-cyan-400 mt-1 tabular-nums">
+                        ≈ ${(financialMetrics.totalMonthlyUSD).toLocaleString(undefined, { maximumFractionDigits: 1 })} USDT / 월
+                      </div>
+                      <div className="text-[11px] text-slate-400 mt-1">
+                        (노드 1대당 월 약 {(financialMetrics.monthlyPerNode / 10000).toFixed(1)}만 원 수취)
+                      </div>
+                    </div>
+
+                    <div className="space-y-3 pt-6 border-t editorial-grid-line text-xs font-mono-tech">
+                      <div className="flex justify-between items-center">
+                        <span className="text-slate-400">연간 누적 배당 예상</span>
+                        <span className="text-white font-bold tabular-nums">
+                          약 {(financialMetrics.totalYearlyKRW / 10000).toLocaleString(undefined, { maximumFractionDigits: 0 })}만 원
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-slate-400">연간 예상 ROI</span>
+                        <span className="text-emerald-400 font-bold text-base tabular-nums">
+                          연 {financialMetrics.annualizedROI}%
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-slate-400">에어드랍 코인 지급</span>
+                        <span className="text-indigo-400 font-bold tabular-nums">
+                          +{financialMetrics.totalTokens.toLocaleString()} XNOT
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="pt-4">
+                      <button
+                        onClick={() => setCurrentView('nodes')}
+                        className="w-full py-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-cyan-400 hover:bg-cyan-300 text-black shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      >
+                        <span>{simNodes}대 구매하기 (${(simNodes * 1000).toLocaleString()} USDT)</span>
+                        <ChevronRight className="w-4 h-4 text-black" />
+                      </button>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             )}
 
             {/* ========================================================================= */}
-            {/* VIEW: GOVERNANCE DEDICATED PAGE                                           */}
+            {/* VIEW: GOVERNANCE DEDICATED PAGE (FOUNDERS CLUB)                           */}
             {/* ========================================================================= */}
             {currentView === 'governance' && (
-              <div className="max-w-6xl mx-auto px-6 pt-10 space-y-12">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-8 sm:space-y-12">
                 <button
                   onClick={() => setCurrentView('overview')}
                   className="inline-flex items-center gap-2 text-xs font-mono-tech text-cyan-400 hover:text-cyan-300 cursor-pointer"
                 >
                   <ChevronLeft className="w-4 h-4" /> 에코시스템 개요로 돌아가기
                 </button>
-                <div className="space-y-4">
-                  <span className="text-xs font-mono-tech text-amber-400 font-bold uppercase tracking-wider">FOUNDERS & GOVERNANCE</span>
-                  <h1 className="text-3xl sm:text-5xl font-black text-white">파운더스 클럽 & 글로벌 피 풀</h1>
-                  <p className="text-slate-400 text-xs sm:text-sm">직급 승급 및 롤업 차액 수당 (최대 15%)과 글로벌 1~5% 풀 공유 자격을 부여합니다.</p>
+
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b editorial-grid-line pb-6">
+                  <div>
+                    <span className="text-[11px] sm:text-xs font-mono-tech text-amber-400 font-bold uppercase tracking-wider">FOUNDERS & GOVERNANCE</span>
+                    <h1 className="text-2xl sm:text-4xl font-black text-white leading-tight mt-1">
+                      파운더스 클럽 & 글로벌 피 풀
+                    </h1>
+                  </div>
+                  <span className="text-xs font-mono-tech text-amber-400 bg-amber-500/10 px-3 py-1.5 rounded-xl border border-amber-500/30">
+                    글로벌 1~5% 풀 공유
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  
+                  {/* Rank Hierarchy */}
+                  <div className="lg:col-span-7 rounded-3xl bg-[#0A0D18] border editorial-grid-line p-6 sm:p-8 space-y-6">
+                    <div>
+                      <h3 className="text-lg font-bold text-white">직급 승급 및 롤업 차액 수당 (최대 15%)</h3>
+                      <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                        산하 실적 및 소실적 조건 충족 시 직급 수당이 발생하며, 하위 직급자의 수당을 공제한 차액이 상위 직급자에게 최대 15%까지 롤업 지급됩니다.
+                      </p>
+                    </div>
+
+                    <div className="space-y-3 font-mono-tech">
+                      {[
+                        { rank: '파운더 (Founder)', cond: '산하 50개 (소실적 10개 이상)', rate: '3%', color: 'border-white/10' },
+                        { rank: '파운더 B (Founder B)', cond: '산하 100개 (소실적 75개 이상)', rate: '7%', color: 'border-blue-500/30' },
+                        { rank: '파운더 S (Founder S)', cond: '산하 300개 (소실적 100개 이상)', rate: '10%', color: 'border-indigo-500/30' },
+                        { rank: '파운더 G (Founder G)', cond: '산하 500개 (소실적 200개 이상)', rate: '15% (최고 요율)', color: 'border-cyan-500/50' },
+                      ].map((r, i) => (
+                        <div key={i} className={`p-4 rounded-2xl bg-white/[0.02] border ${r.color} flex items-center justify-between`}>
+                          <div>
+                            <div className="text-sm font-bold text-white">{r.rank}</div>
+                            <div className="text-xs text-slate-400 mt-0.5">{r.cond}</div>
+                          </div>
+                          <span className="text-sm font-black text-cyan-400 px-3 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
+                            {r.rate}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="pt-4 border-t editorial-grid-line grid grid-cols-2 gap-4 text-xs font-mono-tech">
+                      <div className="p-3 rounded-xl bg-white/[0.03]">
+                        <span className="text-slate-400 block">1대 직접 추천</span>
+                        <strong className="text-white text-sm mt-1 block">10% ($100 USDT)</strong>
+                      </div>
+                      <div className="p-3 rounded-xl bg-white/[0.03]">
+                        <span className="text-slate-400 block">2대 간접 추천</span>
+                        <strong className="text-white text-sm mt-1 block">5% ($50 USDT)</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Founders Black Titanium Card */}
+                  <div className="lg:col-span-5 rounded-3xl bg-gradient-to-b from-[#181328] to-[#0A0D18] border border-amber-500/40 p-6 sm:p-8 shadow-2xl relative overflow-hidden space-y-6">
+                    <div className="flex justify-between items-center pb-4 border-b editorial-grid-line">
+                      <span className="text-xs font-mono-tech text-amber-400 font-bold uppercase tracking-wider">FOUNDERS PRIVILEGE</span>
+                      <span className="text-[10px] font-mono-tech text-amber-300 bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/40">
+                        TIER 1 GLOBAL
+                      </span>
+                    </div>
+
+                    {/* Black Card Mockup */}
+                    <div className="h-48 rounded-2xl bg-gradient-to-tr from-slate-950 via-slate-900 to-amber-950/40 border border-amber-500/50 p-6 flex flex-col justify-between shadow-[0_0_30px_rgba(245,158,11,0.2)]">
+                      <div className="flex justify-between items-start">
+                        <div className="font-black tracking-wider text-amber-400 text-lg font-mono-tech">XNOT FOUNDERS</div>
+                        <Award className="w-6 h-6 text-amber-400" />
+                      </div>
+                      <div>
+                        <div className="text-[11px] font-mono-tech text-slate-400 tracking-widest uppercase">CENTURION GLOBAL SHARE</div>
+                        <div className="text-sm font-mono-tech font-bold text-white mt-0.5 tracking-wider">
+                          0x7F29 •••• •••• 8E9D
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4 font-mono-tech text-xs">
+                      <div className="p-4 rounded-2xl bg-black/60 border editorial-grid-line">
+                        <div className="flex justify-between items-center">
+                          <span className="text-white font-bold">파운더 S (300개 달성)</span>
+                          <span className="text-amber-400 font-bold">1 Share (1점)</span>
+                        </div>
+                        <p className="text-slate-400 mt-1 leading-relaxed">
+                          글로벌 1% 매출 2억 기준: <strong>매월 약 408만 원</strong> 추가 평생 배당
+                        </p>
+                      </div>
+
+                      <div className="p-4 rounded-2xl bg-black/60 border border-amber-500/30">
+                        <div className="flex justify-between items-center">
+                          <span className="text-white font-bold">파운더 G (500개 최고 직급)</span>
+                          <span className="text-amber-400 font-bold">2 Shares (2점)</span>
+                        </div>
+                        <p className="text-slate-400 mt-1 leading-relaxed">
+                          글로벌 1% 매출 2억 기준: <strong>매월 약 816만 원</strong> 추가 평생 배당
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             )}
