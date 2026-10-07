@@ -176,7 +176,7 @@
 
     /* Local Asset Paths */
     const ASSETS = {
-      logo: "images/XNOT_CI.webp",
+      logo: "images/XNOTLOGO.png",
       heroBg: "images/hanul_land_herosection.webp",
       stoneSkipperAction: "images/stoneskip_action.webp",
       gameP2e: "images/stoneskipper.jpg",
@@ -371,18 +371,10 @@
                 className="flex items-center gap-3 cursor-pointer group"
               >
                 <img 
-                  src={ASSETS.logo} 
-                  alt="XNOT Protocol" 
-                  className="h-9 w-auto object-contain transition-transform group-hover:scale-105"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
+                  src="images/XNOTLOGO.png" 
+                  alt="XNOT Logo" 
+                  className="h-10 w-10 sm:h-11 sm:w-11 rounded-2xl object-contain shadow-md shrink-0 transition-transform group-hover:scale-105"
                 />
-                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#004AD7] to-cyan-500 hidden items-center justify-center font-black text-white text-base">
-                  X
-                </div>
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="font-black text-lg sm:text-xl tracking-tight text-white font-mono-tech">
@@ -1565,9 +1557,16 @@
           {/* Footer */}
           <footer className="py-12 bg-[#040508] border-t editorial-grid-line text-xs text-slate-500 font-mono-tech">
             <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-              <div>
-                <span className="font-bold text-slate-300">XNOT GLOBAL FOUNDATION</span>
-                <span className="block text-[10px] text-slate-600 mt-0.5">The Decentralized Traffic & RWA Protocol</span>
+              <div className="flex items-center gap-3">
+                <img 
+                  src="images/XNOTLOGO.png" 
+                  alt="XNOT Logo" 
+                  className="w-8 h-8 rounded-xl object-contain shadow-sm shrink-0"
+                />
+                <div>
+                  <span className="font-bold text-slate-300">XNOT GLOBAL FOUNDATION</span>
+                  <span className="block text-[10px] text-slate-600 mt-0.5">The Decentralized Traffic & RWA Protocol</span>
+                </div>
               </div>
               <div className="flex items-center gap-4 text-[11px]">
                 <span>© 2026 XNOT. All rights reserved.</span>
